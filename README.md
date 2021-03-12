@@ -1,44 +1,42 @@
-# 🏦 Gama Bank 💲 Verde de dinheiro
+# Gama Bank 🏦💲
 
-<p align="center">
-  <img src="https://media.tenor.com/images/63dc70b43a949617fdfa3447868d534d/tenor.gif" alt="Hulk Smart"/>
-</p>
+## Descrição
 
-Nosso momento é de cada vez mais aprender sobre como administrar nosso patriminio pois como diz o ditado "não tá facil pra ninguém", não é mesmo ? Sendo assim, queremos começar não só querer cuidar do nosso dinheiro, mas do seu também. Criamos a Gama Bank para ser uma fintech diferente e que seja acima de tudo capaz de transformar a vida das pessoas e suas carreiras (sacoou?)
-
-## Nosso time, seu projeto de vida !
-
-Ainda estamos em desenvolvimento e você juntamente com seu time deverão ser capazes de construir nosso MVP (Minimo Produto Viavel) e garantir que possamos disponibilizar para o time de frontend a implementação dessa solução, que para nós, será um divisor de aguas na sua carreira (sacoou?)
+Projeto final para o treinamento da turma 6 de NodeJS da Gama Academy, oferecido pela Accenture.
 
 ## Objetivo
-Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecnologias que aprendemos durante o curso (você é livre para substitui-lás mas fica por sua conta e risco, ok ?) e disponibiliza-las em um servidor em cloud com acesso irrestrito por zona ou por horario.
 
+Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecnologias que aprendemos durante o curso (você é livre para substitui-lás mas fica por sua conta e risco, ok ?) e disponibiliza-las em um servidor em cloud com acesso irrestrito por zona ou por horario.  
 
-## Artefatos e entregaveis
-* Disponibilização de uma API com deverá conter toda a aplicação e todas as suas rotas
-* Disponibilização de uma pagina contendo a documentação dos recursos e as regras para execução dos mesmos
-* Board projeto: [recomendamos o nosso template no trello](https://trello.com/b/omMyz2qd/projeto-gamabank)
-* Fork deste repositório contendo:
-    * Instruções de Instalação e operação
-    * Detalhamento das funcionalidades
-    * Membros envolvidos no projeto com seus perfis do github associados
-    * Link para acesso ao repositório publicado em nuvem.
+# Time 2 - Perseverance :muscle:
 
+## Membros :pushpin:
 
-## Orientações
-- Aplique as boas praticas de desenvolvimento, lembrese de temas como DRY e KISS
-- Tenha sempre testes unitários  no seu projeto.
+- Alexsander de Oliveira  
+- Nivaldo Júnior  
+- Rafael Sampaio  
+- Stênio Amorim  
+- Wallace Rooger  
+- Yahnnis  
 
+## Rotas Disponíveis
 
-## Critérios de aceite
-1. Entregou a API Backend devidade documentada 
-2. Cadastrou usúarios com as respectivas contas
-3. Realizou transferencia entre conta existes e/ou inexistentes
-4. Realizou lançamentos de compras feitas com crédito e débito
-5. Realizou envio de email confirmando o lançamento de crédito ou débito para o email do usuario
-6. Exibiu o extrato bancário e fatura de crédito
+- PUT `/users` (Criar usuários)  
+- GET `/status` (Verificar status do servidor)
 
+## Scripts de inicialização
 
+- `npm run start` Iniciar o servidor
+- `npm run start_dev` Inicia o servidor em watch mode
+- `npm run compile` Compilar o TypeScript
+- `npm run compile_dev` Compilar o TypeScript em watch mode
+
+> **Observação**: Para iniciar em produção, recomenda-se somente a utilização do script `npm run start` apos ter o TypeScript compilado pelo `npm run compile`. Todos scripts com o sufixo _dev foram criados para aumentar a produtividade em modo de desenvolvimento e por isso recomenda-se o seu uso somente durante esse processo
+
+  
+#### Agradecimentos
+
+Toda a equipe do Time 2, agradece imensamente ao treinamento oferecido pela Accenture através da Gama Academy, em especial as pessoas que nos deram toda assistência para o nosso particular desenvolvimento pessoal e intelectual: Bruce, Deah e JC o homem, a lenda, o melhor professor. Obrigado a todos!!!
 
 
 

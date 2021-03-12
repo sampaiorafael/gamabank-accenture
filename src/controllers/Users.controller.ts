@@ -5,7 +5,7 @@ import { Users } from '../models/Users.model';
 
 class UsersController {
 
-    public create = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+    public  create: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
 
         const repository = getRepository(Users);
 

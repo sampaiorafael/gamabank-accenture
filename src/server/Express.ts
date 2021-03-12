@@ -1,6 +1,6 @@
 import express from 'express';
 
-import routes from '../routes/user';
+import routes from '../routes/routes';
 
 class Express {
 

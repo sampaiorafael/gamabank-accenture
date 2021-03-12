@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
-import user from './user';
+import status from './status';
 
 const routes = Router();
 
-routes.use('/', user);
+routes.use('/status', status);
 
 export default routes;

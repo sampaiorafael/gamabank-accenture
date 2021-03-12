@@ -1,7 +1,9 @@
+import { RequestHandler, Request, Response, NextFunction } from 'express';
+
 class StatusController {
 
-    public status = (req: any, res: any, next: any) => {
-        res.status(200).send(`Servidor On Line: ${ new Date()}`);
+    public status: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+        return res.status(200).send(`Servidor On Line: ${ new Date()}`);
     }
 
 }

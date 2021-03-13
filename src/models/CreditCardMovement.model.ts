@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Timestamp } from 'typeorm';
 
 @Entity() 
-export class CreditCardMovment {
+export class AccountsMovement {
 
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
@@ -9,7 +9,7 @@ export class CreditCardMovment {
     @Column({ type: 'timestamp' })
     date!: Timestamp;
 
-    @Column({ type: 'varchar', length: '100' })
+    @Column({ type: 'varchar', length: '255' })
     description!: string;
 
     @Column({ type: 'decimal'  })
@@ -24,7 +24,10 @@ export class CreditCardMovment {
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
     updatedAt!: Date
 
-    @CreateDateColumn({ name: 'id_credit_card', type: 'int' })
-    idCreditCard!: number
+    @CreateDateColumn({ name: 'id_accounts', type: 'int' })
+    idAccount!: number
 
+    @UpdateDateColumn({ name: 'id_invoices', type: 'int' })
+    idInvoice!: number
+    
 }

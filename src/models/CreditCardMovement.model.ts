@@ -24,10 +24,7 @@ export class AccountsMovement {
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
     updatedAt!: Date
 
-    @CreateDateColumn({ name: 'id_accounts', type: 'int' })
-    idAccount!: number
-
-    @UpdateDateColumn({ name: 'id_invoices', type: 'int' })
-    idInvoice!: number
+    @UpdateDateColumn({ name: 'id_credit_card', type: 'int' })
+    idCreditCard!: number
     
 }

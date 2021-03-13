@@ -6,11 +6,17 @@ export class Accounts {
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
-    @Column({name: 'id_user', type: 'int', unique: true })
+    @Column({ name: 'id_user', type: 'int', unique: true })
     idUser!: number
 
+    @Column({ name: 'id_bank', type: 'int' })
+    idBank!: number
+
+    @Column({ type: 'int' })
+    agency!: number
+
     @Column({ name: 'account_number', type: 'varchar', length: '255', unique: true })
-    accountNumber!: string
+    accountNumber!: number
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
     createdAt!: Date

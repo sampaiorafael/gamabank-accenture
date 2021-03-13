@@ -3,30 +3,33 @@ import { getRepository } from 'typeorm';
 import { Accounts } from '../models/Accounts.model';
 import configs from '../config/configs';
 
-class AccountsController {
+class AccountsService {
 
-    public create = async (idUser: number): Promise<boolean> => {
+    public newAccount = async (idUser: number): Promise<any> => {
 
         const repository = getRepository(Accounts);
+
+        let query;
         const idBank = configs.GamaBank.id;
         const agency = configs.GamaBank.agency;
         const accountNumber = await this.generateAccNumber();
 
         try {
-            await repository.save({idUser, idBank, agency, accountNumber});
+            query = await repository.save({idUser, idBank, agency, accountNumber});
         } catch (err) {
-            throw err
-        }
+            return err
+        };
 
-        return true
+        return query;
+
     };
 
     private async generateAccNumber (): Promise<number> {
         const repository = getRepository(Accounts);
         let query = await repository.findOne({ order: { id: 'DESC' }});
-        return query?.id ? query.id + 1 : 1
-    }
+        return query?.id ? query.id + 1 : 1;
+    };
 
 };
 
-export default new AccountsController();
+export default new AccountsService();

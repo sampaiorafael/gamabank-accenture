@@ -7,7 +7,9 @@
     "start": "node dist/index.js",
     "start_dev": "nodemon dist/index.js",
     "compile": "tsc",
-    "compile_dev": "tsc -w"
+    "compile_dev": "tsc -w",
+    "test": "mocha --recursive './dist/test' ",
+    "test_dev": "mocha -w --recursive './dist/test' "
   },
   "repository": {
     "type": "git",
@@ -47,8 +49,9 @@
     "@types/mocha": "^8.2.1",
     "@types/mysql": "^2.15.18",
     "@types/nodemailer": "^6.4.1",
-    "chai": "^4.3.3",
-    "mocha": "^8.3.1",
+    "chai": "^4.3.4",
+    "faker": "^5.4.0",
+    "mocha": "^8.3.2",
     "nodemon": "^2.0.7",
     "typescript": "^4.2.3"
   }

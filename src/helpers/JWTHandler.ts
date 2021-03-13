@@ -10,14 +10,18 @@ class JWTHandler {
         });
     };
 
-    public verifyToken (token: string) {
-        return jwt.verify(token, JSON.stringify(configs.JWT.secret), (err, decoded) => {
+    public async verifyToken (token: string): Promise<boolean> {
+        return new Promise ( (resolve,reject)=>{
 
-            if (err)
-                return false
-            
-            return true
-        });
+            jwt.verify(token, JSON.stringify(configs.JWT.secret), (err, decoded) => {
+
+                if (err)
+                    resolve(false)
+                
+                resolve(true)
+            });
+
+        }) 
     }
 
 };

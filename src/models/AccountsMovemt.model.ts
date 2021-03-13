@@ -26,5 +26,4 @@ export class CreditCardMovment {
 
     @CreateDateColumn({ name: 'id_credit_card', type: 'int' })
     idCreditCard!: number
-
 }

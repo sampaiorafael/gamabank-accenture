@@ -23,6 +23,7 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 - PUT `/users` (Criar usuários)  
 - GET `/status` (Verificar status do servidor)
+- POST `/auth` (Login)
 
 ## Scripts de inicialização
 

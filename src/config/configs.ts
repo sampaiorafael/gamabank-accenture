@@ -13,6 +13,13 @@ export default {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
         port: process.env.MAIL_PORT
+    },
+    Bcrypt: {
+        salt: process.env.BCRYPT_SALT
+    },
+    GamaBank: {
+        id: 500,
+        agency: 1
     }
 
 };

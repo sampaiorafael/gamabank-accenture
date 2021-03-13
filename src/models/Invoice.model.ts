@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Timestamp } from 'typeorm';
 
 @Entity() 
-export class CreditCardMovement {
+export class Invoice {
 
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
-    @Column({ type: 'timestamp' })
+    @Column({ type: 'datetime' })
     date!: Timestamp;
 
     @Column({ type: 'varchar', length: '255' })
@@ -15,13 +15,16 @@ export class CreditCardMovement {
     @Column({ type: 'decimal'  })
     value!: number;
 
-    @Column({ type: 'char', length:'1' })
-    type!: Timestamp;
+    @Column({ name: 'duo_date', type: 'datetime' })
+    duoDate!: Date;
     
-    @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
+    @Column({ name: 'pay_date', type: 'datetime' })
+    payDate!: Date;
+
+    @CreateDateColumn({ name: 'created_at', type: 'datetime' })
     createdAt!: Date
 
-    @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
+    @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
     updatedAt!: Date
 
     @Column({ name: 'id_credit_card', type: 'int' })

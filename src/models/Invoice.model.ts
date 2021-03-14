@@ -6,6 +6,9 @@ export class Invoice {
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
+    @Column({ name: 'id_credit_card', type: 'int' })
+    idCreditCard!: number
+
     @Column({ type: 'datetime' })
     date!: Timestamp;
 
@@ -27,6 +30,4 @@ export class Invoice {
     @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
     updatedAt!: Date
 
-    @Column({ name: 'id_credit_card', type: 'int' })
-    idCreditCard!: number
 }

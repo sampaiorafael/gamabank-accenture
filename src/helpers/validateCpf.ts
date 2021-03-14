@@ -4,7 +4,7 @@ const validateCpf = (cpf :string):  boolean => {
 	if(cpf == '') return false;	
 
 	//verifica quantidade de caracteres iguais 
-	let count :number = 0;
+	let count :number = 1;
 	for(let i: number = 1; i < cpf.length; i++){
 		if (cpf.charAt(0) == cpf.charAt(i)){
 			count += 1

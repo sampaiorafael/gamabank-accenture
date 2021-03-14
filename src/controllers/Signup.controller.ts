@@ -11,7 +11,13 @@ class SignupController {
         if (!username || !password || !email || !name || !cpf || !adress || !phone)
             return res.status(400).send('Estão faltando campos');
 
-        let data = await SignupService.signup(username, password, email, name, cpf, adress, phone);
+        let data;
+
+        try {
+           data = await SignupService.signup(username, password, email, name, cpf, adress, phone);
+        } catch (err) {
+            return res.status(400).send(err.message)
+        }
 
         return res.status(201).send(data);
 

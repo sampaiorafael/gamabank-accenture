@@ -12,12 +12,12 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 ## Membros :pushpin:
 
-- Alexsander de Oliveira  
-- Nivaldo Júnior  
-- Rafael Sampaio  
-- Stênio Amorim  
-- Wallace Rooger  
-- Yahnnis  
+- [Alex Penavilla](https://github.com/AlexPenavilla) 
+- [Nivaldo Júnior](https://github.com/Juniornbs) 
+- [Rafael Sampaio](https://github.com/sampaiorafael)
+- [Stênio Amorim](https://github.com/stamorim28)
+- [Wallace Rooger](https://github.com/WallaceRooger) 
+- [Yahnnis](https://github.com/yahnnThomas)
 
 ## Rotas Disponíveis
 

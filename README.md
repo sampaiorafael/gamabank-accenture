@@ -25,7 +25,7 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
     Requisitos: N/A  
     Autenticação: N/A  
 
-- POST `/users` - Criar usuários  
+- POST `/signup` - Criar usuários  
     Requisitos: username, password, email, cpf, name, adress, phone  
     Autenticação: N/A  
 

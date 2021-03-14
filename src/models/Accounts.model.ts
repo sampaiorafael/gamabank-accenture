@@ -12,10 +12,10 @@ export class Accounts {
     @Column({ name: 'id_bank', type: 'int' })
     idBank!: number
 
-    @Column({ type: 'int' })
+    @Column({ type: 'int', zerofill: true })
     agency!: number
 
-    @Column({ name: 'account_number', type: 'varchar', length: '255', unique: true })
+    @Column({ name: 'account_number', type: 'varchar', length: '255', unique: true, zerofill: true })
     accountNumber!: number
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })

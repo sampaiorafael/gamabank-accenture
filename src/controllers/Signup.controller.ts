@@ -18,6 +18,9 @@ class SignupController {
         if (validatePassword.status === false)
             return res.status(400).send(`Senha inválida: ${validatePassword.msg}`)
 
+        if (!ValidateCPF(cpf))
+            return res.status(400).send('CPF inválido');
+
         let data;
 
         try {

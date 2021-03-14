@@ -21,9 +21,23 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 ## Rotas Disponíveis
 
-- PUT `/users` (Criar usuários)  
-- GET `/status` (Verificar status do servidor)
-- POST `/auth` (Login)
+- GET `/status` - Verificar status do servidor  
+    Requisitos: N/A  
+    Autenticação: N/A  
+
+- POST `/users` - Criar usuários  
+    Requisitos: username, password, email, cpf, name, adress, phone  
+    Autenticação: N/A  
+
+- POST `/auth` - Login  
+    Requisitos: reqUsername, reqPassword  
+    Autenticação: N/A 
+
+- GET `/accounts/checkbalance` - Verificar saldo  
+    Requisitos: N/A  
+    Autenticação: JWT  
+
+> **Observação** toda verificação será feita via JWT (jsonwebtoken) enviada no Header do HttpRequest, através da chave `Authorization`
 
 ## Scripts de inicialização
 

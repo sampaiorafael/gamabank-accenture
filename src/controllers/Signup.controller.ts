@@ -1,8 +1,8 @@
 import { RequestHandler, Request, Response, NextFunction } from 'express';
 
 import SignupService from '../services/Signup.service';
-import ValidateCPF from '../helpers/validateCpf';
-import ValidaSenha from '../helpers/validasenha'
+import validateCPF from '../helpers/validateCpf';
+import validaSenha from '../helpers/validasenha'
 
 class SignupController {
     
@@ -13,12 +13,12 @@ class SignupController {
         if (!username || !password || !email || !name || !cpf || !adress || !phone)
             return res.status(400).send('Estão faltando campos');
 
-        const validatePassword = ValidaSenha(password)
+        const validatePassword = validaSenha(password)
 
         if (validatePassword.status === false)
             return res.status(400).send(`Senha inválida: ${validatePassword.msg}`)
 
-        if (!ValidateCPF(cpf))
+        if (!validateCPF(cpf))
             return res.status(400).send('CPF inválido');
 
         let data;

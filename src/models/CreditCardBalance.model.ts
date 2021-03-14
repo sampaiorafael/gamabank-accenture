@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Timestamp } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, } from 'typeorm';
 
 @Entity() 
-export class CreditCardMovement {
+export class CreditCardBalance {
 
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;

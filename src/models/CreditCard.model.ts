@@ -12,19 +12,19 @@ export class CreditCards {
     @Column({ type: 'varchar', length: '5' })
     validTrhu!: string
 
-    @Column({ type: 'decimal', length: '2' })
-    SecurityCode!: number
+    @Column({ type: 'decimal' })
+    securityCode!: number
     
-    @Column({ type: 'decimal', length: '2' })
+    @Column({ type: 'decimal' })
     limitValue!: number
 
-    @Column({ type: 'decimal', length: '2' })
+    @Column({ type: 'decimal' })
     balanceValue!: number
 
-    @Column({ type: 'varchar', length: '2' })
+    @Column({ type: 'varchar' })
     closingDay!: string
     
-    @Column({ type: 'varchar', length: '2' })
+    @Column({ type: 'varchar' })
     dueDay!: string
 
     @Column({ type: 'int' })

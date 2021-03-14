@@ -30,8 +30,8 @@ class SingupService {
             throw err
         };
 
-        mailer.sendCreateAccountMail(username,'001','002','003')
-        
+        mailer.sendCreateAccountMail(username,newAccount.idBank,newAccount.agency,newAccount.accountNumber)
+
         return {newUser, newClient, newAccount};
     }
 

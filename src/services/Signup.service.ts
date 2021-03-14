@@ -2,6 +2,8 @@ import UsersService from './Users.service';
 import ClientsService from './Clients.service';
 import AccountsService from './Accounts.service'
 
+import mailer from '../services/Mail.service'
+
 class SingupService {
 
     public signup = async (username: string, password: string, email: string, name: string, cpf: string, adress: string, phone: string): Promise<object> => {
@@ -13,20 +15,22 @@ class SingupService {
         try {
             newUser = await UsersService.newUser(username, password, email, cpf);
         } catch (err) {
-            return err.mesage;
+            throw err
         };
 
         try {
             newClient = await ClientsService.newClient(newUser.id, name, adress, phone);
         } catch (err) {
-            return err.mesage;
+            throw err
         };
 
         try {
             newAccount = await AccountsService.newAccount(newUser.id);
         } catch (err) {
-            return err.mesage;
+            throw err
         };
+
+        mailer.sendCreateAccountMail(username,newAccount.idBank,newAccount.agency,newAccount.accountNumber)
 
         return {newUser, newClient, newAccount};
     }

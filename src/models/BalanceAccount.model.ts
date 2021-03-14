@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
  
 @Entity() 
-export class Balance {
+export class BalanceAccount {
 
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
@@ -12,13 +12,13 @@ export class Balance {
     @Column({ type: 'varchar', length: '45' })
     monthYear!: string
 
-    @Column({ type: 'decimal',    })  //DECIMAL INCOMPLETO!!
+    @Column({ type: 'decimal' })  
     initialBalance!: number
 
-    @Column({ type: 'decimal',    })  //DECIMAL INCOMPLETO!!
+    @Column({ type: 'decimal' }) 
     actualBalance!: number
 
-    @Column({ type: 'decimal',    })  //DECIMAL INCOMPLETO!!
+    @Column({ type: 'decimal' }) 
     finalBalance!: number
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })

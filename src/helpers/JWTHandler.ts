@@ -10,15 +10,16 @@ class JWTHandler {
         });
     };
 
-    public async verifyToken (token: string): Promise<boolean> {
+    public async verifyToken (token: string): Promise<object | undefined> {
         return new Promise ( (resolve,reject)=>{
-
             jwt.verify(token, JSON.stringify(configs.JWT.secret), (err, decoded) => {
 
+                console.log(decoded)
+
                 if (err)
-                    resolve(false)
+                    throw err
                 
-                resolve(true)
+                resolve(decoded)
             });
 
         }) 

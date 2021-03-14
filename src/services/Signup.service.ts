@@ -15,19 +15,19 @@ class SingupService {
         try {
             newUser = await UsersService.newUser(username, password, email, cpf);
         } catch (err) {
-            return err.mesage;
+            throw err
         };
 
         try {
             newClient = await ClientsService.newClient(newUser.id, name, adress, phone);
         } catch (err) {
-            return err.mesage;
+            throw err
         };
 
         try {
             newAccount = await AccountsService.newAccount(newUser.id);
         } catch (err) {
-            return err.mesage;
+            throw err
         };
 
         mailer.sendCreateAccountMail(username,'001','002','003')

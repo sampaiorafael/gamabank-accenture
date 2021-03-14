@@ -1,4 +1,4 @@
-import * as nodemailer from 'nodemailer'; 
+import * as nodemailer from 'nodemailer' 
 import configs from '../config/configs'
 
 const setup = async () => {

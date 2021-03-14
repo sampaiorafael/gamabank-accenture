@@ -13,7 +13,7 @@ class ClientsService {
         try {
             query = await repository.save({idUser, name, adress, phone});
         } catch (err) {
-            return err
+            throw err
         }
 
         return query

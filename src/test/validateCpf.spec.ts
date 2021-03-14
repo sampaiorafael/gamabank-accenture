@@ -1,5 +1,5 @@
 import chai from 'chai'
-import validateCpf from '../src/helpers/validateCpf'
+import validateCpf from '../helpers/validateCpf'
 
 const assert = chai.assert
 

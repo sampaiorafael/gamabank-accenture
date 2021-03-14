@@ -1,31 +1,36 @@
 import { RequestHandler, Request, Response, NextFunction } from 'express';
-import { getRepository } from 'typeorm';
 
-import { Users } from '../models/Users.model';
+import UsersService from '../services/Users.service'
 import JWTHandler from '../helpers/JWTHandler';
+import BcryptHandler from '../helpers/BcryptHandler';
 
-class Auth {
+class AuthController {
 
     public login: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+       
+        let { reqUsername, reqPassword } = req.body;
 
-        let { reqUsername, password } = req.body;
-
-        if (!reqUsername || !password)
+        if (!reqUsername || !reqPassword)
             return res.status(400).send('Os campos necessários não estão preenchidos');
 
-        const repository = getRepository(Users);
-        let query;
+        let findUser = await UsersService.findOne(reqUsername);
 
-        try {
-            query = await repository.findOne({ username: reqUsername });
-        } catch (err) {
-            return res.status(400).send(err.message);
-        };
+        if (!findUser)
+            return res.status(400).send('Usuário não encontrado');
+        
+        let { username, password } = findUser;
 
-        return res.status(200).send(query);
+        if (!BcryptHandler.checkPassword(reqPassword, password))
+            return res.status(400).send('Senha inválida');
+
+        let newToken = JWTHandler.newToken(username)
+    
+        return res.status(200).json({
+            token: newToken
+        });
 
     };
 
 };
 
-export default new Auth();
+export default new AuthController();

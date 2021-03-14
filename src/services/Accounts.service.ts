@@ -17,7 +17,7 @@ class AccountsService {
         try {
             query = await repository.save({idUser, idBank, agency, accountNumber});
         } catch (err) {
-            return err
+            throw err
         };
 
         return query;

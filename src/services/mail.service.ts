@@ -3,13 +3,11 @@ import htmlTemplate from '../templates/mail.template'
 
 const from = 'admin@gamabank.com.br'
 
-
-
-const sendCreateAccountMail = async () => {
+const sendCreateAccountMail = async (user: string, codBank: string, agencia: string, cc: string) => {
     const subject = 'Conta criada com sucesso'
     const text = 'Conta criada com sucesso'
     const to = 'njr.mor@gmail.com' //  Passar email do cliente como parâmetro
-    mailer.sendmail(from, to, subject, text, htmlTemplate.createAccMail())
+    mailer.sendmail(from, to, subject, text, htmlTemplate.createAccMail(user, codBank, agencia, cc))
         .then(sended => console.log(sended))
         .catch(error => console.error(error))
 }

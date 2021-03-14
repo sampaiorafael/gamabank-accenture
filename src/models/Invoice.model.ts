@@ -29,5 +29,4 @@ export class Invoice {
 
     @Column({ name: 'id_credit_card', type: 'int' })
     idCreditCard!: number
- 
 }

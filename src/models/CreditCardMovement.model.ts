@@ -26,5 +26,4 @@ export class CreditCardMovement {
 
     @Column({ name: 'id_credit_card', type: 'int' })
     idCreditCard!: number
-
 }

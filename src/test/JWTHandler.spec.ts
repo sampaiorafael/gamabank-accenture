@@ -1,5 +1,5 @@
 import chai from 'chai'
-import JWTHandler from '../src/helpers/JWTHandler'
+import JWTHandler from '../helpers/JWTHandler'
 
 const assert = chai.assert
 

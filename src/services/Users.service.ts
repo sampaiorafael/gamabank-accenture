@@ -14,12 +14,27 @@ class UsersService {
         try {
             query = await repository.save({username, password, email, cpf});
         } catch (err) {
-            return err;
+            throw err
         }
 
         return query;
 
     };
+
+    public findOne = async (findUsername: string): Promise<Users | undefined> => {
+
+        const repository = getRepository(Users)
+        let query: Users | undefined
+        
+        try {
+            query = await repository.findOne({ username: findUsername });
+        } catch (err) {
+            throw err
+        };
+        
+        return query
+
+    }
 
 };
 

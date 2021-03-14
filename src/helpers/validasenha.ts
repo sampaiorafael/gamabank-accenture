@@ -1,14 +1,12 @@
-const verifyPass = (senha) => {
+const verifyPass = (senha: any) => {
     
-    let result = { 
-         status: true,
-         msg: []
-    }
+    let msg: string[] = []
+    let status = true
     
     if (senha.length < 6) {
-        result.msg.push('Menor que seis caracteres')
-        result.status = false
-        return result
+        msg.push('Menor que seis caracteres')
+        status = false
+        return {status, msg}
     
     } else {
         let achouNumero = false;
@@ -30,21 +28,21 @@ const verifyPass = (senha) => {
             }
         
             if (!achouNumero) {
-                result.msg.push('Falta caracter numérico')
+                msg.push('Falta caracter numérico')
             }
             if (!achouMaiuscula) {
-                result.msg.push('Falta caracter maiúsculo')
+                msg.push('Falta caracter maiúsculo')
             } 
             if (!achouMinuscula) {
-                result.msg.push('Falta caracter minúsculo')
+                msg.push('Falta caracter minúsculo')
             } 
             if (!achouSimbolo) { 
-                result.msg.push('Falta caracter especial')
+                msg.push('Falta caracter especial')
             }
                           
 
-        result.status = achouNumero && achouMaiuscula && achouMinuscula && achouSimbolo
-        return (result)    
+        status = achouNumero && achouMaiuscula && achouMinuscula && achouSimbolo
+        return {status, msg}
     }
     
 }

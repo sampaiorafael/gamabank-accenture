@@ -1,10 +1,9 @@
-import * as nodemailer from 'nodemailer'; 
+import * as nodemailer from 'nodemailer' 
 import configs from '../config/configs'
 
 const setup = async () => {
 
     let account = await nodemailer.createTestAccount()
-    console.log('setup')
     const transporter = nodemailer.createTransport({
         host: configs.Mailer.host, 
         port: Number(configs.Mailer.port),
@@ -21,7 +20,6 @@ const setup = async () => {
 const sendmail = async (from: string, to: string, subject: string, text: string, htmlTemplate: string) => {
 
     const transporter  = await setup();
-    console.log('sendmail')
     const result = await transporter.sendMail({
         from: from,
         to: to,

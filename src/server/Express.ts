@@ -2,8 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { createConnection } from 'typeorm';
 import swagguerUi from 'swagger-ui-express';
-import swagguerDoc from '../../swagger.json';
-
+import swagguerDoc from '../config/swagger.json';
 
 import routes from '../routes/routes';
 

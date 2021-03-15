@@ -56,6 +56,28 @@ class BalanceService {
         return newBalanceRegister;
     };
 
+    public checkBalance = async (destinyAccountNumber: number): Promise<number> => {
+        
+        const repository = getRepository(AccountsBalance);
+
+        let actualMonth = (new Date().getMonth()) + 1;
+
+        let balanceRegister;
+
+        try {
+            balanceRegister = await repository.findOne({ accountNumber: destinyAccountNumber, month: actualMonth })
+        } catch (err) {
+            console.log(err)
+            throw err; 
+        };
+
+        if (!balanceRegister)
+            throw new Error('Balance register not found');
+
+        return balanceRegister.actualBalance;
+
+    };
+
 };
 
 export default new BalanceService();

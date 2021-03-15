@@ -1,18 +1,18 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
  
-@Entity() 
-export class BalanceAccount {
+@Entity({name: 'accounts_balance'}) 
+export class AccountsBalance {
 
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
-    @Column({ name: 'number', type: 'int', unique: true })
+    @Column({ name: 'account_id', type: 'int' })
     acountId!: number
 
-    @Column({ type: 'varchar', length: '45' })
+    @Column({ name: 'month_year', type: 'varchar', length: '45' })
     monthYear!: string
 
-    @Column({ type: 'decimal' })  
+    @Column({ name: 'inicital_balance', type: 'decimal' })  
     initialBalance!: number
 
     @Column({ type: 'decimal' }) 

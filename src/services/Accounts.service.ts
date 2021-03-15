@@ -23,7 +23,7 @@ class AccountsService {
         return newAccount;
 
     };
-
+    
     public findAccountByNumber = async (accNumber: number): Promise<Accounts> => {
 
         const repository = getRepository(Accounts);
@@ -40,6 +40,23 @@ class AccountsService {
 
         return account;
 
+    }
+
+    public findAccountByUserId = async (findUserId: number): Promise<number> => {
+
+        const repository = getRepository(Accounts);
+        let account: Accounts | undefined;
+
+        try {
+            account = await repository.findOne({ idUser: findUserId });
+        } catch (err) {
+            throw err
+        }
+
+        if (!account)
+            throw new Error('Conta não encontrada');
+
+        return account.accountNumber;
     }
 
     private async generateAccNumber (): Promise<number> {

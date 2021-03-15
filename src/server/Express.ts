@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { createConnection } from 'typeorm';
-import swagguerUi from 'swagger-ui-express';
-import swagguerDoc from '../config/swagger.json';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDoc from '../config/swagger.json';
 
 import routes from '../routes/routes';
 
@@ -23,7 +23,7 @@ class Express {
 
    private routes() {
         this.express.use(routes);
-        this.express.use('/swagger',swagguerUi.serve, swagguerUi.setup(swagguerDoc) )
+        this.express.use('/swagger',swaggerUi.serve, swaggerUi.setup(swaggerDoc) )
    }
 
    private async database(){

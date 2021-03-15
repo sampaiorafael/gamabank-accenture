@@ -4,7 +4,7 @@ import AccountsService from './Accounts.service'
 import BalanceService from './Balance.service';
 import DepositService from '../services/Deposit.service';
 
-import mailer from '../services/mail.service'
+import mailer from '../services/Mail.service'
 
 class SingupService {
 

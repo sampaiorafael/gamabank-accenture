@@ -8,15 +8,15 @@ class ClientsService {
 
         const repository = getRepository(Clients);
 
-        let query;
+        let newClient;
 
         try {
-            query = await repository.save({idUser, name, adress, phone});
+            newClient = await repository.save({idUser, name, adress, phone});
         } catch (err) {
             throw err
         }
 
-        return query
+        return newClient
 
     }
 

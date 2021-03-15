@@ -9,33 +9,36 @@ class AccountsService {
 
         const repository = getRepository(Accounts);
 
-        let query;
+        let newAccount;
         const idBank = configs.GamaBank.id;
         const agency = configs.GamaBank.agency;
         const accountNumber = await this.generateAccNumber();
 
         try {
-            query = await repository.save({idUser, idBank, agency, accountNumber});
+            newAccount = await repository.save({idUser, idBank, agency, accountNumber});
         } catch (err) {
             throw err
         };
 
-        return query;
+        return newAccount;
 
     };
 
-    public findAccount = async (findIdUser: number): Promise<Accounts | undefined> => {
+    public findAccountByNumber = async (accNumber: number): Promise<Accounts> => {
 
         const repository = getRepository(Accounts);
-        let query: Accounts | undefined
+        let account: Accounts | undefined;
 
         try {
-            query = await repository.findOne({ idUser: findIdUser });
+            account = await repository.findOne({ accountNumber: accNumber });
         } catch (err) {
             throw err
         }
 
-        return query;
+        if (!account)
+            throw new Error('Conta não encontrada');
+
+        return account;
 
     }
 

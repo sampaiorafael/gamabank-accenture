@@ -24,9 +24,24 @@ class AccountsService {
 
     };
 
+    public findAccount = async (findIdUser: number): Promise<Accounts | undefined> => {
+
+        const repository = getRepository(Accounts);
+        let query: Accounts | undefined
+
+        try {
+            query = await repository.findOne({ idUser: findIdUser });
+        } catch (err) {
+            throw err
+        }
+
+        return query;
+
+    }
+
     private async generateAccNumber (): Promise<number> {
         const repository = getRepository(Accounts);
-        let query = await repository.findOne({ order: { id: 'DESC' }});
+        let query = await repository.findOne({ order: { accountNumber: 'DESC' }});
         return query?.id ? query.id + 1 : 1;
     };
 

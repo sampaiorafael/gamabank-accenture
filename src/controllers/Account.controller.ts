@@ -3,7 +3,7 @@ import { RequestHandler, Request, Response, NextFunction } from 'express';
 import BalanceService from '../services/Balance.service';
 import JWTHandler from '../helpers/JWTHandler';
 
-class Auth {
+class AccountController {
 
     public checkBalance: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
 

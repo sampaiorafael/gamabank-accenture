@@ -35,7 +35,11 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 - GET `/accounts/checkbalance` - Verificar saldo  
     Requisitos: N/A  
-    Autenticação: JWT  
+    Autenticação: JWT 
+
+- GET `/swagger` - Swagger
+    Requisitos: N/A  
+    Autenticação: N/A
 
 > **Observação** toda verificação será feita via JWT (jsonwebtoken) enviada no Header do HttpRequest, através da chave `Authorization`
 

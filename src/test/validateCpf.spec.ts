@@ -19,4 +19,9 @@ describe('Teste para validação de CPF', () => {
         assert.equal( validateCpf('07378534411'), expertedResult )
     })
 
+    it ('Deve retornar false em caso de todos os numeros iguais', () => {
+        const expertedResult = false
+        assert.equal( validateCpf('11111111111'), expertedResult )
+    })
+
 })

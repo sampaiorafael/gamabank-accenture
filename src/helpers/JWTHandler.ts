@@ -4,13 +4,13 @@ import configs from '../config/configs';
 
 class JWTHandler {
 
-    public newToken(username: string): string {
-        return jwt.sign({ id: username }, JSON.stringify(configs.JWT.secret), {
+    public newToken(accountNumber: number): string {
+        return jwt.sign({ id: accountNumber }, JSON.stringify(configs.JWT.secret), {
             expiresIn: configs.JWT.expireTime
         });
     };
 
-    public async verifyToken (token: string): Promise<object | undefined> {
+    public async verifyToken (token: string): Promise<object | any> {
         return new Promise ( (resolve,reject)=>{
             jwt.verify(token, JSON.stringify(configs.JWT.secret), (err, decoded) => {
 

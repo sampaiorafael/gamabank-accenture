@@ -3,7 +3,12 @@ import ClientsService from './Clients.service';
 import AccountsService from './Accounts.service'
 import BalanceService from './Balance.service';
 import DepositService from '../services/Deposit.service';
+<<<<<<< HEAD
 import mailer from '../services/mail.service';
+=======
+
+import mailer from '../services/Mail.service'
+>>>>>>> 3002e23b9faa9c6543cbf43b77418cc71a2e4f8f
 
 class SingupService {
 

@@ -4,7 +4,8 @@ import validateCpf from '../helpers/validateCpf'
 const assert = chai.assert
 
 describe('Teste para validação de CPF', () => {
-    it ('Deve remover os caracteres que não digitos', () => {
+    
+    it ('Deve remover os caracteres que sejam digitos', () => {
         const expectedResult = true
         assert.equal( validateCpf('073.785.344-12'), expectedResult )
     })
@@ -14,9 +15,14 @@ describe('Teste para validação de CPF', () => {
         assert.equal( validateCpf('0731234561'), expectedResult )
     })
 
-    it ('Deve retornar false em caso falha na validação do digito verificador', () => {
+    it ('Deve retornar false em caso falha na validação do primeiro digito verificador', () => {
         const expectedResult = false
-        assert.equal( validateCpf('07378534411'), expectedResult )
+        assert.equal( validateCpf('07378534402'), expectedResult )
+    })
+
+    it ('Deve retornar false em caso falha na validação do segundo digito verificador', () => {
+        const expectedResult = false
+        assert.equal( validateCpf('07378534413'), expectedResult )
     })
 
     it ('Deve retornar false em caso de todos os numeros iguais', () => {
@@ -24,4 +30,9 @@ describe('Teste para validação de CPF', () => {
         assert.equal( validateCpf('11111111111'), expectedResult )
     })
 
+    it ('Deve retornar false em caso de campo vazio', () => {
+        const expectedResult = false
+        assert.equal( validateCpf(''), expectedResult )
+    })
+    
 })

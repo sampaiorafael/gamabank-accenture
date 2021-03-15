@@ -45,6 +45,8 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 - `npm run start_dev` Inicia o servidor em watch mode
 - `npm run compile` Compilar o TypeScript
 - `npm run compile_dev` Compilar o TypeScript em watch mode
+- `npm run test` Inicia o teste unitário
+- `npm run test_dev` Inicia o teste unitário em watch mode
 
 > **Observação**: Para iniciar em produção, recomenda-se somente a utilização do script `npm run start` apos ter o TypeScript compilado pelo `npm run compile`. Todos scripts com o sufixo _dev foram criados para aumentar a produtividade em modo de desenvolvimento e por isso recomenda-se o seu uso somente durante esse processo
 

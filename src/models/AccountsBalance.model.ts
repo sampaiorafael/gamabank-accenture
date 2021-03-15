@@ -6,8 +6,8 @@ export class AccountsBalance {
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
-    @Column({ name: 'account_id', type: 'int' })
-    accountId!: number
+    @Column({ name: 'account_number', type: 'int' })
+    accountNumber!: number
 
     @Column({ type: 'int' })
     month!: number

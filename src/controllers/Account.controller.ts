@@ -178,6 +178,43 @@ class AccountController {
 
     }
 
+    public purchaseDebt: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+
+        const token = req.headers.authorization;
+        let decodedToken; 
+
+        if(!token)
+            return res.status(400).send('Token de autenticação não encontrado');
+
+        try {
+            decodedToken = await JWTHandler.verifyToken((token));
+        } catch (err) {
+            return res.status(400).send('Token inválido ou expirado');
+        };
+
+        let { id } = decodedToken;
+        let fromAccountNumber = id;
+
+        const { value } = req.body;
+
+        if (!value)
+            return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
+
+        if (isNegative(value))
+            return res.status(400).send('O valor não pode ser menor ou igual a zero.');
+
+        let purchaseDebt;
+
+        try {
+            purchaseDebt = await MonetaryService.purchaseDebt(fromAccountNumber, value)
+        } catch (err) {
+            return res.status(400).send('Não foi possível realizar a compra, verifique seu saldo e informações e tente novamente');
+        }
+
+        return res.status(200).send(purchaseDebt);
+
+    }
+
 
 
 };

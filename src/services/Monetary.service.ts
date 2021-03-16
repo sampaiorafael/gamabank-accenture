@@ -41,6 +41,34 @@ class MonetaryService {
     public accountWithdraw = async (destinyAccountNumber: number, value: number): Promise<any> => {
     }
 
+    public purchaseDebt = async (destinyAccountNumber: number, value: number): Promise<any> => {
+        
+        let actualBalanceFromAccount: number | string
+
+        try {
+            actualBalanceFromAccount = await BalanceService.checkBalance(destinyAccountNumber);
+        } catch (err) {
+            throw err;
+        };
+
+        if (!(+actualBalanceFromAccount >= value))
+            return ('Saldo insuficiente');
+        
+        let removeFromAccount;
+
+        try {
+            removeFromAccount = await this.accountRemove(destinyAccountNumber, value);
+        } catch (err) {
+            throw err;
+        };
+
+        if (!removeFromAccount)
+            return ('Não foi possível debitar o dinheiro de sua conta corrente, tente novamente');
+
+        return (removeFromAccount);
+
+    } 
+
 };
 
 export default new MonetaryService();

@@ -35,7 +35,19 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 - GET `/accounts/checkbalance` - Verificar saldo  
     Requisitos: N/A  
-    Autenticação: JWT 
+    Autenticação: JWT  
+
+- POST `/accounts/selfdeposit` -  Deposito na própria conta
+    Requisitos: value   
+    Autenticação: JWT  
+
+- POST `/account/interntransfer` -  Transferências Internas  
+    Requisitos: toUsername, value 
+    Autenticação: JWT  
+
+- POST `/account/externtransfer` -  Transferências Externas  
+    Requisitos: bankCode, cpf, value  
+    Autenticação: JWT  
 
 - GET `/swagger` - Swagger
     Requisitos: N/A  

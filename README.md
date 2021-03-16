@@ -53,6 +53,10 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
     Requisitos: N/A  
     Autenticação: JWT  
 
+- POST `/account/purchasedebt` - Compra no débito  
+    Requisitos: value
+    Autenticação: JWT  
+
 - GET `/swagger` - Swagger  
     Requisitos: N/A  
     Autenticação: N/A  

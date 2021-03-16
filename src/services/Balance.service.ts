@@ -39,10 +39,11 @@ class BalanceService {
             throw err;
         };
 
+
         if (!balanceRegister)
             throw new Error('Registro de balanço não encontrado');
-
-        newActualBalance = balanceRegister.actualBalance; + value;
+        
+        newActualBalance = +balanceRegister.actualBalance + +value;
 
         try {
             newBalanceRegister = await repository.update(balanceRegister.id, { actualBalance: newActualBalance })

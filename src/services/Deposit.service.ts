@@ -12,16 +12,16 @@ class DepositService {
         let newBalanceRegister;
 
         try {
-            newBalanceRegister = await BalanceService.updateActualBalance(destinyAccountNumber, value)
-            newMovementRegister = await MovementService.publishNewMovement(destinyAccountNumber, movementType, value)
+            newBalanceRegister = await BalanceService.updateActualBalance(destinyAccountNumber, value);
+            newMovementRegister = await MovementService.publishNewMovement(destinyAccountNumber, movementType, value);
         } catch (err) {
-            throw err
-        }
+            throw err;
+        };
 
         return { newBalanceRegister, newMovementRegister };
 
-    }
+    };
 
-}
+};
 
 export default new DepositService();

@@ -70,8 +70,6 @@ class TransferService {
         if (!bank)
             return('Banco não encontrado');
         
-        console.log(bank)
-
         let actualBalanceFromAccount: number | string;
 
         try {

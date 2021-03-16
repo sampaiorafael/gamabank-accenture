@@ -131,15 +131,12 @@ class AccountController {
         try {
             externTransfer = await TransferService.externTransfer(fromAccountNumber, bankCode, cpf, value)
         } catch (err) {
-            console.log(err)
             return res.status(400).send('Transferência interna mal sucedida, verifique as informações e tente novamente');
         }
 
         return res.status(200).send(externTransfer);
 
     };
-
-
 
 };
 

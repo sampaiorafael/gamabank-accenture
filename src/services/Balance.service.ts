@@ -30,7 +30,7 @@ class BalanceService {
      * @param operation true to increase and false to decrease
      * @returns Update Result
      */
-    public updateActualBalance = async (destinyAccountNumber: number, value: number, operation: boolean): Promise<UpdateResult> => {
+    public updateActualBalance = async (destinyAccountNumber: number, value: number, operation: boolean): Promise<UpdateResult | string> => {
 
         const repository = getRepository(AccountsBalance);
 
@@ -48,7 +48,7 @@ class BalanceService {
 
 
         if (!balanceRegister)
-            throw new Error('Registro de balanço não encontrado');
+            return ('Registro de balanço não encontrado');
 
 
         operation ? newActualBalance = +balanceRegister.actualBalance + +value : newActualBalance = +balanceRegister.actualBalance - +value;      
@@ -60,7 +60,7 @@ class BalanceService {
         };
         
         if (!newBalanceRegister)
-            throw new Error('Registro de balanço não encontrado');
+            return ('Registro de balanço não encontrado');
 
         return newBalanceRegister;
     };
@@ -70,7 +70,7 @@ class BalanceService {
      * @param accountNumber
      * @returns actual balance number
      */
-    public checkBalance = async (destinyAccountNumber: number): Promise<number> => {
+    public checkBalance = async (destinyAccountNumber: number): Promise<number | string> => {
         
         const repository = getRepository(AccountsBalance);
 
@@ -81,12 +81,11 @@ class BalanceService {
         try {
             balanceRegister = await repository.findOne({ accountNumber: destinyAccountNumber, month: actualMonth })
         } catch (err) {
-            console.log(err)
             throw err; 
         };
 
         if (!balanceRegister)
-            throw new Error('Balance register not found');
+            return ('Balance register not found');
 
         return balanceRegister.actualBalance;
 

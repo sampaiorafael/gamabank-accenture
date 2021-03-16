@@ -14,7 +14,7 @@ class AuthController {
         if (!reqUsername || !reqPassword)
             return res.status(400).send('Os campos necessários não estão preenchidos');
 
-        let user = await UsersService.findOne(reqUsername);
+        let user = await UsersService.findByUsername(reqUsername);
 
         if (!user)
             return res.status(400).send('Usuário não encontrado');
@@ -24,12 +24,12 @@ class AuthController {
         if (!BcryptHandler.checkPassword(reqPassword, password))
             return res.status(400).send('Senha inválida');
 
-        let accountNumber = await AccountsService.findAccountByUserId(user.id);
+        let account = await AccountsService.findAccountByUserId(user.id);
 
-        if (!accountNumber)
+        if (!account)
             return res.status(400).send('Este usuário não possui conta ou está encerrada');
 
-        let newToken = JWTHandler.newToken(accountNumber);
+        let newToken = JWTHandler.newToken(account.accountNumber);
     
         return res.status(200).json({token: newToken});
 

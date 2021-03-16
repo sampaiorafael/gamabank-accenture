@@ -23,7 +23,7 @@ class AccountsService {
         return newAccount;
 
     };
-    
+
     public findAccountByNumber = async (accNumber: number): Promise<Accounts> => {
 
         const repository = getRepository(Accounts);

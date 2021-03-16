@@ -2,7 +2,7 @@ import UsersService from './Users.service';
 import ClientsService from './Clients.service';
 import AccountsService from './Accounts.service'
 import BalanceService from './Balance.service';
-import mailer from '../services/Mail.service';
+import Mail from './mail.service'
 
 class SingupService {
 
@@ -22,7 +22,7 @@ class SingupService {
             throw err;
         };
 
-        mailer.sendCreateAccountMail(username,newAccount.idBank,newAccount.agency,newAccount.accountNumber)
+        Mail.sendCreateAccountMail(username,newAccount.idBank,newAccount.agency,newAccount.accountNumber)
 
         return {newUser, newClient, newAccount, firstBalance };
     }

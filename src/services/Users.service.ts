@@ -5,7 +5,7 @@ import { Users } from '../models/Users.model';
 
 class UsersService {
 
-    public newUser = async (username: string, password: string, email: string, cpf: string) : Promise<Users> => {
+    public newUser = async (username: string, password: string, email: string, cpf: string): Promise<Users> => {
 
         const repository = getRepository(Users)
         let newUser: Users;
@@ -32,8 +32,8 @@ class UsersService {
             throw err;
         };
 
-        if(!user)
-            throw new Error('Usuário não encontrado');
+        if (!user)
+            throw new Error('Usuário não encontrada');
         
         return user;
 

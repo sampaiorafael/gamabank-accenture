@@ -7,7 +7,7 @@ export class AccountsBalance {
     id!: number;
 
     @Column({ name: 'account_number', type: 'int' })
-    accountNumber!: number
+    accountNumber!: number | string
 
     @Column({ type: 'int' })
     month!: number

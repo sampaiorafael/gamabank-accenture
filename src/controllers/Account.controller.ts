@@ -4,6 +4,7 @@ import BalanceService from '../services/Balance.service';
 import MonetaryService from '../services/Monetary.service';
 import TransferService from '../services/Transfer.service';
 import JWTHandler from '../helpers/JWTHandler';
+import isNegative from '../helpers/isNegative'
 
 class AccountController {
 
@@ -58,6 +59,9 @@ class AccountController {
          if(!value)
             return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
 
+        if (isNegative(value))
+            return res.status(400).send('O valor não pode ser menor ou igual a zero.');
+        
         let deposit;
 
         try {
@@ -92,6 +96,9 @@ class AccountController {
         if (!toUsername || !value)
             return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
 
+        if (isNegative(value))
+            return res.status(400).send('O valor não pode ser menor ou igual a zero.');
+             
         let internTransfer;
 
         try {
@@ -125,6 +132,9 @@ class AccountController {
 
         if (!bankCode || !cpf || !value)
             return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
+        
+        if (isNegative(value))
+            return res.status(400).send('O valor não pode ser menor ou igual a zero.');
 
         let externTransfer;
 

@@ -4,6 +4,7 @@ import BalanceService from '../services/Balance.service';
 import MonetaryService from '../services/Monetary.service';
 import TransferService from '../services/Transfer.service';
 import JWTHandler from '../helpers/JWTHandler';
+import isNegative from '../helpers/isNegative'
 
 class AccountController {
 
@@ -55,9 +56,12 @@ class AccountController {
 
         const { value } = req.body
 
-         if(!value)
+        if(!value)
             return res.status(400).send('Valor não informado'); 
 
+        if (isNegative(value))
+            return res.status(400).send('Valor não pode ser menor ou igual a zero.');
+        
         let deposit;
 
         try {
@@ -92,6 +96,9 @@ class AccountController {
         if (!toAccountNumber || !value)
             return res.status(400).send('Conta destino ou valor não informado, tente novamente');
 
+        if (isNegative(value))
+            return res.status(400).send('Valor não pode ser menor ou igual a zero.');  
+             
         let internTransfer;
 
         try {

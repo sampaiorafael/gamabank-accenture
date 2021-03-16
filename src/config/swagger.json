@@ -50,29 +50,15 @@
         "tags": [
           "status"
         ],
-        "summary": "Get server status",
+        "summary": "Server Status",
         "description": "",
-        "operationId": "addPet",
-        "consumes": [
-          "application/json"
-        ],
+        "operationId": "status",
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "No need params to get status",
-            "required": false,
-            "schema": {
-             
-            }
-          }
-        ],
         "responses": {
-          "201": {
-            "description": "Usuario Criado com sucesso"
+          "200": {
+            "description": "Servidor on line."
           },
           "500": {
             "description": "Erro interno do servidor"
@@ -87,22 +73,62 @@
         ],
         "summary": "Create user / client / account",
         "description": "",
-        "operationId": "updatePet",
+        "operationId": "signup",
         "consumes": [
-          "application/json"
+          "application/x-www-form-urlencoded"
         ],
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
-            "description": "user object that needs to be added to the store",
+            "name": "username",
+            "in": "formData",
+            "description": "Nome de usuário",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/Pet"
-            }
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Senha",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Nome",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cpf",
+            "in": "formData",
+            "description": "CPF",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "adress",
+            "in": "formData",
+            "description": "Endereço",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "formData",
+            "description": "Telefone",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -125,26 +151,66 @@
           }
         ]
       }
-    }
-  },
-  "securityDefinitions": {
-    "petstore_auth": {
-      "type": "oauth2",
-      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-      "flow": "implicit",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
+    },
+    "/auth": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Auth user",
+        "operationId": "authUser",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "formData",
+            "description": "Client username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Password",
+            "in": "formData",
+            "description": "User Password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/auth"
+            }
+          },
+          "400": {
+            "description": "not found"
+          },
+          "404": {
+            "description": "not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
     },
+  "securityDefinitions": {
     "api_key": {
       "type": "apiKey",
-      "name": "api_key",
+      "name": "JWT_TOKEN",
       "in": "header"
     }
   },
   "definitions": {
-    "Order": {
+    "account": {
       "type": "object",
       "properties": {
         "id": {
@@ -181,7 +247,7 @@
         "name": "Order"
       }
     },
-    "Category": {
+    "client": {
       "type": "object",
       "properties": {
         "id": {
@@ -196,8 +262,17 @@
         "name": "Category"
       }
     },
-    "User": {
+    "user": {
       "type": "object",
+      "required": [
+        "username",
+        "password",
+        "email",
+        "name",
+        "cpf",
+        "adress",
+        "phone"
+      ],
       "properties": {
         "id": {
           "type": "integer",
@@ -231,59 +306,6 @@
         "name": "User"
       }
     },
-    "Tag": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "xml": {
-        "name": "Tag"
-      }
-    },
-    "Pet": {
-      "type": "object",
-      "required": [
-        "username",
-        "password",
-        "email",
-        "name",
-        "cpf",
-        "adress",
-        "phone"
-      ],
-      "properties": {
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "cpf": {
-          "type": "string"
-        },
-        "adress": {
-          "type": "string"
-        },
-        "phone": {
-          "type": "string"
-        }
-      },
-      "xml": {
-        "name": "Pet"
-      }
-    },
     "ApiResponse": {
       "type": "object",
       "properties": {
@@ -300,4 +322,5 @@
       }
     }
   }
+}
 }

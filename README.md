@@ -42,16 +42,20 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
     Autenticação: JWT  
 
 - POST `/account/interntransfer` -  Transferências Internas  
-    Requisitos: toUsername, value 
+    Requisitos: toUsername, value  
     Autenticação: JWT  
 
-- POST `/account/externtransfer` -  Transferências Externas  
+- POST `/account/externtransfer` - Transferências Externas  
     Requisitos: bankCode, cpf, value  
     Autenticação: JWT  
 
-- GET `/swagger` - Swagger
+- POST `/account/movementrecords` - Extrato conta corrente do mês    
     Requisitos: N/A  
-    Autenticação: N/A
+    Autenticação: JWT  
+
+- GET `/swagger` - Swagger  
+    Requisitos: N/A  
+    Autenticação: N/A  
 
 > **Observação** toda verificação será feita via JWT (jsonwebtoken) enviada no Header do HttpRequest, através da chave `Authorization`
 

@@ -3,6 +3,7 @@ import { RequestHandler, Request, Response, NextFunction } from 'express';
 import BalanceService from '../services/Balance.service';
 import MonetaryService from '../services/Monetary.service';
 import TransferService from '../services/Transfer.service';
+import MovementService from '../services/Movement.service';
 import JWTHandler from '../helpers/JWTHandler';
 import isNegative from '../helpers/isNegative'
 
@@ -147,6 +148,37 @@ class AccountController {
         return res.status(200).send(externTransfer);
 
     };
+
+    public movementRecords: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+
+        const token = req.headers.authorization;
+        let decodedToken; 
+
+        if(!token)
+            return res.status(400).send('Token de autenticação não encontrado');
+
+        try {
+            decodedToken = await JWTHandler.verifyToken((token));
+        } catch (err) {
+            return res.status(400).send('Token inválido ou expirado');
+        };
+
+        let { id } = decodedToken;
+        let fromAccountNumber = id;
+
+        let movementRecords;
+
+        try {
+            movementRecords = await MovementService.movementRecords(fromAccountNumber);
+        } catch (err) {
+            return res.status(400).send('Histórico não encontrado, verifique suas informações e tente novamente');
+        }
+
+        return res.status(200).send(movementRecords);
+
+    }
+
+
 
 };
 

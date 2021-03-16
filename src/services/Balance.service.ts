@@ -23,7 +23,14 @@ class BalanceService {
 
     };
 
-    public updateActualBalance = async (destinyAccountNumber: number, value: number): Promise<UpdateResult> => {
+    /**
+     * 
+     * @param destinyAccountNumber Acc Number that will recieve the operation
+     * @param value ammount 
+     * @param operation true to increase and false to decrease
+     * @returns Update Result
+     */
+    public updateActualBalance = async (destinyAccountNumber: number, value: number, operation: boolean): Promise<UpdateResult> => {
 
         const repository = getRepository(AccountsBalance);
 
@@ -42,9 +49,10 @@ class BalanceService {
 
         if (!balanceRegister)
             throw new Error('Registro de balanço não encontrado');
-        
-        newActualBalance = +balanceRegister.actualBalance + +value;
 
+
+        operation ? newActualBalance = +balanceRegister.actualBalance + +value : newActualBalance = +balanceRegister.actualBalance - +value;      
+        
         try {
             newBalanceRegister = await repository.update(balanceRegister.id, { actualBalance: newActualBalance })
         } catch (err) {
@@ -57,6 +65,11 @@ class BalanceService {
         return newBalanceRegister;
     };
 
+    /**
+     * 
+     * @param accountNumber
+     * @returns actual balance number
+     */
     public checkBalance = async (destinyAccountNumber: number): Promise<number> => {
         
         const repository = getRepository(AccountsBalance);

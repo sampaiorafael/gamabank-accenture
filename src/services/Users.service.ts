@@ -21,18 +21,21 @@ class UsersService {
 
     };
 
-    public findOne = async (findUsername: string): Promise<Users | undefined> => {
+    public findByUsername = async (findUsername: string): Promise<Users> => {
 
         const repository = getRepository(Users)
-        let query: Users | undefined
+        let user: Users | undefined
         
         try {
-            query = await repository.findOne({ username: findUsername });
+            user = await repository.findOne({ username: findUsername });
         } catch (err) {
-            throw err
+            throw err;
         };
+
+        if(!user)
+            throw new Error('Usuário não encontrado');
         
-        return query
+        return user;
 
     }
 

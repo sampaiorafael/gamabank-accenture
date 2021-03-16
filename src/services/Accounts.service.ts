@@ -42,7 +42,7 @@ class AccountsService {
 
     }
 
-    public findAccountByUserId = async (findUserId: number): Promise<number> => {
+    public findAccountByUserId = async (findUserId: number): Promise<Accounts> => {
 
         const repository = getRepository(Accounts);
         let account: Accounts | undefined;
@@ -56,7 +56,7 @@ class AccountsService {
         if (!account)
             throw new Error('Conta não encontrada');
 
-        return account.accountNumber;
+        return account;
     }
 
     private async generateAccNumber (): Promise<number> {

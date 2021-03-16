@@ -22,12 +22,12 @@ class AccountController {
         }
 
         let { id } = decodedToken;
-        let requestUserAccountNumber = id;
+        let fromAccountNumber = id;
 
         let actualBalance; 
 
         try {
-            actualBalance = await BalanceService.checkBalance(requestUserAccountNumber);
+            actualBalance = await BalanceService.checkBalance(fromAccountNumber);
         } catch (err) {
             return res.status(200).send('Balance register not found');
         }
@@ -51,7 +51,7 @@ class AccountController {
         }
 
         let { id } = decodedToken;
-        let requestUserAccountNumber = id;
+        let fromAccountNumber = id;
 
         const { value } = req.body
 
@@ -61,7 +61,7 @@ class AccountController {
         let deposit;
 
         try {
-            deposit = await MonetaryService.accountDeposit(requestUserAccountNumber, value)
+            deposit = await MonetaryService.accountDeposit(fromAccountNumber, value)
         } catch (err) {
             return res.status(400).send('Deposito mal sucedido');
         };
@@ -82,27 +82,27 @@ class AccountController {
             decodedToken = await JWTHandler.verifyToken((token));
         } catch (err) {
             return res.status(400).send('Token inválido ou expirado');
-        }
+        };
 
         let { id } = decodedToken;
-        let requestUserAccountNumber = id;
+        let fromAccountNumber = id;
 
-        const { toAccountNumber, value } = req.body
+        const { toUsername, value } = req.body;
 
-        if (!toAccountNumber || !value)
+        if (!toUsername || !value)
             return res.status(400).send('Conta destino ou valor não informado, tente novamente');
 
         let internTransfer;
 
         try {
-            internTransfer = await TransferService.internTransfer(requestUserAccountNumber, toAccountNumber, value )
+            internTransfer = await TransferService.internTransfer(fromAccountNumber, toUsername, value);
         } catch (err) {
             return res.status(400).send(err);
-        }
+        };
 
         return res.status(200).send(internTransfer);
 
-    }
+    };
 
 };
 

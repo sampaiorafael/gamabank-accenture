@@ -49,7 +49,7 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
     Requisitos: bankCode, cpf, value  
     Autenticação: JWT  
 
-- POST `/account/movementrecords` - Extrato conta corrente do mês    
+- GET `/account/movementrecords` - Extrato conta corrente do mês    
     Requisitos: N/A  
     Autenticação: JWT  
 

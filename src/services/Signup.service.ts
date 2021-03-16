@@ -2,7 +2,7 @@ import UsersService from './Users.service';
 import ClientsService from './Clients.service';
 import AccountsService from './Accounts.service'
 import BalanceService from './Balance.service';
-import mailer from '../services/mail.service';
+import mailer from '../services/Mail.service';
 
 class SingupService {
 

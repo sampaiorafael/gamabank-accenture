@@ -37,7 +37,7 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
     Requisitos: N/A  
     Autenticação: JWT  
 
-- POST `/accounts/selfdeposit` -  Deposito na própria conta
+- POST `/accounts/selfdeposit` -  Deposito na própria conta  
     Requisitos: value   
     Autenticação: JWT  
 

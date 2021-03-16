@@ -12,7 +12,7 @@ export class AccountsMovement {
     @Column({ type: 'varchar', length: '50' })
     type!: string;
 
-    @Column({ type: 'int' })
+    @Column({ type: 'decimal' })
     value!: number;
 
     @Column({ type: 'date' })

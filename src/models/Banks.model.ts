@@ -1,13 +1,13 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
  
-@Entity() 
+@Entity({ name: 'banks' }) 
 export class Banks {
 
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
-    @Column({ name: 'number', type: 'int', unique: true })
-    bknumber!: number
+    @Column({ type: 'int', unique: true })
+    code!: number
 
     @Column({ type: 'varchar', length: '255' })
     name!: string

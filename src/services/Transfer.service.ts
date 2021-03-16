@@ -4,10 +4,12 @@ import BalanceService from './Balance.service';
 import MonetaryService from './Monetary.service';
 import UserService from './Users.service';
 import AccountsService from './Accounts.service';
+import { Banks } from '../models/Banks.model';
 
 class TransferService {
 
-    public internTransfer = async (fromAccountNumber: number, toUsername: string, value: number): Promise<any> => {
+    //Publicar na tabela de transferencias internas
+    public internTransfer = async (fromAccountNumber: number, toUsername: string, value: number): Promise<object | string> => {
         
         let user;
 
@@ -25,7 +27,7 @@ class TransferService {
             throw err;
         };
 
-        let actualBalanceFromAccount: number
+        let actualBalanceFromAccount: number | string
 
         try {
             actualBalanceFromAccount = await BalanceService.checkBalance(fromAccountNumber);
@@ -34,7 +36,7 @@ class TransferService {
         };
 
         if (!(+actualBalanceFromAccount >= value))
-            return ('Insufficient funds')
+            return ('Saldo insuficiente');
         
         let depositToAccount;
         let removeFromAccount;
@@ -49,9 +51,57 @@ class TransferService {
         return { depositToAccount, removeFromAccount };
 
     };
-
-    public externTransfer = (fromAccountId: number, toAccountNumber: number, toAccountAgency: number, toBankNumber: number, type: string, value: number, description: string) => {
     
+    //Publicar na tabela de transferencias externas
+    public externTransfer = async (fromAccountNumber: number, bankCode: number, cpf: string, value: number): Promise<object | string> => {
+        
+        const repository = getRepository(Banks);
+
+        let bank: Banks | undefined
+
+
+
+        try {
+            bank = await repository.findOne({ code: bankCode });
+        } catch (err) {
+            throw err;
+        };
+
+        if (!bank)
+            return('Banco não encontrado');
+        
+        console.log(bank)
+
+        let actualBalanceFromAccount: number | string;
+
+        try {
+            actualBalanceFromAccount = await BalanceService.checkBalance(fromAccountNumber);
+        } catch (err) {
+            throw err;
+        };
+
+        if (!(+actualBalanceFromAccount >= value))
+            return('Saldo insuficiente');
+
+        let removeFromAccount;
+
+        try {
+            removeFromAccount = await MonetaryService.accountRemove(fromAccountNumber, value);
+        } catch (err) {
+            throw err
+        }
+
+        if(!removeFromAccount)
+            return('Conta de origem não encontrada');
+
+        return {
+            Operation: 'External Transfer',
+            OriginAccountNumber: fromAccountNumber,
+            DestinyAccountCPF: cpf,
+            DestinyBank: bank?.name,
+            Value: value
+        }
+
     };
 
 };

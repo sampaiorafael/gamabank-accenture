@@ -29,7 +29,7 @@ class AccountController {
         try {
             actualBalance = await BalanceService.checkBalance(fromAccountNumber);
         } catch (err) {
-            return res.status(200).send('Balance register not found');
+            return res.status(200).send('Registro de saldo não encontrado, tente novamente');
         }
 
         return res.status(200).json({Balance: actualBalance});
@@ -56,7 +56,7 @@ class AccountController {
         const { value } = req.body
 
          if(!value)
-            return res.status(400).send('Valor não informado'); 
+            return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
 
         let deposit;
 
@@ -90,19 +90,56 @@ class AccountController {
         const { toUsername, value } = req.body;
 
         if (!toUsername || !value)
-            return res.status(400).send('Conta destino ou valor não informado, tente novamente');
+            return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
 
         let internTransfer;
 
         try {
             internTransfer = await TransferService.internTransfer(fromAccountNumber, toUsername, value);
         } catch (err) {
-            return res.status(400).send(err);
+            return res.status(400).send('Transferência interna mal sucedida, verifique as informações e tente novamente');
         };
 
         return res.status(200).send(internTransfer);
 
     };
+
+    public externTransfer: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+        
+        const token = req.headers.authorization;
+        let decodedToken; 
+
+        if(!token)
+            return res.status(400).send('Token de autenticação não encontrado');
+
+        try {
+            decodedToken = await JWTHandler.verifyToken((token));
+        } catch (err) {
+            return res.status(400).send('Token inválido ou expirado');
+        };
+
+        let { id } = decodedToken;
+        let fromAccountNumber = id;
+
+        const { bankCode, cpf, value } = req.body;
+
+        if (!bankCode || !cpf || !value)
+            return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
+
+        let externTransfer;
+
+        try {
+            externTransfer = await TransferService.externTransfer(fromAccountNumber, bankCode, cpf, value)
+        } catch (err) {
+            console.log(err)
+            return res.status(400).send('Transferência interna mal sucedida, verifique as informações e tente novamente');
+        }
+
+        return res.status(200).send(externTransfer);
+
+    };
+
+
 
 };
 

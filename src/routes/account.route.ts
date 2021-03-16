@@ -7,5 +7,6 @@ const router = Router();
 router.get('/checkbalance', AccountController.checkBalance);
 router.post('/selfdeposit', AccountController.selfDeposit);
 router.post('/interntransfer', AccountController.internTransfer);
+router.post('/externtransfer', AccountController.externTransfer);
 
 export default router;

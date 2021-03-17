@@ -7,24 +7,24 @@ export class AccountsBalance {
     id!: number;
 
     @Column({ name: 'account_number', type: 'int' })
-    accountNumber!: number | string
+    accountNumber!: number | string;
 
     @Column({ type: 'int' })
-    month!: number
+    month!: number;
 
     @Column({ name: 'initial_balance', type: 'decimal' })  
-    initialBalance!: number
+    initialBalance!: number;
 
     @Column({ name: 'actual_balance', type: 'decimal' }) 
-    actualBalance!: number
+    actualBalance!: number;
 
     @Column({ name: 'final_balance', type: 'decimal' }) 
-    finalBalance!: number
+    finalBalance!: number;
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-    createdAt!: Date
+    createdAt!: Date;
 
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    updatedAt!: Date
+    updatedAt!: Date;
     
-}
+};

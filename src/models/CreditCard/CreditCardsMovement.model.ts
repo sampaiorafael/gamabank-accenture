@@ -1,30 +1,27 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Timestamp } from 'typeorm';
 
-@Entity() 
+@Entity({ name: 'credit_cards_movement '}) 
 export class CreditCardMovement {
 
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
-    @Column({ name: 'id_credit_card', type: 'int' })
-    idCreditCard!: number
-
-    @Column({ type: 'timestamp' })
-    date!: Timestamp;
+    @Column({ name: 'credit_card_number', type: 'int' })
+    creditCardNumber!: number;
 
     @Column({ type: 'varchar', length: '255' })
     description!: string;
 
-    @Column({ type: 'decimal'  })
+    @Column({ type: 'decimal' })
     value!: number;
 
-    @Column({ type: 'char', length:'1' })
-    type!: Timestamp;
+    @Column({ type: 'tinyint' })
+    instalments!: Timestamp;
     
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-    createdAt!: Date
+    createdAt!: Date;
 
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    updatedAt!: Date
+    updatedAt!: Date;
 
 }

@@ -1,8 +1,8 @@
 import { getRepository, UpdateResult } from 'typeorm';
 
-import { AccountsBalance } from '../models/AccountsBalance.model'
+import { AccountsBalance } from '../models/Account/AccountsBalance.model'
 
-class BalanceService {
+class AccountBalanceService {
 
     public firstBalance = async (accountNumber: number):Promise<AccountsBalance> => {
 
@@ -21,7 +21,7 @@ class BalanceService {
 
         return firstBalance;
 
-    };
+    }; 
 
     /**
      * 
@@ -93,4 +93,4 @@ class BalanceService {
 
 };
 
-export default new BalanceService();
+export default new AccountBalanceService();

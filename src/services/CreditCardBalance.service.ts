@@ -1,6 +1,7 @@
 import { getRepository, UpdateResult } from 'typeorm'
 
-import { CreditCardBalance } from '../models/CreditCard/CreditCardsBalance.model'
+import { CreditCardBalance } from '../models/CreditCard/CreditCardsBalance.model';
+import { CreditCardMovement } from '../models/CreditCard/CreditCardsMovement.model'
 import configs from '../config/configs'
 
 class CreditCardBalanceService { 
@@ -22,14 +23,14 @@ class CreditCardBalanceService {
       return firstBalance;
    };
 
-   public checkBalance = async (destinyCrediCardNumber: number): Promise<CreditCardBalance> => {
+   public checkBalance = async (destinyCreditCardNumber: number): Promise<CreditCardBalance> => {
 
       const repository = getRepository(CreditCardBalance);
 
       let balance: CreditCardBalance | undefined;
 
       try {
-         balance = await repository.findOne({ creditCardNumber: destinyCrediCardNumber })
+         balance = await repository.findOne({ creditCardNumber: destinyCreditCardNumber })
       } catch (err) {
          throw err;
       };
@@ -48,7 +49,7 @@ class CreditCardBalanceService {
     * @param operation true for purchase, false for payment
     * @returns 
     */
-   public updateBalance = async (destinyCrediCardNumber: number, value: number, operation: boolean): Promise<UpdateResult> => {
+   public updateBalance = async (destinyCreditCardNumber: number, value: number, operation: boolean): Promise<UpdateResult> => {
 
       const repository = getRepository(CreditCardBalance);
 
@@ -60,7 +61,7 @@ class CreditCardBalanceService {
       let newDueBalance;
 
       try {
-         actualBalanceRegister = await repository.findOne({ creditCardNumber: destinyCrediCardNumber, month: actualMonth })
+         actualBalanceRegister = await repository.findOne({ creditCardNumber: destinyCreditCardNumber, month: actualMonth })
       } catch (err) {
          throw err
       }
@@ -91,9 +92,43 @@ class CreditCardBalanceService {
 
    };
 
-   public checkInvoice = async (): Promise<any> => {
+   public checkInvoice = async (destinyCreditCardNumber: number): Promise<any> => {
 
-   }
+      const repository = getRepository(CreditCardMovement);
+
+      let creditCardBalance: CreditCardBalance;
+
+      try {
+         creditCardBalance = await this.checkBalance(destinyCreditCardNumber);
+      } catch (err) {
+         throw err;
+      };
+
+      let creditCardsMovements;
+
+      try {
+         creditCardsMovements = await repository.find({
+            where: { creditCardNumber: destinyCreditCardNumber },
+            order: { createdAt: 'DESC'},
+            select: ['description', 'value', 'instalments', 'createdAt']
+         });
+      } catch (err) {
+         throw err;
+      };
+
+      return {
+         Balance: {
+            CreditCardNumber: creditCardBalance.creditCardNumber,
+            Month: creditCardBalance.month,
+            AvailableBalance: creditCardBalance.availableBalance,
+            DueBalance: creditCardBalance.dueBalance
+         },
+         Purchases: {
+            creditCardsMovements
+         }
+      };
+
+   };
 
 };
 

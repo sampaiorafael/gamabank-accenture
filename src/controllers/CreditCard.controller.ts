@@ -2,12 +2,13 @@ import { RequestHandler, Request, Response, NextFunction } from 'express';
 
 import MonetaryService from '../services/Monetary.service';
 import CreditCardService from '../services/CreditCard.service';
+import CreditCardBalanceService from '../services/CreditCardBalance.service';
 import JWTHandler from '../helpers/JWTHandler';
 import isNegative from '../helpers/isNegative';
 
 class CreditCardController {
 
-    public purchase: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+    public purchaseCredit: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
 
         const token = req.headers.authorization;
         let decodedToken; 
@@ -48,6 +49,47 @@ class CreditCardController {
         return res.status(200).send(purchase);
         
     };
+
+    public checkInvoice: RequestHandler = async (req:Request, res: Response, next: NextFunction): Promise<Response> => {
+
+        const token = req.headers.authorization;
+        let decodedToken; 
+
+        if(!token)
+            return res.status(400).send('Token de autenticação não encontrado');
+
+        try {
+            decodedToken = await JWTHandler.verifyToken((token));
+        } catch (err) {
+            return res.status(400).send('Token inválido ou expirado');
+        }
+
+        let { id } = decodedToken;
+        let fromAccountNumber = id;
+
+        let creditCard;
+
+        try {
+            creditCard = await CreditCardService.findCreditCardByAccountNumber(fromAccountNumber);
+        } catch (err) {
+            throw err;
+        };
+
+        let invoice;
+
+        try {
+            invoice = await CreditCardBalanceService.checkInvoice(creditCard.number);
+        } catch (err) {
+            return res.status(400).send('Não foi possível verificar sua fatura');
+        };
+
+        return res.status(200).send(invoice);
+
+    }
+
+    // public payInvoice: RequestHandler = async (req:Request, res: Response, next: NextFunction): Promise<Response> => {
+
+    // }
 
 };
 

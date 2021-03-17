@@ -69,6 +69,10 @@ class MonetaryService {
 
     } 
 
+    public purchaseCredit = async (): Promise<any> => {
+        
+    }
+
 };
 
 export default new MonetaryService();

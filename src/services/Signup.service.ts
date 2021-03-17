@@ -3,6 +3,7 @@ import ClientsService from './Clients.service';
 import AccountsService from './Accounts.service'
 import AccountBalanceService from './AccountBalance.service';
 import CreditCardsService from './CreditCard.service';
+import CreditCardBalanceService from './CreditCardBalance.service';
 import Mail from './mail.service'
 
 class SingupService {
@@ -15,6 +16,7 @@ class SingupService {
         let newCreditCard;
         let cardEmitter;
         let firstAccountBalance;
+        let firstCreditCardBalance;
 
         try {
             newUser = await UsersService.newUser(username, password, email, cpf);
@@ -23,6 +25,7 @@ class SingupService {
             firstAccountBalance = await AccountBalanceService.firstBalance(newAccount.id);
             newCreditCard = await CreditCardsService.newCreditCard(newAccount.id);
             cardEmitter = await CreditCardsService.getCardEmmiterById(newCreditCard.emitterId);
+            firstCreditCardBalance = await CreditCardBalanceService.firstBalance(newCreditCard.number);
         } catch (err) {
             throw err;
         };

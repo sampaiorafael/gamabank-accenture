@@ -7,12 +7,12 @@ export class CardEmitter {
     id!: number;
 
     @Column({ type: 'varchar', length: '75' })
-    name!: string
+    name!: string;
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-    createdAt!: Date
+    createdAt!: Date;
 
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    updatedAt!: Date
+    updatedAt!: Date;
 
-}
+};

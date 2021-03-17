@@ -24,5 +24,4 @@ export default {
     CreditCard:{
         initialLimite: 200
     }
-
 };

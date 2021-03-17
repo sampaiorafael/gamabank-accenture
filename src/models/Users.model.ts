@@ -7,21 +7,21 @@ export class Users {
     id!: number;
 
     @Column({ type: 'varchar', length: '255', unique: true })
-    username!: string
+    username!: string;
 
     @Column({ type: 'varchar', length: '255' })
-    password!: string
+    password!: string;
 
     @Column({ type: 'varchar', length: '255', unique: true })
-    email!: string
+    email!: string;
 
     @Column({ type: 'char', length: '11', unique: true })
-    cpf!: string
+    cpf!: string;
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-    createdAt!: Date
+    createdAt!: Date;
 
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    updatedAt!: Date
+    updatedAt!: Date;
     
-}
+};

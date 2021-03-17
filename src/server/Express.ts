@@ -19,17 +19,17 @@ class Express {
 
     private middlewares() {
         this.express.use(bodyParser.urlencoded({extended: true}));
-   }
+    }
 
    private routes() {
         this.express.use(routes);
-        this.express.use('/swagger',swaggerUi.serve, swaggerUi.setup(swaggerDoc) )
-   }
+        this.express.use('/swagger',swaggerUi.serve, swaggerUi.setup(swaggerDoc) );
+   };
 
-   private async database(){
+    private async database(){
         return await createConnection();
-   }
+    };
 
-}
+};
 
 export default new Express();

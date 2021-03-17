@@ -23,11 +23,11 @@ class MovementService {
         try {
             newMovement = await repository.save({ accountNumber, type, value, date })
         } catch (err) {
-            throw err
-        }
+            throw err;
+        };
 
-        return newMovement
-    }
+        return newMovement;
+    };
 
     public movementRecords = async (destinyAccountNumber: number): Promise<any> => {
 
@@ -52,8 +52,8 @@ class MovementService {
 
         return movementRecords;
 
-    }
+    };
 
-}
+};
 
 export default new MovementService();

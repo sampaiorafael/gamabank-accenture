@@ -7,21 +7,21 @@ export class Clients {
     id!: number;
 
     @Column({ name: 'id_user', type: 'int', unique: true })
-    idUser!: number
+    idUser!: number;
 
     @Column({ type: 'varchar', length: '255' })
-    name!: string
+    name!: string;
 
     @Column({ type: 'varchar', length: '255' })
-    adress!: string
+    adress!: string;
 
     @Column({ type: 'varchar', length: '255', unique: true })
-    phone!: string
+    phone!: string;
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-    createdAt!: Date
+    createdAt!: Date;
 
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    updatedAt!: Date
+    updatedAt!: Date;
     
-}
+};

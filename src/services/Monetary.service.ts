@@ -36,10 +36,10 @@ class MonetaryService {
         };
 
         return { newBalanceRegister, newMovementRegister };
-    }
+    };
 
     public accountWithdraw = async (destinyAccountNumber: number, value: number): Promise<any> => {
-    }
+    };
 
     public purchaseDebt = async (destinyAccountNumber: number, value: number): Promise<any> => {
         
@@ -67,11 +67,11 @@ class MonetaryService {
 
         return (removeFromAccount);
 
-    } 
+    };
 
     public purchaseCredit = async (): Promise<any> => {
         
-    }
+    };
 
 };
 

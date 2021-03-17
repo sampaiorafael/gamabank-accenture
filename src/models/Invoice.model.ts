@@ -25,9 +25,9 @@ export class Invoice {
     payDate!: Date;
 
     @CreateDateColumn({ name: 'created_at', type: 'datetime' })
-    createdAt!: Date
+    createdAt!: Date;
 
     @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
-    updatedAt!: Date
+    updatedAt!: Date;
 
-}
+};

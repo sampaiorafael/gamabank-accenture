@@ -7,15 +7,15 @@ export class Banks {
     id!: number;
 
     @Column({ type: 'char', length: '3', unique: true })
-    code!: number
+    code!: number;
 
     @Column({ type: 'varchar', length: '255' })
-    name!: string
+    name!: string;
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-    createdAt!: Date
+    createdAt!: Date;
 
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    updatedAt!: Date
+    updatedAt!: Date;
     
-}
+};

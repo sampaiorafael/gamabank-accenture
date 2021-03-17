@@ -13,10 +13,10 @@ class SignupController {
         if (!username || !password || !email || !name || !cpf || !adress || !phone)
             return res.status(400).send('Estão faltando campos');
 
-        const validePassword = validatePassword(password)
+        const validePassword = validatePassword(password);
 
         if (validePassword.status === false)
-            return res.status(400).send(`Senha inválida: ${validePassword.msg}`)
+            return res.status(400).send(`Senha inválida: ${validePassword.msg}`);
 
         if (!validateCPF(cpf))
             return res.status(400).send('CPF inválido');
@@ -33,6 +33,6 @@ class SignupController {
 
     };
 
-}
+};
 
 export default new SignupController();

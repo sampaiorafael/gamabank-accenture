@@ -7,24 +7,22 @@ class CreditCardBalanceService {
    
    public firstBalance = async (creditCardNumber: number): Promise<any> => {
 
-      const repository = getRepository(CreditCardBalance)
+      const repository = getRepository(CreditCardBalance);
       let month = (new Date().getMonth()) + 1;
-      let availableBalance = configs.CreditCard.initialLimite
-      let dueBalance = 0
-      let firstBalance: CreditCardBalance
+      let availableBalance = configs.CreditCard.initialLimite;
+      let dueBalance = 0;
+      let firstBalance: CreditCardBalance;
 
       try {
-         firstBalance = await repository.save({
-            month, availableBalance, dueBalance, creditCardNumber
-         })
+         firstBalance = await repository.save({month, availableBalance, dueBalance, creditCardNumber});
       } catch (err) {
-        throw err 
-      } 
+        throw err;
+      } ;
 
-      return firstBalance
-   }
+      return firstBalance;
+   };
 
-}
+};
 
-export default new CreditCardBalanceService()
+export default new CreditCardBalanceService();
 

@@ -24,4 +24,4 @@ export class CreditCardMovement {
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
     updatedAt!: Date;
 
-}
+};

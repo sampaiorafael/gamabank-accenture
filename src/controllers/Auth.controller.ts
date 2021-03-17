@@ -19,7 +19,7 @@ class AuthController {
         if (!user)
             return res.status(400).send('Usuário não encontrado');
         
-        let { username, password } = user;
+        let { password } = user;
 
         if (!BcryptHandler.checkPassword(reqPassword, password))
             return res.status(400).send('Senha inválida');

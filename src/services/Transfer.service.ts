@@ -59,8 +59,6 @@ class TransferService {
 
         let bank: Banks | undefined
 
-
-
         try {
             bank = await repository.findOne({ code: bankCode });
         } catch (err) {
@@ -98,7 +96,7 @@ class TransferService {
             DestinyAccountCPF: cpf,
             DestinyBank: bank?.name,
             Value: value
-        }
+        };
 
     };
 

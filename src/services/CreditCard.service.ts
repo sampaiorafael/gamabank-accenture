@@ -74,7 +74,7 @@ class CreditCardsService {
             throw new Error('Não foi possível encontrar o emissor do cartão de crédito');
 
         return cardEmmiter;
-    }
+    };
 
 };
 

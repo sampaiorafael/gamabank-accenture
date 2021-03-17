@@ -9,8 +9,8 @@ const sendCreateAccountMail = async (user: string, bankCode: string, agencia: st
     const to = 'njr.mor@gmail.com' //  Passar email do cliente como parâmetro
     mailer.sendmail(from, to, subject, text, htmlTemplate.createAccMail(user, bankCode, agencia, cc))
         .then(sended => console.log(sended))
-        .catch(error => console.error(error))
-}
+        .catch(error => console.error(error));
+};
 
 //testar email
 const sendStatusMail = async (message: string) => {
@@ -19,8 +19,8 @@ const sendStatusMail = async (message: string) => {
     const to = 'njr.mor@gmail.com' //  Passar email do cliente como parâmetro
     mailer.sendmail(from, to, subject, text, htmlTemplate.statusMail(message))
         .then(sended => console.log(sended))
-        .catch(error => console.error(error))
-}
+        .catch(error => console.error(error));
+};
 
 
-export default { sendCreateAccountMail, sendStatusMail }
+export default { sendCreateAccountMail, sendStatusMail };

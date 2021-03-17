@@ -7,15 +7,15 @@ class UsersService {
 
     public newUser = async (username: string, password: string, email: string, cpf: string): Promise<Users> => {
 
-        const repository = getRepository(Users)
+        const repository = getRepository(Users);
         let newUser: Users;
         password = BcryptHandler.hashPassword(password);
 
         try {
             newUser = await repository.save({username, password, email, cpf});
         } catch (err) {
-            throw err
-        }
+            throw err;
+        };
 
         return newUser;
 
@@ -23,8 +23,8 @@ class UsersService {
 
     public findByUsername = async (findUsername: string): Promise<Users> => {
 
-        const repository = getRepository(Users)
-        let user: Users | undefined
+        const repository = getRepository(Users);
+        let user: Users | undefined;
         
         try {
             user = await repository.findOne({ username: findUsername });
@@ -37,7 +37,7 @@ class UsersService {
         
         return user;
 
-    }
+    };
 
 };
 

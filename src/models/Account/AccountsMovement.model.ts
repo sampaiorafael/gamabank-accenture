@@ -19,9 +19,9 @@ export class AccountsMovement {
     date!: Date;
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-    createdAt!: Date
+    createdAt!: Date;
 
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    updatedAt!: Date
+    updatedAt!: Date;
     
-}
+};

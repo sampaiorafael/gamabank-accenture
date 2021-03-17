@@ -18,7 +18,7 @@ class ClientsService {
 
         return newClient
 
-    }
+    };
 
 };
 

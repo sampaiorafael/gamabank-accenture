@@ -8,8 +8,8 @@ const statusMail = (status: string) :string => {
     </figure>
     </div>`
 
-    return html
-}
+    return html;
+};
 
 const createAccMail = (user: string, codBank: string, agency: string, cc: string) =>{  // parametros do cliente
     const html: string = `<p><span style="font-size:18px"><strong>Parab&eacute;ns ${user} sua conta foi criada com sucesso!</strong></span></p>
@@ -34,7 +34,7 @@ const createAccMail = (user: string, codBank: string, agency: string, cc: string
 <hr />
 <p>&nbsp;</p>`
     
-    return html
-}
+    return html;
+};
 
-export default { statusMail, createAccMail } 
+export default { statusMail, createAccMail };

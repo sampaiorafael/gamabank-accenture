@@ -1,27 +1,27 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity({ name: 'accounts' }) 
+@Entity({ name: 'accounts' })
 export class Accounts {
 
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
     @Column({ name: 'id_user', type: 'int', unique: true })
-    idUser!: number
+    idUser!: number;
 
     @Column({ name: 'bank_code', type: 'int' })
-    bankCode!: number
+    bankCode!: number;
 
     @Column({ type: 'int', zerofill: true })
-    agency!: number
+    agency!: number;
 
     @Column({ name: 'account_number', type: 'varchar', length: '255', unique: true, zerofill: true })
-    accountNumber!: number
+    accountNumber!: number;
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-    createdAt!: Date
+    createdAt!: Date;
 
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    updatedAt!: Date
+    updatedAt!: Date;
     
-}
+};

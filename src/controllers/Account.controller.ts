@@ -32,7 +32,7 @@ class AccountController {
             actualBalance = await AccountBalanceService.checkBalance(fromAccountNumber);
         } catch (err) {
             return res.status(200).send('Registro de saldo não encontrado, tente novamente');
-        }
+        };
 
         return res.status(200).json({Balance: actualBalance});
 
@@ -50,12 +50,12 @@ class AccountController {
             decodedToken = await JWTHandler.verifyToken((token));
         } catch (err) {
             return res.status(400).send('Token inválido ou expirado');
-        }
+        };
 
         let { id } = decodedToken;
         let fromAccountNumber = id;
 
-        const { value } = req.body
+        const { value } = req.body;
 
          if(!value)
             return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
@@ -143,7 +143,7 @@ class AccountController {
             externTransfer = await TransferService.externTransfer(fromAccountNumber, bankCode, cpf, value)
         } catch (err) {
             return res.status(400).send('Transferência interna mal sucedida, verifique as informações e tente novamente');
-        }
+        };
 
         return res.status(200).send(externTransfer);
 
@@ -209,7 +209,7 @@ class AccountController {
             purchaseDebt = await MonetaryService.purchaseDebt(fromAccountNumber, value)
         } catch (err) {
             return res.status(400).send('Não foi possível realizar a compra, verifique seu saldo e informações e tente novamente');
-        }
+        };
 
         return res.status(200).send(purchaseDebt);
 

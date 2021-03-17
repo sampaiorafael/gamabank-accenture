@@ -62,8 +62,8 @@ class SingupService {
             }
 
          };
-    }
+    };
 
-}
+};
 
 export default new SingupService();

@@ -12,7 +12,7 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 ## Membros :pushpin:
 
-- [Alex Penavilla](https://github.com/AlexPenavilla) 
+- [Alexsander Penavilla](https://github.com/AlexPenavilla) 
 - [Nivaldo Júnior](https://github.com/Juniornbs) 
 - [Rafael Sampaio](https://github.com/sampaiorafael)
 - [Stênio Amorim](https://github.com/stamorim28)

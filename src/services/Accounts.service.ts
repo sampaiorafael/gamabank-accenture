@@ -10,12 +10,12 @@ class AccountsService {
         const repository = getRepository(Accounts);
 
         let newAccount: Accounts
-        const idBank = configs.GamaBank.id;
+        const bankCode = configs.GamaBank.id;
         const agency = configs.GamaBank.agency;
         const accountNumber = await this.generateAccNumber();
 
         try {
-            newAccount = await repository.save({idUser, idBank, agency, accountNumber});
+            newAccount = await repository.save({idUser, bankCode, agency, accountNumber});
         } catch (err) {
             throw err
         };

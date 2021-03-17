@@ -29,7 +29,7 @@ class SingupService {
 
         Mail.sendCreateAccountMail(
             username, 
-            newAccount.idBank.toString(), 
+            newAccount.bankCode.toString(), 
             newAccount.agency.toString(), 
             newAccount.accountNumber.toString()
         );

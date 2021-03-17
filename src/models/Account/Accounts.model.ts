@@ -9,8 +9,8 @@ export class Accounts {
     @Column({ name: 'id_user', type: 'int', unique: true })
     idUser!: number
 
-    @Column({ name: 'id_bank', type: 'int' })
-    idBank!: number
+    @Column({ name: 'bank_code', type: 'int' })
+    bankCode!: number
 
     @Column({ type: 'int', zerofill: true })
     agency!: number

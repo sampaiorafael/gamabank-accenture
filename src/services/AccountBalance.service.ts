@@ -36,25 +36,24 @@ class AccountBalanceService {
 
         let actualMonth = (new Date().getMonth()) + 1;
 
-        let balanceRegister: AccountsBalance | undefined;
+        let actualBalanceRegister: AccountsBalance | undefined;
         let newBalanceRegister;
         let newActualBalance: number;
 
         try {
-            balanceRegister = await repository.findOne({ accountNumber: destinyAccountNumber, month: actualMonth })
+            actualBalanceRegister = await repository.findOne({ accountNumber: destinyAccountNumber, month: actualMonth })
         } catch (err) {
             throw err;
         };
 
+        if (!actualBalanceRegister)
+            return ('Não foi possível encontrar seu registro de balanço');
 
-        if (!balanceRegister)
-            return ('Registro de balanço não encontrado');
 
-
-        operation ? newActualBalance = +balanceRegister.actualBalance + +value : newActualBalance = +balanceRegister.actualBalance - +value;      
+        operation ? newActualBalance = +actualBalanceRegister.actualBalance + +value : newActualBalance = +actualBalanceRegister.actualBalance - +value;      
         
         try {
-            newBalanceRegister = await repository.update(balanceRegister.id, { actualBalance: newActualBalance })
+            newBalanceRegister = await repository.update(actualBalanceRegister.id, { actualBalance: newActualBalance })
         } catch (err) {
             throw err;
         };

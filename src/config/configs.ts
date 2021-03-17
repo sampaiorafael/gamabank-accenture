@@ -22,6 +22,6 @@ export default {
         agency: 1
     },
     CreditCard:{
-        initialLimite: 200
+        initialLimit: 200
     }
 };

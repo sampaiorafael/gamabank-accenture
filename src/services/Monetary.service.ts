@@ -1,6 +1,6 @@
-import { getRepository } from 'typeorm'
-
 import AccountBalanceService from './AccountBalance.service'
+import CreditCardBalanceService from './CreditCardBalance.service';
+import CrediCardBalanceService from './CreditCardBalance.service';
 import MovementService from './Movement.service';
 
 class MonetaryService {
@@ -69,8 +69,39 @@ class MonetaryService {
 
     };
 
-    public purchaseCredit = async (): Promise<any> => {
-        
+    public purchaseCredit = async (destinyCrediCardNumber: number, description: string, value: number, instalments: number): Promise<any> => {
+    
+        let creditCardBalance;
+
+        try {
+            creditCardBalance = await CrediCardBalanceService.checkBalance(destinyCrediCardNumber);
+        } catch (err) {
+            throw err;
+        };
+
+        if (+creditCardBalance.availableBalance < +value)
+            throw new Error(`Limite Insuficiente, limite disponível: ${creditCardBalance.availableBalance}`);
+
+        let updateBalance;
+        let newMovement;
+
+        try {
+            updateBalance = await CreditCardBalanceService.updateBalance(destinyCrediCardNumber, value, true);
+            newMovement = await MovementService.creditCardPublishNewMovement(destinyCrediCardNumber, description, value, instalments, true);
+        } catch (err) {
+            throw err;
+        };
+
+        return {
+            Purchase: {
+                Description: description,
+                Price: value,
+                AvailableBalanceBeforePurchase: creditCardBalance.availableBalance,
+                AvailableBalanceNextPurchase: creditCardBalance.availableBalance - value,
+                Instalments: instalments
+            }
+        };
+
     };
 
 };

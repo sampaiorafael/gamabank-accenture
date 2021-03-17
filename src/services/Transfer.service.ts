@@ -8,7 +8,6 @@ import { Banks } from '../models/Banks.model';
 
 class TransferService {
 
-    //Publicar na tabela de transferencias internas
     public internTransfer = async (fromAccountNumber: number, toUsername: string, value: number): Promise<object | string> => {
         
         let user;
@@ -52,7 +51,6 @@ class TransferService {
 
     };
     
-    //Publicar na tabela de transferencias externas
     public externTransfer = async (fromAccountNumber: number, bankCode: number, cpf: string, value: number): Promise<object | string> => {
         
         const repository = getRepository(Banks);

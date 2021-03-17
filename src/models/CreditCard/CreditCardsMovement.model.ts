@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Timestamp } from 'typeorm';
 
-@Entity({ name: 'credit_cards_movement '}) 
+@Entity({ name: 'credit_cards_movement'}) 
 export class CreditCardMovement {
 
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
-    @Column({ name: 'credit_card_number', type: 'int' })
+    @Column({ name: 'credit_card_number', type: 'char', length: '16' })
     creditCardNumber!: number;
 
     @Column({ type: 'varchar', length: '255' })

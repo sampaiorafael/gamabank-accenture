@@ -6,7 +6,7 @@ export class CreditCardBalance {
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
-    @Column({ name: 'credit_card_number', type: 'int' })
+    @Column({ name: 'credit_card_number', type: 'char', length: '16' })
     creditCardNumber!: number;
 
     @Column({ type: 'tinyint' })

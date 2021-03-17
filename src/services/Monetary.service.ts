@@ -80,7 +80,7 @@ class MonetaryService {
         };
 
         if (+creditCardBalance.availableBalance < +value)
-            throw new Error(`Limite Insuficiente, limite disponível: ${creditCardBalance.availableBalance}`);
+            return(`Limite Insuficiente, limite disponível: ${creditCardBalance.availableBalance}`);
 
         let updateBalance;
         let newMovement;

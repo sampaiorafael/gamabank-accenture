@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Projeto final para o treinamento da turma 6 de NodeJS da Gama Academy, oferecido pela Accenture.
+Projeto final para o treinamento da turma 6 de NodeJS da Gama Academy, oferecido pela Accenture. 
 
 ## Objetivo
 
@@ -55,6 +55,14 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 - POST `/account/purchasedebt` - Compra no débito  
     Requisitos: value
+    Autenticação: JWT  
+
+- POST `/creditcard/purchase` - Compra no crédito    
+    Requisitos: value, description, instalments    
+    Autenticação: JWT  
+
+- GET `/creditcard/checkinvoice` - Verificar fatura    
+    Requisitos: N/A     
     Autenticação: JWT  
 
 - GET `/swagger` - Swagger  

@@ -55,7 +55,7 @@ class MovementService {
 
     };
 
-    public creditCardPublishNewMovement = async (destinyCrediCardNumber: number, description: string, value: number, instalments: number, operation: boolean): Promise<CreditCardMovement> => {
+    public creditCardPublishNewMovement = async (creditCardNumber: number, description: string, value: number, instalments: number, operation: boolean): Promise<CreditCardMovement> => {
 
         const repository = getRepository(CreditCardMovement);
         let newMovement: CreditCardMovement;
@@ -64,7 +64,7 @@ class MovementService {
             description = 'invoice payment';
 
         try {
-            newMovement = await repository.save({ destinyCrediCardNumber, description, value, instalments })
+            newMovement = await repository.save({ creditCardNumber, description, value, instalments })
         } catch (err) {
             throw err;
         };

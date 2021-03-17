@@ -45,7 +45,7 @@ class CreditCardController {
             throw err;
         };
 
-        return purchase;
+        return res.status(200).send(purchase);
         
     };
 

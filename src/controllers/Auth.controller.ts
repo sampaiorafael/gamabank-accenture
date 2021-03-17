@@ -14,7 +14,13 @@ class AuthController {
         if (!reqUsername || !reqPassword)
             return res.status(400).send('Os campos necessários não estão preenchidos');
 
-        let user = await UsersService.findByUsername(reqUsername);
+        let user;
+
+        try {
+            user = await UsersService.findByUsername(reqUsername);
+        } catch (err) {
+            return res.status(400).send(err.message);
+        };
 
         if (!user)
             return res.status(400).send('Usuário não encontrado');

@@ -33,7 +33,7 @@ class UsersService {
         };
 
         if (!user)
-            throw new Error('Usuário não encontrada');
+            throw new Error('Usuário não encontrado');
         
         return user;
 

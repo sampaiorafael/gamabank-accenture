@@ -20,6 +20,9 @@ export default {
     GamaBank: {
         id: 500,
         agency: 1
+    },
+    CreditCard:{
+        initialLimite: 200
     }
 
 };

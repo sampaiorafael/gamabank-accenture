@@ -13,7 +13,7 @@ export class CreditCardBalance {
     month!: number;
 
     @Column({ name:'available_balance', type: 'decimal'})
-    availableBalance!: string;
+    availableBalance!: number;
 
     @Column({ name:'due_balance', type: 'decimal' })
     dueBalance!: number;

@@ -6,11 +6,11 @@ export class InternTransfer {
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
-    @Column({ name: 'to_account_id', type: 'int' })
-    fromAccountId!: string;
+    @Column({ name: 'to_account_number', type: 'int' })
+    fromAccountNumber!: string;
 
-    @Column({ name: 'to_account_id', type: 'int' })
-    toAccountId!: string;
+    @Column({ name: 'to_account_number', type: 'int' })
+    toAccountNumber!: string;
 
     @Column({ type: 'decimal' })
     value!: number;

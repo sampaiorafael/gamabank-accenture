@@ -4,11 +4,11 @@ import { Clients } from '../models/Clients.model';
 
 class ClientsService {
 
-    public newClient = async (idUser: number, name: string, adress: string, phone: string): Promise<any> => {
+    public newClient = async (idUser: number, name: string, adress: string, phone: string): Promise<Clients> => {
 
         const repository = getRepository(Clients);
 
-        let newClient;
+        let newClient: Clients
 
         try {
             newClient = await repository.save({idUser, name, adress, phone});

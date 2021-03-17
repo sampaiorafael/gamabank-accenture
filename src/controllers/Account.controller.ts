@@ -1,11 +1,11 @@
 import { RequestHandler, Request, Response, NextFunction } from 'express';
 
-import BalanceService from '../services/Balance.service';
+import AccountBalanceService from '../services/AccountBalance.service';
 import MonetaryService from '../services/Monetary.service';
 import TransferService from '../services/Transfer.service';
 import MovementService from '../services/Movement.service';
 import JWTHandler from '../helpers/JWTHandler';
-import isNegative from '../helpers/isNegative'
+import isNegative from '../helpers/isNegative';
 
 class AccountController {
 
@@ -29,7 +29,7 @@ class AccountController {
         let actualBalance; 
 
         try {
-            actualBalance = await BalanceService.checkBalance(fromAccountNumber);
+            actualBalance = await AccountBalanceService.checkBalance(fromAccountNumber);
         } catch (err) {
             return res.status(200).send('Registro de saldo não encontrado, tente novamente');
         }
@@ -73,7 +73,7 @@ class AccountController {
 
         return res.status(200).json({deposit})
 
-    }
+    };
 
     public internTransfer: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
         
@@ -176,7 +176,7 @@ class AccountController {
 
         return res.status(200).send(movementRecords);
 
-    }
+    };
 
     public purchaseDebt: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
 
@@ -213,9 +213,7 @@ class AccountController {
 
         return res.status(200).send(purchaseDebt);
 
-    }
-
-
+    };
 
 };
 

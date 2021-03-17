@@ -1,15 +1,15 @@
 import { getRepository } from 'typeorm';
 
-import { Accounts } from '../models/Accounts.model';
+import { Accounts } from '../models/Account/Accounts.model';
 import configs from '../config/configs';
 
 class AccountsService {
 
-    public newAccount = async (idUser: number): Promise<any> => {
+    public newAccount = async (idUser: number): Promise<Accounts> => {
 
         const repository = getRepository(Accounts);
 
-        let newAccount;
+        let newAccount: Accounts
         const idBank = configs.GamaBank.id;
         const agency = configs.GamaBank.agency;
         const accountNumber = await this.generateAccNumber();

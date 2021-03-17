@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 
-import { AccountsMovement } from '../models/AccountsMovement.model';
+import { AccountsMovement } from '../models/Account/AccountsMovement.model';
 
 class MovementService {
 
@@ -40,11 +40,11 @@ class MovementService {
         try {
             movementRecords = await repository.find({ 
                 where:{ accountNumber: destinyAccountNumber},
-                order: { date: 'DESC'},
+                order: { createdAt: 'DESC'},
                 select: ['type', 'value', 'date']
             });
         } catch (err) {
-            throw err; 
+            throw err;
         };
 
         if (!movementRecords)

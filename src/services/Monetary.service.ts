@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm'
 
-import BalanceService from './Balance.service'
+import AccountBalanceService from './AccountBalance.service'
 import MovementService from './Movement.service';
 
 class MonetaryService {
@@ -12,7 +12,7 @@ class MonetaryService {
         let newBalanceRegister;
 
         try {
-            newBalanceRegister = await BalanceService.updateActualBalance(destinyAccountNumber, value, true);
+            newBalanceRegister = await AccountBalanceService.updateActualBalance(destinyAccountNumber, value, true);
             newMovementRegister = await MovementService.publishNewMovement(destinyAccountNumber, movementType, value, true);
         } catch (err) {
             throw err;
@@ -29,7 +29,7 @@ class MonetaryService {
         let newBalanceRegister;
 
         try {
-            newBalanceRegister = await BalanceService.updateActualBalance(destinyAccountNumber, value, false);
+            newBalanceRegister = await AccountBalanceService.updateActualBalance(destinyAccountNumber, value, false);
             newMovementRegister = await MovementService.publishNewMovement(destinyAccountNumber, movementType, value, false);
         } catch (err) {
             throw err;
@@ -46,7 +46,7 @@ class MonetaryService {
         let actualBalanceFromAccount: number | string
 
         try {
-            actualBalanceFromAccount = await BalanceService.checkBalance(destinyAccountNumber);
+            actualBalanceFromAccount = await AccountBalanceService.checkBalance(destinyAccountNumber);
         } catch (err) {
             throw err;
         };

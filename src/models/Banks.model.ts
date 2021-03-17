@@ -6,7 +6,7 @@ export class Banks {
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id!: number;
 
-    @Column({ type: 'int', unique: true })
+    @Column({ type: 'char', length: '3', unique: true })
     code!: number
 
     @Column({ type: 'varchar', length: '255' })

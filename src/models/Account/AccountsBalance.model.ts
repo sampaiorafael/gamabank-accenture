@@ -9,7 +9,7 @@ export class AccountsBalance {
     @Column({ name: 'account_number', type: 'int' })
     accountNumber!: number | string;
 
-    @Column({ type: 'int' })
+    @Column({ type: 'int', unsigned: true })
     month!: number;
 
     @Column({ name: 'initial_balance', type: 'decimal' })  

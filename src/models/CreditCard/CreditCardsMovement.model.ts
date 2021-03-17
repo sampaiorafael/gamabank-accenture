@@ -16,7 +16,7 @@ export class CreditCardMovement {
     value!: number;
 
     @Column({ type: 'tinyint' })
-    instalments!: Timestamp;
+    instalments!: number;
     
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
     createdAt!: Date;

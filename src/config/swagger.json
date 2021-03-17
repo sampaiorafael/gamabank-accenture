@@ -39,6 +39,14 @@
         "description": "Link",
         "url": "http://127.0.0.1:8080/auth"
       }
+    },
+    {
+      "name": "account",
+      "description": "Account",
+      "externalDocs": {
+        "description": "Link",
+        "url": "http://127.0.0.1:8080/account"
+      }
     }
   ],
   "schemes": [
@@ -133,21 +141,16 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/signup"
+            }
+          },
           "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Pet not found"
-          },
-          "405": {
-            "description": "Validation exception"
+            "description": "Falha ao criar usuário"
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        }
       }
     },
     "/auth": {
@@ -165,7 +168,7 @@
         ],
         "parameters": [
           {
-            "name": "reqUusername",
+            "name": "reqUsername",
             "in": "formData",
             "description": "Client username",
             "required": true,
@@ -180,10 +183,254 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Usuário criado com sucesso",
+          "200": {
+            "description": "Usuário autenticado",
             "schema": {
               "$ref": "#/definitions/auth"
+            }
+          },
+          "400": {
+            "description": "Este usuário não possui conta ou está encerrada"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/account/checkbalance": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Check account balance",
+        "operationId": "account/checkbalance",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Saldo da conta",
+            "schema": {
+              "$ref": "#/definitions/auth"
+            }
+          },
+          "400": {
+            "description": "not found"
+          },
+          "404": {
+            "description": "not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/account/selfdeposit": {
+      "post": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Self deposit",
+        "operationId": "account/selfdeposit",
+        "consumes":[
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "name": "value",
+            "in": "formData",
+            "description": "Valor",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Depositado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/auth"
+            }
+          },
+          "400": {
+            "description": "not found"
+          },
+          "404": {
+            "description": "not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/account/interntransfer": {
+      "post": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Transferência entre mesmo banco",
+        "operationId": "account/internTransfer",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "formData",
+            "description": "Valor",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "toUsername",
+            "in": "formData",
+            "description": "Nome de usuário",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Transferido com sucesso",
+            "schema": {
+              "$ref": "#/definitions/auth"
+            }
+          },
+          "400": {
+            "description": "not found"
+          },
+          "404": {
+            "description": "not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/account/externtransfer": {
+      "post": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Transferência entre diferentes bancos",
+        "operationId": "account/externTransfer",
+        "consumes":[
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "name": "value",
+            "typer": "number",
+            "required": true,
+            "description": "Valor",
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Transferido com sucesso",
+            "schema": {
+              "$ref": "#/definitions/account"
+            }
+          },
+          "400": {
+            "description": "not found"
+          },
+          "404": {
+            "description": "not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/account/movementrecords": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Extrato de movimentações",
+        "operationId": "account/movementrecords",
+        "consumes":[
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Extrato gerado",
+            "schema": {
+              "$ref": "#/definitions/account"
+            }
+          },
+          "400": {
+            "description": "not found"
+          },
+          "404": {
+            "description": "not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/account/purchasedebt": {
+      "post": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Compra no débito",
+        "operationId": "account/purchasedebt",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Valor",
+            "in": "formData",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Compra efetuada",
+            "schema": {
+              "$ref": "#/definitions/account"
             }
           },
           "400": {
@@ -325,7 +572,7 @@
   "securityDefinitions": {
     "api_key": {
       "type": "apiKey",
-      "name": "api_key",
+      "name": "Authorization",
       "in": "header"
     }
   },

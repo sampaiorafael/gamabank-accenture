@@ -9,14 +9,14 @@ export class AccountsMovement {
     @Column({ name: 'account_number', type: 'int' })
     accountNumber!: number;
 
-    @Column({ type: 'varchar', length: '50' })
-    type!: string;
-
     @Column({ type: 'decimal' })
     value!: number;
 
-    @Column({ type: 'date' })
-    date!: Date;
+    @Column({ type: 'varchar', length: '20' })
+    type!: string;
+
+    @Column({ type: 'varchar', length: '255' })
+    description!: string;
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
     createdAt!: Date;

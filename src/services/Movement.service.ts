@@ -13,16 +13,13 @@ class MovementService {
      * @param operation true, to add operation, false to sub
      * @returns 
      */
-    public publishNewMovement = async (accountNumber: number, type: string, value: number, operation: boolean): Promise<AccountsMovement> => {
+    public newAccountMovement = async (accountNumber: number, type: string, value: number, description: string): Promise<AccountsMovement> => {
 
         const repository = getRepository(AccountsMovement);
         let newMovement: AccountsMovement;
-        let date = new Date();
-
-        operation ? +value : -value;
 
         try {
-            newMovement = await repository.save({ accountNumber, type, value, date })
+            newMovement = await repository.save({ accountNumber, type, value })
         } catch (err) {
             throw err;
         };
@@ -34,15 +31,13 @@ class MovementService {
 
         const repository = getRepository(AccountsMovement);
 
-        let actualMonth = (new Date().getMonth()) + 1;
-
         let movementRecords;
 
         try {
             movementRecords = await repository.find({ 
                 where:{ accountNumber: destinyAccountNumber},
                 order: { createdAt: 'DESC'},
-                select: ['type', 'value', 'date']
+                select: ['type', 'value', 'createdAt']
             });
         } catch (err) {
             throw err;
@@ -55,7 +50,7 @@ class MovementService {
 
     };
 
-    public creditCardPublishNewMovement = async (creditCardNumber: number, description: string, value: number, instalments: number, operation: boolean): Promise<CreditCardMovement> => {
+    public newCreditCardMovementMovement = async (creditCardNumber: number, description: string, value: number, instalments: number, operation: boolean): Promise<CreditCardMovement> => {
 
         const repository = getRepository(CreditCardMovement);
         let newMovement: CreditCardMovement;

@@ -51,6 +51,7 @@
     "@types/jsonwebtoken": "^8.5.0",
     "@types/mocha": "^8.2.1",
     "@types/mysql": "^2.15.18",
+    "@types/node-fetch": "^2.5.8",
     "@types/nodemailer": "^6.4.1",
     "chai": "^4.3.4",
     "faker": "^5.4.0",

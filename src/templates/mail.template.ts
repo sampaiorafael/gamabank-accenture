@@ -12,27 +12,65 @@ const statusMail = (status: string) :string => {
 };
 
 const createAccMail = (user: string, codBank: string, agency: string, cc: string) =>{  // parametros do cliente
-    const html: string = `<p><span style="font-size:18px"><strong>Parab&eacute;ns ${user} sua conta foi criada com sucesso!</strong></span></p>
+    const html: string = `
+    <section style="width: 600px; border: 1px solid #68de5a; border-radius: 10px;">
+        <div style="width: 100%; 
+        background: #121214; 
+        padding: 1rem 0;
+        height: 10%; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        border-radius: 10px;">
+            <img style="width: 50%;" src="https://i.pinimg.com/originals/21/85/cf/2185cf0529edd791d058437ebdcde336.png" alt="logo_gama">
+        </div>
 
-<p><br />
-<span style="font-size:16px">Agora voc&ecirc; pode fazer transferencias, e usar sua fun&ccedil;&atilde;o de cr&eacute;dito,</span></p>
+        <main style="padding: 0 3rem;">
+            <div>
+                <h1 style="color: #68de5a;
+                 font-family: 'Raleway', sans-serif;
+                 font-size: 1.7em;
+                font-style: italic;
+                text-align: center;">BEM-VINDO(A) A REVOLUÇÃO VERDE</h1>
+            </div>
+            <div>
+                <p style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;">Parabéns <strong style="color: #68de5a;">${user}</strong>.</p>
+                
+                <p style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;">
+                A abertura da sua Conta Digital com Crédito 
+                <strong style="color: #68de5a;">Gama Bank</strong> 
+                foi aprovada!</p><br>
+                
+                <strong style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;">Seus dados:</strong>
 
-<hr />
-<p><span style="font-size:16px">Guarde os dados da sua conta:</span></p>
-
-<p><span style="font-size:18px"><strong>GamaBank</strong></span></p>
-
-<p><span style="font-size:16px">C&oacute;digo do banco: ${codBank}</span></p>
-
-<p><span style="font-size:16px">Ag&ecirc;ncia: ${zeroFill(agency, 4)}</span></p>
-
-<p><span style="font-size:16px">Conta: ${zeroFill(cc, 6)}</span></p>
-
-<hr />
-<p><span style="font-size:18px"><span style="font-family:arial,helvetica,sans-serif"><strong>Limite do cart&atilde;o: R$ 200</strong></span></span></p>
-
-<hr />
-<p>&nbsp;</p>`
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;">Limite Inicial: R$ 200,00</p>
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;">Banco: ${codBank}</p>
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;">Agência: ${zeroFill(agency, 4)}</p>
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;">Conta: ${zeroFill(cc, 6)}</p>
+    
+            </div>
+        </main>
+        
+    </section>
+`
     
     return html;
 };

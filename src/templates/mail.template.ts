@@ -75,6 +75,7 @@ const signUpTemplateMail = (user: string, codBank: string, agency: string, cc: s
     return html;
 };
 
+//VA MAIS LONGE
 const invoiceTemplateMail = (user: string, invoice: object) =>{  // parametros do cliente
     const balance = invoice;
     //console.log(invoice)
@@ -104,13 +105,13 @@ const invoiceTemplateMail = (user: string, invoice: object) =>{  // parametros d
             </thead>
             <tbody>
             `
-      
+            
             html +=`
             <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-                <td>john@example.com</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
             </tr>
             `
          

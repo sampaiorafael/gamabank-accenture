@@ -59,7 +59,7 @@
         "tags": [
           "status"
         ],
-        "summary": "Server Status",
+        "summary": "Verificar status do servidor",
         "description": "",
         "operationId": "status",
         "produces": [

@@ -5,7 +5,7 @@ import CreditCardService from '../services/CreditCard.service';
 import CreditCardBalanceService from '../services/CreditCardBalance.service';
 import JWTHandler from '../helpers/JWTHandler';
 import isNegative from '../helpers/isNegative';
-
+import Mail from '../services/mail.service'
 class CreditCardController {
 
     public purchaseCredit: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
@@ -49,6 +49,14 @@ class CreditCardController {
             throw err;
         };
 
+        Mail.sendBuyCreditMail(
+            'usuario', 
+            value,
+            description,
+            purchase.Purchase.AvailableBalanceNextPurchase.toString(),
+            instalments
+        );
+    
         return res.status(200).send(purchase);
         
     };

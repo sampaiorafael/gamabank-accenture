@@ -124,15 +124,30 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 ### Tecnologias principais :pushpin:  
 
-- Typescript
-- Express
-- TypeORM
-- MySQL
-- Bcrypt
-- Jsonwebtoken
-- Mocha
-- Chai
+- Typescript  
+- Express  
+- TypeORM  
+- MySQL  
+- Bcrypt  
+- Jsonwebtoken  
+- Mocha  
+- Chai  
 
+### Arquitetura do Sistema :computer:  
+
+- Camada de controllers  
+- Camada de serviços  
+- Camada de modelos  
+- Camada de repositório com TypeORM  
+- Modularizado em responsabilidades únicas  
+- Variaveis de ambiente com informações sensíveis 
+
+### Metodologia de trabalho
+
+- Kanban  
+- Git flow  
+- Commits atômicos  
+- Código limpo  
 
 #### Agradecimentos  
 Toda a equipe do Time 2, agradece imensamente ao treinamento oferecido pela Accenture através da Gama Academy, em especial as pessoas que nos deram toda assistência para o nosso particular desenvolvimento pessoal e intelectual: Bruce, Deah e JC o homem, a lenda, o melhor professor. Obrigado a todos!!!

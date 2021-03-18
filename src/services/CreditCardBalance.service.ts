@@ -71,7 +71,7 @@ class CreditCardBalanceService {
 
       if (operation){
          newAvaliableBalance = +actualBalanceRegister.availableBalance - +value;
-         newDueBalance = -actualBalanceRegister.dueBalance + +value;
+         newDueBalance = +actualBalanceRegister.dueBalance + +value;
       } else {
          newAvaliableBalance = +actualBalanceRegister.availableBalance + +value;
          newDueBalance = -actualBalanceRegister.dueBalance - +value;

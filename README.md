@@ -117,8 +117,24 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 ### Documentação
 - Documentação das rotas pelo swagger  
   
-#### Agradecimentos
+## Curiosidades do sistema
 
+### Tamanho do sistema
+![chart](docs/download.png)
+
+### Tecnologias principais :pushpin:  
+
+- Typescript
+- Express
+- TypeORM
+- MySQL
+- Bcrypt
+- Jsonwebtoken
+- Mocha
+- Chai
+
+
+#### Agradecimentos  
 Toda a equipe do Time 2, agradece imensamente ao treinamento oferecido pela Accenture através da Gama Academy, em especial as pessoas que nos deram toda assistência para o nosso particular desenvolvimento pessoal e intelectual: Bruce, Deah e JC o homem, a lenda, o melhor professor. Obrigado a todos!!!
 
 

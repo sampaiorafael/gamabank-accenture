@@ -195,10 +195,18 @@ class AccountController {
         let { id } = decodedToken;
         let fromAccountNumber = id;
 
+        const { operation } = req.body;
+
+        console.log(operation)
+
+        if (operation)
+            if ( operation !== 'remove' && operation !== 'deposit') 
+                return res.status(400).send('O parametro de operação está incorreto, só pode ser "remove" ou "deposit" para entradas e saidas');
+
         let movementRecords;
 
         try {
-            movementRecords = await MovementService.movementRecords(fromAccountNumber);
+            movementRecords = await MovementService.movementRecords(fromAccountNumber, operation);
         } catch (err) {
             return res.status(400).send('Histórico não encontrado, verifique suas informações e tente novamente');
         }

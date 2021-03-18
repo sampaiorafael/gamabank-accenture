@@ -1,4 +1,4 @@
-import { getRepository } from 'typeorm';
+import { getRepository, Like } from 'typeorm';
 
 import { AccountsMovement } from '../models/Account/AccountsMovement.model';
 import { CreditCardMovement } from '../models/CreditCard/CreditCardsMovement.model';
@@ -27,17 +27,20 @@ class MovementService {
         return newMovement;
     };
 
-    public movementRecords = async (destinyAccountNumber: number): Promise<any> => {
+    public movementRecords = async (destinyAccountNumber: number, operationType?: string): Promise<any> => {
 
         const repository = getRepository(AccountsMovement);
 
         let movementRecords;
 
+        if (!operationType)
+            operationType = '%o%'
+
         try {
             movementRecords = await repository.find({ 
-                where:{ accountNumber: destinyAccountNumber, type: `deposit` },
+                where: { accountNumber: destinyAccountNumber, type: Like(operationType) },
                 order: { createdAt: 'DESC' },
-                select: ['type', 'value', 'description', 'createdAt']
+                select: ['type', 'value', 'description', 'createdAt'],
             });
         } catch (err) {
             throw err;

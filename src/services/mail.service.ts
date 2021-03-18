@@ -3,11 +3,11 @@ import htmlTemplate from '../templates/mail.template'
 
 const from = 'admin@gamabank.com.br'
 
-const sendCreateAccountMail = async (user: string, bankCode: string, agencia: string, cc: string) => {
+const sendSignUpMail = async (user: string, bankCode: string, agencia: string, cc: string) => {
     const subject = 'Conta criada com sucesso'
     const text = 'Conta criada com sucesso'
     const to = 'njr.mor@gmail.com' //  Passar email do cliente como parâmetro
-    mailer.sendmail(from, to, subject, text, htmlTemplate.createAccTemplateMail(user, bankCode, agencia, cc))
+    mailer.sendmail(from, to, subject, text, htmlTemplate.signUpTemplateMail(user, bankCode, agencia, cc))
         .then(sended => console.log(sended))
         .catch(error => console.error(error));
 };
@@ -32,4 +32,4 @@ const sendBuyCreditMail = async (user: string, value: string, description:string
         .catch(error => console.error(error));
 };
 
-export default { sendCreateAccountMail, sendStatusMail, sendBuyCreditMail };
+export default { sendSignUpMail, sendStatusMail, sendBuyCreditMail };

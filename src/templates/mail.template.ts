@@ -11,7 +11,7 @@ const statusTemplateMail = (status: string) :string => {
     return html;
 };
 
-const createAccTemplateMail = (user: string, codBank: string, agency: string, cc: string) =>{  // parametros do cliente
+const signUpTemplateMail = (user: string, codBank: string, agency: string, cc: string) =>{  // parametros do cliente
     const html: string = `
     <section style="width: 600px; border: 1px solid #68de5a; border-radius: 10px;">
         <div style="width: 100%; 
@@ -158,4 +158,4 @@ const buyCreditTemplateMail = ( user: string, value: string, description: string
     return html
 };
     
-    export default { statusTemplateMail, createAccTemplateMail, movementTemplateMail, buyDebitTemplateMail, buyCreditTemplateMail } 
+    export default { statusTemplateMail, signUpTemplateMail, movementTemplateMail, buyDebitTemplateMail, buyCreditTemplateMail } 

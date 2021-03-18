@@ -30,7 +30,7 @@ class AccountBalanceService {
      * @param operation true to increase and false to decrease
      * @returns Update Result
      */
-    public updateActualBalance = async (destinyAccountNumber: number, value: number, operation: boolean): Promise<UpdateResult | string> => {
+    public updateActualBalance = async (destinyAccountNumber: number, value: number, operation: boolean): Promise<object | string> => {
 
         const repository = getRepository(AccountsBalance);
 
@@ -61,7 +61,16 @@ class AccountBalanceService {
         if (!newBalanceRegister)
             return ('Registro de balanço não encontrado');
 
-        return newBalanceRegister;
+        return {
+            "Atualização de Balanço": {
+                "Mês do balanço": actualBalanceRegister.month,
+                "Balanço inicial do mês": actualBalanceRegister.initialBalance,
+                "Saldo anterior": actualBalanceRegister.actualBalance,
+                "Novo saldo": +actualBalanceRegister.actualBalance + +value
+            }
+        }
+
+        
     };
 
     /**

@@ -35,9 +35,9 @@ class AccountController {
             return res.status(200).send('Registro de saldo não encontrado, tente novamente');
         };
 
-        return res.status(200).json({
+        return res.status(200).send({
             "Balanço atual": `R$ ${actualBalance}`,
-            "Data da consulta": `${new Date()}`
+            "Data da consulta": new Date()
         });
 
     };
@@ -67,15 +67,15 @@ class AccountController {
         if (isNegative(value))
             return res.status(400).send('O valor não pode ser menor ou igual a zero.');
         
-        let deposit;
+        let selfDeposit;
 
         try {
-            deposit = await MonetaryService.accountDeposit(fromAccountNumber, value, 'Auto deposito')
+            selfDeposit = await MonetaryService.accountDeposit(fromAccountNumber, value, 'Auto deposito')
         } catch (err) {
             return res.status(400).send('Deposito mal sucedido');
         };
 
-        return res.status(200).json({deposit})
+        return res.status(200).send(selfDeposit);
 
     };
 

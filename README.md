@@ -117,9 +117,9 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 ### Documentação
 - Documentação das rotas pelo swagger  
   
-## Curiosidades do sistema
+## Curiosidades do sistema :octocat:
 
-### Tamanho do sistema
+### Tamanho do sistema  
 ![chart](docs/download.png)
 
 ### Tecnologias principais :pushpin:  
@@ -142,7 +142,7 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 - Modularizado em responsabilidades únicas  
 - Variaveis de ambiente com informações sensíveis 
 
-### Metodologia de trabalho
+### Metodologia de trabalho :bookmark_tabs:
 
 - Kanban  
 - Git flow  

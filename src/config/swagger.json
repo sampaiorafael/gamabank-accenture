@@ -190,14 +190,9 @@
             }
           },
           "400": {
-            "description": "Este usuário não possui conta ou está encerrada"
+            "description": "Usuário não encontrado"
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        }
       }
     },
     "/account/checkbalance": {
@@ -559,14 +554,6 @@
           }
         }
       }
-    },
-    "securitySchemes": {
-      "Bearer": {
-        "type": "apiKey",
-        "description": "",
-        "name": "Authorization",
-        "in": "header"
-      }
     }
   },
   "securityDefinitions": {
@@ -575,10 +562,5 @@
       "name": "Authorization",
       "in": "header"
     }
-  },
-  "security": [
-    {
-      "Bearer": []
-    }
-  ]
+  }
 }

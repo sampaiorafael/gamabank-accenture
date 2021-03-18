@@ -3,6 +3,6 @@ import configs from './config/configs';
 
 const port = Number(configs.Server.port) || 80; 
 
-Express.express.listen(port, '0.0.0.0', () => {
+Express.express.listen(port, () => {
     console.log(`Servidor rodando na porta ${configs.Server.port}`);
 });

@@ -18,7 +18,15 @@ class MonetaryService {
             throw err;
         };
 
-        return { newBalanceRegister, newMovementRegister };
+        return { 
+            "Deposito": {
+                "Conta favorecida": destinyAccountNumber,
+                "Valor depositado": value,
+                "Descrição": newMovementRegister.description,
+                "Data da operação": new Date()
+            },
+            newBalanceRegister     
+        };
 
     };
 

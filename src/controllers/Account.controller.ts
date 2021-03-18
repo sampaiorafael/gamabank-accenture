@@ -35,7 +35,10 @@ class AccountController {
             return res.status(200).send('Registro de saldo não encontrado, tente novamente');
         };
 
-        return res.status(200).json({Balance: actualBalance});
+        return res.status(200).send({
+            "Balanço atual": `R$ ${actualBalance}`,
+            "Data da consulta": new Date()
+        });
 
     };
 
@@ -64,15 +67,15 @@ class AccountController {
         if (isNegative(value))
             return res.status(400).send('O valor não pode ser menor ou igual a zero.');
         
-        let deposit;
+        let selfDeposit;
 
         try {
-            deposit = await MonetaryService.accountDeposit(fromAccountNumber, value, 'Auto deposito')
+            selfDeposit = await MonetaryService.accountDeposit(fromAccountNumber, value, 'Auto deposito')
         } catch (err) {
             return res.status(400).send('Deposito mal sucedido');
         };
 
-        return res.status(200).json({deposit})
+        return res.status(200).send(selfDeposit);
 
     };
 
@@ -97,7 +100,7 @@ class AccountController {
             return res.status(400).send('Deposito mal sucedido');
         };
 
-        return res.status(200).json({deposit})
+        return res.status(200).send(deposit);
 
     };
 
@@ -192,10 +195,18 @@ class AccountController {
         let { id } = decodedToken;
         let fromAccountNumber = id;
 
+        const { operation } = req.body;
+
+        console.log(operation)
+
+        if (operation)
+            if ( operation !== 'remove' && operation !== 'deposit') 
+                return res.status(400).send('O parametro de operação está incorreto, só pode ser "remove" ou "deposit" para entradas e saidas');
+
         let movementRecords;
 
         try {
-            movementRecords = await MovementService.movementRecords(fromAccountNumber);
+            movementRecords = await MovementService.movementRecords(fromAccountNumber, operation);
         } catch (err) {
             return res.status(400).send('Histórico não encontrado, verifique suas informações e tente novamente');
         }

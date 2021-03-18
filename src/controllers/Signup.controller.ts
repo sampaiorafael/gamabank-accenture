@@ -21,15 +21,15 @@ class SignupController {
         if (!validateCPF(cpf))
             return res.status(400).send('CPF inválido');
 
-        let data;
+        let signupData;
 
         try {
-           data = await SignupService.signup(username, password, email, name, cpf, adress, phone);
+            signupData = await SignupService.signup(username, password, email, name, cpf, adress, phone);
         } catch (err) {
-            return res.status(400).send(err.message)
-        }
+            return res.status(400).send(err.message);
+        };
 
-        return res.status(201).send(data);
+        return res.status(201).json(signupData);
 
     };
 

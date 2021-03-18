@@ -38,30 +38,31 @@ class SingupService {
         );
 
         return { 
-            NovoCliente: {
-                Nome: newClient.name,
-                CPF: newUser.cpf,
-                Email: newUser.email,
-                Usuário: newUser.username,
-                Telefone: newClient.phone,
-                Endereço: newClient.adress
+            "Novo cliente": {
+                "Nome": newClient.name,
+                "CPF": newUser.cpf,
+                "Email": newUser.email,
+                "Usuário": newUser.username,
+                "Telefone": newClient.phone,
+                "Endereço": newClient.adress
             },
-            ContaCorrente: {
-                Numero: newAccount.accountNumber,
-                Agencia: newAccount.agency,
-                Saldo: firstAccountBalance.actualBalance
+            "Conta Corrente": {
+                "Numero": newAccount.accountNumber,
+                "Agência": newAccount.agency,
+                "Saldo": firstAccountBalance.actualBalance
             },
-            CartaoDeCredito: {
-                Numero: newCreditCard.number,
-                CodigoDeSegurança: newCreditCard.securityCode,
-                AnoDeExpiracao: newCreditCard.expireYear,
-                LimiteDeCredito: newCreditCard.limitValue,
-                DiaFechamentoFatura: newCreditCard.dueCloseDay,
-                DiaLimitePagamentoFatura: newCreditCard.duePayday,
-                Emissor: cardEmitter.name
+            "Cartao de credito": {
+                "Numero": newCreditCard.number,
+                "Código de Segurança": newCreditCard.securityCode,
+                "Ano de expiração": newCreditCard.expireYear,
+                "Limite de credito": newCreditCard.limitValue,
+                "Fechamento da fatura": newCreditCard.dueCloseDay,
+                "Prazo pagamento da fatura": newCreditCard.duePayday,
+                "Limite": newCreditCard.limitValue,
+                "Emissor": cardEmitter.name
             }
-
          };
+    
     };
 
 };

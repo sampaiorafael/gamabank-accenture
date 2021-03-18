@@ -10,10 +10,10 @@ class TransferService {
 
     public internTransfer = async (fromAccountNumber: number, toUsername: string, value: number): Promise<object | string> => {
         
-        let user;
+        let toUser;
 
         try {
-            user = await UserService.findByUsername(toUsername);
+            toUser = await UserService.findByUsername(toUsername);
         } catch (err) {
             throw err;
         };
@@ -21,7 +21,7 @@ class TransferService {
         let toAccount;
 
         try {
-            toAccount = await AccountsService.findAccountByUserId(user.id)
+            toAccount = await AccountsService.findAccountByUserId(toUser.id)
         } catch (err) {
             throw err;
         };
@@ -47,7 +47,24 @@ class TransferService {
             throw err;
         };
 
-        return { depositToAccount, removeFromAccount };
+        return {
+            "Tranferência Interna": {
+                "Favorecido": {
+                    "Usuário": toUser.password,
+                    "CPF": toUser.cpf,
+                    "Email": toUser.email,
+                    "Conta": toAccount.accountNumber,
+                    "Agência": toAccount.agency,
+                },
+                "Origem": {
+                    "Conta": fromAccountNumber
+                },
+                "Operação": {
+                    "Valor": value,
+                    "Data da operação": new Date()
+                }
+            }
+        };
 
     };
     
@@ -89,11 +106,22 @@ class TransferService {
             return('Conta de origem não encontrada');
 
         return {
-            Operation: 'External Transfer',
-            OriginAccountNumber: fromAccountNumber,
-            DestinyAccountCPF: cpf,
-            DestinyBank: bank?.name,
-            Value: value
+            "Transferência Externa": {
+                "Origem": {
+                    "Conta": fromAccountNumber,
+                    "Saldo anterior": actualBalanceFromAccount,
+                    "Novo saldo": +actualBalanceFromAccount - +value
+                },
+                "Favorecido": {
+                    "CPF": cpf,
+                    "Código do banco": bank.code,
+                    "Nome do banco": bank.name
+                },
+                "Operação": {
+                    "Valor": value,
+                    "Data da operação": new Date()
+                }
+            }
         };
 
     };

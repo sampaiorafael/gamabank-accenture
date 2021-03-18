@@ -55,6 +55,7 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 - GET `/account/movementrecords` - Extrato conta corrente do mês    
     Requisitos: N/A  
+    Parametros opcionais: operation (valores: 'remove' ou 'deposit')  
     Autenticação: JWT  
 
 - POST `/account/purchasedebt` - Compra no débito  
@@ -90,25 +91,67 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 > **Observação**: Para iniciar em produção, recomenda-se somente a utilização do script `npm run start` apos ter o TypeScript compilado pelo `npm run compile`. Todos scripts com o sufixo _dev foram criados para aumentar a produtividade em modo de desenvolvimento e por isso recomenda-se o seu uso somente durante esse processo
 
-## Features do Sistema
+## Features do Sistema  
 
-- Criação de conta de usuário
-- Criação de conta corrente
-- Criação de cartão de crédito
-- Compra com débito da Conta Corrente
-- Compra no Cartão de crédito
-- Verificação do saldo atual da conta corrente
-- Verificação fatura atual do cartão de crédito e lista de compras
-- Verificação de movimentações da conta corrente
-- Verificação de movimentações do cartão de crédito
-- Pagamento da fatura do cartão de crédito
-- Deposito de saldo na conta corrente
-- Transferência para contas internas ao banco
-- Transferência para contas externas ao banco
-- Documentação das rotas pelo swagger
+### Cadastro  
+- Criação de conta de usuário  
+- Criação do cliente do banco  
+- Criação de conta corrente  
+- Criação de cartão de crédito  
+- Publicação do balanço inicial de conta corrente e fatura do cartão de crédio  
+
+### Conta Corrente
+- Compra com débito, utilizando saldo da conta corrente   
+- Extrato de movimentação da conta corrente(opcionalmente parametrizado)  
+- Verificação do saldo atual da conta corrente  
+- Auto deposito  
+- Deposito de pessoa externa identificada  
+### Transferências 
+
+- Transferências internas entre contas
+- Transferências externas para outros bancos indentificados
+### Cartão de Crédito
+- Compra no Cartão de crédito  
+- Verificação fatura atual do cartão de crédito e lista de compras   
+- Pagamento da fatura do cartão de crédito  
+### Documentação
+- Documentação das rotas pelo swagger  
   
-#### Agradecimentos
+## Curiosidades do sistema :octocat:
 
+### Tamanho do sistema  
+![chart](docs/download.png)
+
+### Tecnologias principais :pushpin:  
+
+- Typescript  
+- Express  
+- TypeORM  
+- MySQL  
+- Bcrypt  
+- Jsonwebtoken  
+- Mocha  
+- Chai  
+
+### Arquitetura do Sistema :computer:  
+
+- Camada de controllers  
+- Camada de serviços  
+- Camada de modelos  
+- Camada de repositório com TypeORM  
+- Modularizado em responsabilidades únicas  
+- Variaveis de ambiente com informações sensíveis 
+
+### Metodologia de trabalho :bookmark_tabs:
+
+- Kanban  
+- Git flow  
+- Commits atômicos  
+- Código limpo  
+
+> Mais informações sobre o sistema como as Entidades de Relacionamento do banco de dados etc... Pode ser encontrada dentro da pasta docs
+
+#### Agradecimentos  
 Toda a equipe do Time 2, agradece imensamente ao treinamento oferecido pela Accenture através da Gama Academy, em especial as pessoas que nos deram toda assistência para o nosso particular desenvolvimento pessoal e intelectual: Bruce, Deah e JC o homem, a lenda, o melhor professor. Obrigado a todos!!!
 
 

@@ -6,6 +6,8 @@ import CreditCardBalanceService from '../services/CreditCardBalance.service';
 import JWTHandler from '../helpers/JWTHandler';
 import isNegative from '../helpers/isNegative';
 import Mail from '../services/mail.service'
+import Notify from '../services/Notification.service'
+
 class CreditCardController {
 
     public purchaseCredit: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
@@ -56,7 +58,9 @@ class CreditCardController {
             purchase.Purchase.AvailableBalanceNextPurchase.toString(),
             instalments
         );
-    
+
+        //Notify('81986011274', `Compra no crédito no valor de R$ ${value} em ${description}, seu saldo disponível é R$ ${purchase.Purchase.AvailableBalanceNextPurchase.toString()}`);
+
         return res.status(200).send(purchase);
         
     };
@@ -85,7 +89,7 @@ class CreditCardController {
         } catch (err) {
             throw err;
         };
-
+    
         let invoice;
 
         try {
@@ -93,6 +97,9 @@ class CreditCardController {
         } catch (err) {
             return res.status(400).send('Não foi possível verificar sua fatura');
         };
+        
+        //ver com Rafael
+        Mail.sendInvoiceMail('usuario',invoice.Purchases)
 
         return res.status(200).send(invoice);
 

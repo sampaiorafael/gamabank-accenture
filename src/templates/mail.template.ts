@@ -75,8 +75,10 @@ const signUpTemplateMail = (user: string, codBank: string, agency: string, cc: s
     return html;
 };
 
-const movementTemplateMail = (user: string, codBank: string, agency: string, cc: string) =>{  // parametros do cliente
-    const html: string = 
+const invoiceTemplateMail = (user: string, invoice: object) =>{  // parametros do cliente
+    const balance = invoice;
+    //console.log(invoice)
+    let html: string =
         `
         <html lang="en">
         <head>
@@ -90,32 +92,29 @@ const movementTemplateMail = (user: string, codBank: string, agency: string, cc:
         <body>
     
         <div class="container">
-        <h2>Hover Rows</h2>
-        <p>The .table-hover class enables a hover state on table rows:</p>            
+        <h2>Fatura</h2>    
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Pacerla</th>
             </tr>
             </thead>
             <tbody>
+            `
+      
+            html +=`
             <tr>
                 <td>John</td>
                 <td>Doe</td>
                 <td>john@example.com</td>
+                <td>john@example.com</td>
             </tr>
-            <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-            </tr>
-            <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-            </tr>
+            `
+         
+        html += `
             </tbody>
         </table>
         </div>
@@ -158,4 +157,4 @@ const buyCreditTemplateMail = ( user: string, value: string, description: string
     return html
 };
     
-    export default { statusTemplateMail, signUpTemplateMail, movementTemplateMail, buyDebitTemplateMail, buyCreditTemplateMail } 
+export default { statusTemplateMail, signUpTemplateMail, invoiceTemplateMail, buyDebitTemplateMail, buyCreditTemplateMail } 

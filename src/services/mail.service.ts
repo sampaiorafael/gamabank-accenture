@@ -32,4 +32,13 @@ const sendBuyCreditMail = async (user: string, value: string, description:string
         .catch(error => console.error(error));
 };
 
-export default { sendSignUpMail, sendStatusMail, sendBuyCreditMail };
+const sendInvoiceMail = async (user: string, invoice: object ) => {
+    const subject = 'A fatura do seu cartão chegou'
+    const text = `A fatura do seu cartão chegou`
+    const to = 'njr.mor@gmail.com' //  Passar email do cliente como parâmetro
+    mailer.sendmail(from, to, subject, text, htmlTemplate.invoiceTemplateMail(user, invoice))
+        .then(sended => console.log(sended))
+        .catch(error => console.error(error));
+};
+
+export default { sendSignUpMail, sendStatusMail, sendBuyCreditMail, sendInvoiceMail };

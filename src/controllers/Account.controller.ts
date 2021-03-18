@@ -35,7 +35,10 @@ class AccountController {
             return res.status(200).send('Registro de saldo não encontrado, tente novamente');
         };
 
-        return res.status(200).json({Balance: actualBalance});
+        return res.status(200).json({
+            "Balanço atual": `R$ ${actualBalance}`,
+            "Data da consulta": `${new Date()}`
+        });
 
     };
 

@@ -80,7 +80,7 @@
         "tags": [
           "signup"
         ],
-        "summary": "Create user / client / account",
+        "summary": "Criar usuários",
         "description": "",
         "operationId": "signup",
         "consumes": [
@@ -158,7 +158,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Auth user",
+        "summary": "Login",
         "operationId": "authUser",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -200,7 +200,7 @@
         "tags": [
           "account"
         ],
-        "summary": "Check account balance",
+        "summary": "Verificar saldo",
         "operationId": "account/checkbalance",
         "consumes": [
           "application/x-www-form-urlencoded"

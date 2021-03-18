@@ -17,7 +17,7 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 - [Rafael Sampaio](https://github.com/sampaiorafael)
 - [Stênio Amorim](https://github.com/stamorim28)
 - [Wallace Rooger](https://github.com/WallaceRooger) 
-- [Yahnnis](https://github.com/yahnnThomas)
+- [Yahnnis Monteiro](https://github.com/yahnnThomas)
 
 ## Rotas Disponíveis
 

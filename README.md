@@ -101,7 +101,7 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 - Publicação do balanço inicial de conta corrente e fatura do cartão de crédio  
 
 ### Conta Corrente
-- Compra com débito, utilizando saldo da conta corrente   
+- Compra com débito, utilizando saldo da conta corrente
 - Extrato de movimentação da conta corrente(opcionalmente parametrizado)  
 - Verificação do saldo atual da conta corrente  
 - Auto deposito  
@@ -114,6 +114,15 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 - Compra no Cartão de crédito  
 - Verificação fatura atual do cartão de crédito e lista de compras   
 - Pagamento da fatura do cartão de crédito  
+
+### E-mail 
+
+- Serviço de envio de Email na compra de débito e crédito
+
+### SMS
+
+- Envio de SMS na compra de crédito
+
 ### Documentação
 - Documentação das rotas pelo swagger  
   

@@ -55,7 +55,7 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 - GET `/account/movementrecords` - Extrato conta corrente do mês    
     Requisitos: N/A  
-    Parametros opcionais: operation (valores: 'remove' ou 'deposit')
+    Parametros opcionais: operation (valores: 'remove' ou 'deposit')  
     Autenticação: JWT  
 
 - POST `/account/purchasedebt` - Compra no débito  
@@ -91,22 +91,31 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 > **Observação**: Para iniciar em produção, recomenda-se somente a utilização do script `npm run start` apos ter o TypeScript compilado pelo `npm run compile`. Todos scripts com o sufixo _dev foram criados para aumentar a produtividade em modo de desenvolvimento e por isso recomenda-se o seu uso somente durante esse processo
 
-## Features do Sistema
+## Features do Sistema  
 
-- Criação de conta de usuário
-- Criação de conta corrente
-- Criação de cartão de crédito
-- Compra com débito da Conta Corrente
-- Compra no Cartão de crédito
-- Verificação do saldo atual da conta corrente
-- Verificação fatura atual do cartão de crédito e lista de compras
-- Verificação de movimentações da conta corrente
-- Verificação de movimentações do cartão de crédito
-- Pagamento da fatura do cartão de crédito
-- Deposito de saldo na conta corrente
-- Transferência para contas internas ao banco
-- Transferência para contas externas ao banco
-- Documentação das rotas pelo swagger
+### Cadastro  
+- Criação de conta de usuário  
+- Criação do cliente do banco  
+- Criação de conta corrente  
+- Criação de cartão de crédito  
+- Publicação do balanço inicial de conta corrente e fatura do cartão de crédio  
+
+### Conta Corrente
+- Compra com débito, utilizando saldo da conta corrente   
+- Extrato de movimentação da conta corrente(opcionalmente parametrizado)  
+- Verificação do saldo atual da conta corrente  
+- Auto deposito  
+- Deposito de pessoa externa identificada  
+### Transferências 
+
+- Transferências internas entre contas
+- Transferências externas para outros bancos indentificados
+### Cartão de Crédito
+- Compra no Cartão de crédito  
+- Verificação fatura atual do cartão de crédito e lista de compras   
+- Pagamento da fatura do cartão de crédito  
+### Documentação
+- Documentação das rotas pelo swagger  
   
 #### Agradecimentos
 

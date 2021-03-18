@@ -19,7 +19,7 @@ class MovementService {
         let newMovement: AccountsMovement;
 
         try {
-            newMovement = await repository.save({ accountNumber, type, value })
+            newMovement = await repository.save({ accountNumber, type, value, description })
         } catch (err) {
             throw err;
         };
@@ -35,9 +35,9 @@ class MovementService {
 
         try {
             movementRecords = await repository.find({ 
-                where:{ accountNumber: destinyAccountNumber},
-                order: { createdAt: 'DESC'},
-                select: ['type', 'value', 'createdAt']
+                where:{ accountNumber: destinyAccountNumber, type: `deposit` },
+                order: { createdAt: 'DESC' },
+                select: ['type', 'value', 'description', 'createdAt']
             });
         } catch (err) {
             throw err;
@@ -46,7 +46,11 @@ class MovementService {
         if (!movementRecords)
             return ('Registros não encontrados');
 
-        return movementRecords;
+        return {
+            "Registro de movimentações": {
+                movementRecords
+            }
+        };
 
     };
 

@@ -41,8 +41,8 @@ class TransferService {
         let removeFromAccount;
 
         try {
-            depositToAccount = await MonetaryService.accountDeposit(toAccount.accountNumber, value);
-            removeFromAccount = await MonetaryService.accountRemove(fromAccountNumber, value);
+            depositToAccount = await MonetaryService.accountDeposit(toAccount.accountNumber, value, 'Transferência interna');
+            removeFromAccount = await MonetaryService.accountRemove(fromAccountNumber, value, 'Transferência interna');
         } catch (err) {
             throw err;
         };
@@ -80,7 +80,7 @@ class TransferService {
         let removeFromAccount;
 
         try {
-            removeFromAccount = await MonetaryService.accountRemove(fromAccountNumber, value);
+            removeFromAccount = await MonetaryService.accountRemove(fromAccountNumber, value, 'Transferência externa');
         } catch (err) {
             throw err
         }

@@ -5,7 +5,7 @@ import MovementService from './Movement.service';
 
 class MonetaryService {
 
-    public accountDeposit = async (destinyAccountNumber: number, value: number): Promise<any> => {
+    public accountDeposit = async (destinyAccountNumber: number, value: number, description: string): Promise<any> => {
 
         let movementType = 'deposit';
         let newMovementRegister;
@@ -13,7 +13,7 @@ class MonetaryService {
 
         try {
             newBalanceRegister = await AccountBalanceService.updateActualBalance(destinyAccountNumber, value, true);
-            newMovementRegister = await MovementService.AccountPublishNewMovement(destinyAccountNumber, movementType, value, true);
+            newMovementRegister = await MovementService.newAccountMovement(destinyAccountNumber, movementType, value, description);
         } catch (err) {
             throw err;
         };
@@ -22,7 +22,7 @@ class MonetaryService {
 
     };
 
-    public accountRemove = async (destinyAccountNumber: number, value: number): Promise<any> => {
+    public accountRemove = async (destinyAccountNumber: number, value: number, description: string): Promise<any> => {
 
         let movementType = 'remove';
         let newMovementRegister;
@@ -30,7 +30,7 @@ class MonetaryService {
 
         try {
             newBalanceRegister = await AccountBalanceService.updateActualBalance(destinyAccountNumber, value, false);
-            newMovementRegister = await MovementService.AccountPublishNewMovement(destinyAccountNumber, movementType, value, false);
+            newMovementRegister = await MovementService.newAccountMovement(destinyAccountNumber, movementType, value, description);
         } catch (err) {
             throw err;
         };
@@ -57,7 +57,7 @@ class MonetaryService {
         let removeFromAccount;
 
         try {
-            removeFromAccount = await this.accountRemove(destinyAccountNumber, value);
+            removeFromAccount = await this.accountRemove(destinyAccountNumber, value, 'Compra no débito');
         } catch (err) {
             throw err;
         };
@@ -87,7 +87,7 @@ class MonetaryService {
 
         try {
             updateBalance = await CreditCardBalanceService.updateBalance(destinyCreditCardNumber, value, true);
-            newMovement = await MovementService.creditCardPublishNewMovement(destinyCreditCardNumber, description, value, instalments, true);
+            newMovement = await MovementService.newCreditCardMovementMovement(destinyCreditCardNumber, description, value, instalments, true);
         } catch (err) {
             throw err;
         };

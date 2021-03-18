@@ -6,6 +6,7 @@ import TransferService from '../services/Transfer.service';
 import MovementService from '../services/Movement.service';
 import JWTHandler from '../helpers/JWTHandler';
 import isNegative from '../helpers/isNegative';
+import validateCPF from '../helpers/validateCpf';
 
 class AccountController {
 
@@ -66,7 +67,32 @@ class AccountController {
         let deposit;
 
         try {
-            deposit = await MonetaryService.accountDeposit(fromAccountNumber, value)
+            deposit = await MonetaryService.accountDeposit(fromAccountNumber, value, 'Auto deposito')
+        } catch (err) {
+            return res.status(400).send('Deposito mal sucedido');
+        };
+
+        return res.status(200).json({deposit})
+
+    };
+
+    public externDeposit: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+
+        const { name, cpf, accountNumber, value } = req.body;
+
+         if(!value)
+            return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
+
+        if (isNegative(value))
+            return res.status(400).send('O valor não pode ser menor ou igual a zero.');
+
+        if (!validateCPF(cpf))
+            return res.status(400).send('CPF inválido');
+        
+        let deposit;
+
+        try {
+            deposit = await MonetaryService.accountDeposit(accountNumber, value, `Deposito externo de: ${name}, CPF: ${cpf}`)
         } catch (err) {
             return res.status(400).send('Deposito mal sucedido');
         };

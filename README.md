@@ -41,6 +41,10 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
     Requisitos: value   
     Autenticação: JWT  
 
+- POST `/accounts/externdeposit` - Deposito externo identificado  
+    Requisitos: name, cpf, accountNumber, value   
+    Autenticação: N/A 
+
 - POST `/account/interntransfer` -  Transferências Internas  
     Requisitos: toUsername, value  
     Autenticação: JWT  

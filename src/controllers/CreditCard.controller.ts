@@ -90,8 +90,42 @@ class CreditCardController {
 
     }
 
-    // public payInvoice: RequestHandler = async (req:Request, res: Response, next: NextFunction): Promise<Response> => {
-    // }
+    public payDueInvoice: RequestHandler = async (req:Request, res: Response, next: NextFunction): Promise<Response> => {
+        
+        const token = req.headers.authorization;
+        let decodedToken; 
+
+        if(!token)
+            return res.status(400).send('Token de autenticação não encontrado');
+
+        try {
+            decodedToken = await JWTHandler.verifyToken((token));
+        } catch (err) {
+            return res.status(400).send('Token inválido ou expirado');
+        }
+
+        let { id } = decodedToken;
+        let fromAccountNumber = id;
+
+        let creditCard;
+
+        try {
+            creditCard = await CreditCardService.findCreditCardByAccountNumber(fromAccountNumber);
+        } catch (err) {
+            throw err;
+        };
+
+        let payDueInvoice;
+
+        try {
+            payDueInvoice = await MonetaryService.payDueInvoice(creditCard.number, fromAccountNumber);
+        } catch (err) {
+            throw err;
+        };
+
+        return res.status(200).send(payDueInvoice);
+
+    }
 
 };
 

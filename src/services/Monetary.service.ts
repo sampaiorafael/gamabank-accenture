@@ -1,6 +1,6 @@
 import AccountBalanceService from './AccountBalance.service'
 import CreditCardBalanceService from './CreditCardBalance.service';
-import CrediCardBalanceService from './CreditCardBalance.service';
+
 import MovementService from './Movement.service';
 
 class MonetaryService {
@@ -69,12 +69,12 @@ class MonetaryService {
 
     };
 
-    public purchaseCredit = async (destinyCrediCardNumber: number, description: string, value: number, instalments: number): Promise<any> => {
+    public purchaseCredit = async (destinyCreditCardNumber: number, description: string, value: number, instalments: number): Promise<any> => {
     
         let creditCardBalance;
 
         try {
-            creditCardBalance = await CrediCardBalanceService.checkBalance(destinyCrediCardNumber);
+            creditCardBalance = await CreditCardBalanceService.checkBalance(destinyCreditCardNumber);
         } catch (err) {
             throw err;
         };
@@ -86,8 +86,8 @@ class MonetaryService {
         let newMovement;
 
         try {
-            updateBalance = await CreditCardBalanceService.updateBalance(destinyCrediCardNumber, value, true);
-            newMovement = await MovementService.creditCardPublishNewMovement(destinyCrediCardNumber, description, value, instalments, true);
+            updateBalance = await CreditCardBalanceService.updateBalance(destinyCreditCardNumber, value, true);
+            newMovement = await MovementService.creditCardPublishNewMovement(destinyCreditCardNumber, description, value, instalments, true);
         } catch (err) {
             throw err;
         };
@@ -103,6 +103,43 @@ class MonetaryService {
         };
 
     };
+
+    public payDueInvoice = async (destinyCreditCardNumber: number, destinyAccountNumber: number): Promise<any> => {
+
+        let due;
+        let accountBalance;
+
+        try {
+            due = await CreditCardBalanceService.checkBalance(destinyCreditCardNumber);
+            accountBalance = await AccountBalanceService.checkBalance(destinyAccountNumber);
+        } catch (err) {
+            throw err;
+        };
+
+        if ( due.dueBalance > accountBalance)
+            return ('Você não possui saldo suficiente');
+
+        let newDue;
+        let newAccountBalance;
+
+        try {
+            newDue = await CreditCardBalanceService.updateBalance(destinyCreditCardNumber, due.dueBalance, false);
+            newAccountBalance = await AccountBalanceService.updateActualBalance(destinyAccountNumber, due.dueBalance, false)
+        } catch (err) {
+            throw err;
+        };
+
+
+        return {
+            status: 'Sucesso, sua fatura foi paga',
+            Fatura: {
+                "Saldo anterior conta corrente": accountBalance,
+                "Saldo atual da conta corrente ": +accountBalance - due.dueBalance,
+                "Valor de fatura pago": due.dueBalance
+            }
+        }
+
+    }
 
 };
 

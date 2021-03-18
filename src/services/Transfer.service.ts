@@ -106,11 +106,22 @@ class TransferService {
             return('Conta de origem não encontrada');
 
         return {
-            Operation: 'External Transfer',
-            OriginAccountNumber: fromAccountNumber,
-            DestinyAccountCPF: cpf,
-            DestinyBank: bank?.name,
-            Value: value
+            "Transferência Externa": {
+                "Origem": {
+                    "Conta": fromAccountNumber,
+                    "Saldo anterior": actualBalanceFromAccount,
+                    "Novo saldo": +actualBalanceFromAccount - +value
+                },
+                "Favorecido": {
+                    "CPF": cpf,
+                    "Código do banco": bank.code,
+                    "Nome do banco": bank.name
+                },
+                "Operação": {
+                    "Valor": value,
+                    "Data da operação": new Date()
+                }
+            }
         };
 
     };

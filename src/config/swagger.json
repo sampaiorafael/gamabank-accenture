@@ -234,7 +234,7 @@
         "tags": [
           "account"
         ],
-        "summary": "Self deposit",
+        "summary": "Deposito na própria conta",
         "operationId": "account/selfdeposit",
         "consumes":[
           "application/x-www-form-urlencoded"
@@ -277,7 +277,7 @@
         "tags": [
           "account"
         ],
-        "summary": "Transferência entre mesmo banco",
+        "summary": "Transferências Internas",
         "operationId": "account/internTransfer",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -327,7 +327,7 @@
         "tags": [
           "account"
         ],
-        "summary": "Transferência entre diferentes bancos",
+        "summary": "Transferências Externas",
         "operationId": "account/externTransfer",
         "consumes":[
           "application/x-www-form-urlencoded"
@@ -370,7 +370,7 @@
         "tags": [
           "account"
         ],
-        "summary": "Extrato de movimentações",
+        "summary": "Extrato conta corrente do mês",
         "operationId": "account/movementrecords",
         "consumes":[
           "application/x-www-form-urlencoded"

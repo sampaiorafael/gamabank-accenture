@@ -149,6 +149,8 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 - Commits atômicos  
 - Código limpo  
 
+> Mais informações sobre o sistema como as Entidades de Relacionamento do banco de dados etc... Pode ser encontrada dentro da pasta docs
+
 #### Agradecimentos  
 Toda a equipe do Time 2, agradece imensamente ao treinamento oferecido pela Accenture através da Gama Academy, em especial as pessoas que nos deram toda assistência para o nosso particular desenvolvimento pessoal e intelectual: Bruce, Deah e JC o homem, a lenda, o melhor professor. Obrigado a todos!!!
 

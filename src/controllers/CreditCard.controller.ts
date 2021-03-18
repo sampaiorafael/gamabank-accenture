@@ -30,6 +30,9 @@ class CreditCardController {
         if (!value || !description || !instalments)
             return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
 
+        if (isNegative(value))
+            return res.status(400).send('O valor não pode ser menor ou igual a zero.');
+
         let creditCard;
 
         try {
@@ -88,7 +91,6 @@ class CreditCardController {
     }
 
     // public payInvoice: RequestHandler = async (req:Request, res: Response, next: NextFunction): Promise<Response> => {
-
     // }
 
 };

@@ -54,7 +54,7 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
     Autenticação: JWT  
 
 - POST `/account/purchasedebt` - Compra no débito  
-    Requisitos: value
+    Requisitos: value  
     Autenticação: JWT  
 
 - POST `/creditcard/purchase` - Compra no crédito    

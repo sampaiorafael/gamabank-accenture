@@ -13,7 +13,7 @@ class MonetaryService {
 
         try {
             newBalanceRegister = await AccountBalanceService.updateActualBalance(destinyAccountNumber, value, true);
-            newMovementRegister = await MovementService.publishNewMovement(destinyAccountNumber, movementType, value, true);
+            newMovementRegister = await MovementService.AccountPublishNewMovement(destinyAccountNumber, movementType, value, true);
         } catch (err) {
             throw err;
         };
@@ -30,7 +30,7 @@ class MonetaryService {
 
         try {
             newBalanceRegister = await AccountBalanceService.updateActualBalance(destinyAccountNumber, value, false);
-            newMovementRegister = await MovementService.publishNewMovement(destinyAccountNumber, movementType, value, false);
+            newMovementRegister = await MovementService.AccountPublishNewMovement(destinyAccountNumber, movementType, value, false);
         } catch (err) {
             throw err;
         };

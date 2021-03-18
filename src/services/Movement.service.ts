@@ -13,7 +13,7 @@ class MovementService {
      * @param operation true, to add operation, false to sub
      * @returns 
      */
-    public publishNewMovement = async (accountNumber: number, type: string, value: number, operation: boolean): Promise<AccountsMovement> => {
+    public AccountPublishNewMovement = async (accountNumber: number, type: string, value: number, operation: boolean): Promise<AccountsMovement> => {
 
         const repository = getRepository(AccountsMovement);
         let newMovement: AccountsMovement;

@@ -3,7 +3,7 @@ import htmlTemplate from '../templates/mail.template'
 
 const from = 'admin@gamabank.com.br'
 
-const sendCreateAccountMail = async (user: string, bankCode: string, agencia: string, cc: string) => {
+const sendSignUpMail = async (user: string, bankCode: string, agencia: string, cc: string) => {
     const subject = 'Conta criada com sucesso'
     const text = 'Conta criada com sucesso'
     const to = 'njr.mor@gmail.com' //  Passar email do cliente como parâmetro
@@ -23,4 +23,4 @@ const sendStatusMail = async (message: string) => {
 };
 
 
-export default { sendCreateAccountMail, sendStatusMail };
+export default { sendSignUpMail, sendStatusMail };

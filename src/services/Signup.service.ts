@@ -30,7 +30,7 @@ class SingupService {
             throw err;
         };
 
-        Mail.sendCreateAccountMail(
+        Mail.sendSignUpMail(
             username, 
             newAccount.bankCode.toString(), 
             newAccount.agency.toString(), 

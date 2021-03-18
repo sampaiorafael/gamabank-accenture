@@ -5,8 +5,8 @@ import CreditCardService from '../services/CreditCard.service';
 import CreditCardBalanceService from '../services/CreditCardBalance.service';
 import JWTHandler from '../helpers/JWTHandler';
 import isNegative from '../helpers/isNegative';
-import Mail from '../services/mail.service'
-import Notify from '../services/Notification.service'
+import Mail from '../services/mail.service';
+import Notify from '../services/Notification.service';
 
 class CreditCardController {
 
@@ -59,7 +59,7 @@ class CreditCardController {
             instalments
         );
 
-        //Notify('81986011274', `Compra no crédito no valor de R$ ${value} em ${description}, seu saldo disponível é R$ ${purchase.Purchase.AvailableBalanceNextPurchase.toString()}`);
+       // Notify('13991728078', `Compra no crédito no valor de R$ ${value} em ${description}, seu saldo disponível é R$ ${purchase.Purchase.AvailableBalanceNextPurchase.toString()}`);
 
         return res.status(200).send(purchase);
         

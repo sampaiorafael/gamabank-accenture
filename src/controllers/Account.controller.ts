@@ -100,7 +100,7 @@ class AccountController {
             return res.status(400).send('Deposito mal sucedido');
         };
 
-        return res.status(200).json({deposit})
+        return res.status(200).send(deposit);
 
     };
 

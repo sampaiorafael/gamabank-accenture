@@ -345,20 +345,7 @@ const buyCreditTemplateMail = ( user: string, value: string, description: string
         </main>
         
     </section>
-
-    <p><span style="font-size:18px"><strong>Ol&aacute; ${user} voc&ecirc; acaba de efetuar uma compra no d&eacute;bito.</strong></span></p>
-    
-    <hr />
-    <p><span style="font-size:16px">Estabelecimento: ${description}</span></p>
-    
-    <p><span style="font-size:16px">Valor: R$ ${value}</span></p>
-
-    <p><span style="font-size:16px">Parcelas: ${instalments}</span></p>
-
-    <p><span style="font-size:16px">Saldo disponível no cartão: R$ ${balance}</span></p>
-    
-    <hr />
-    <p>&nbsp;</p>`
+`
     return html
 };
     

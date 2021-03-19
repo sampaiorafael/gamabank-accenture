@@ -33,7 +33,7 @@ class CreditCardController {
         if (!value || !description || !instalments)
             return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
 
-        if (isNegative(value))
+        if (isNegative(value) || isNegative(instalments) )
             return res.status(400).send('O valor não pode ser menor ou igual a zero.');
 
         let creditCard;

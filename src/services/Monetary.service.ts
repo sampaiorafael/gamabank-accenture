@@ -87,9 +87,10 @@ class MonetaryService {
             throw err;
         };
 
-        if (+creditCardBalance.availableBalance < +value)
-            return(`Limite Insuficiente, limite disponível: ${creditCardBalance.availableBalance}`);
-
+        if (+creditCardBalance.availableBalance < +value){
+            throw 'Saldo insuficiente';
+        }
+            
         let updateBalance;
         let newMovement;
 

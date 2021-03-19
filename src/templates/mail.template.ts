@@ -109,7 +109,7 @@ const signUpTemplateMail = (user: string, codBank: string, agency: string, cc: s
     return html;
 };
     
-const buyDebitTemplateMail = ( user: string, description: string, value: number) => {
+const buyDebitTemplateMail = ( user: string, email: string, value: number) => {
         const html: string  = 
     `
     <section style="width: 600px; border: 1px solid #68de5a; border-radius: 10px;">
@@ -135,12 +135,6 @@ const buyDebitTemplateMail = ( user: string, description: string, value: number)
                  font-size: 2.5em;
                  font-weight: bold;
                 text-align: center;">R$ ${value}</h1>
-    
-                <p
-                style="
-                color: #121214;
-                font-family: 'Raleway', sans-serif;">
-                <strong>Local de compra:</strong> ${description}</p><br><br><br><br>
 
                 <p
                 style="
@@ -195,7 +189,7 @@ const buyDebitTemplateMail = ( user: string, description: string, value: number)
     </section>
 
     `
-    
+    return html
 };
     
 const buyCreditTemplateMail = ( user: string, value: string, description: string, balance: string,  instalments: string) => {
@@ -326,6 +320,7 @@ const invoiceTemplateMail = (user: string, invoice: Array<object>) =>{  // param
             </thead>
             <tbody>
             `
+
             let total = 0
            invoice.forEach(element => {
               const {description, value, instalments, createdAt} = JSON.parse(JSON.stringify(element))  
@@ -351,11 +346,11 @@ const invoiceTemplateMail = (user: string, invoice: Array<object>) =>{  // param
             </tbody>
         </table>
         </div>
-    
+        <figure class="image" style="display:inline-block"><img src="https://i.imgur.com/AQmEn0S.png" />
         </body>
         </html>
         `
         return html
 };
-    
+   
 export default { statusTemplateMail, signUpTemplateMail, invoiceTemplateMail, buyDebitTemplateMail, buyCreditTemplateMail } 

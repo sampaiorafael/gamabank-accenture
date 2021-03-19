@@ -1,12 +1,14 @@
 import { RequestHandler, Request, Response, NextFunction } from 'express';
 
 import AccountBalanceService from '../services/AccountBalance.service';
+import UsersService from '../services/Users.service';  
 import MonetaryService from '../services/Monetary.service';
 import TransferService from '../services/Transfer.service';
 import MovementService from '../services/Movement.service';
 import JWTHandler from '../helpers/JWTHandler';
 import isNegative from '../helpers/isNegative';
 import validateCPF from '../helpers/validateCpf';
+import Mail from '../services/mail.service';
 
 class AccountController {
 
@@ -247,7 +249,16 @@ class AccountController {
         } catch (err) {
             return res.status(400).send('Não foi possível realizar a compra, verifique seu saldo e informações e tente novamente');
         };
+        
+        let fullUser;
 
+        try {
+            fullUser = await UsersService.findFullByAccountNumber(fromAccountNumber)
+        } catch (err) {
+            return res.status(400).send(err);
+        };
+
+        Mail.sendBuyDebitMail(fullUser.username, fullUser.email, value )
         return res.status(200).send(purchaseDebt);
 
     };

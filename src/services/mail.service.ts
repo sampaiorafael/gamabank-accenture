@@ -12,7 +12,6 @@ const sendSignUpMail = async (user: string, bankCode: string, agencia: string, c
         .catch(error => console.error(error));
 };
 
-//testar email
 const sendStatusMail = async (message: string) => {
     const subject = 'Status'
     const text = message
@@ -22,24 +21,31 @@ const sendStatusMail = async (message: string) => {
         .catch(error => console.error(error));
 };
 
-//buyCreditMail
-const sendBuyCreditMail = async (user: string, value: string, description:string, balance:string, Instalments:string  ) => {
+const sendBuyCreditMail = async (user: string, email :string, value: string, description:string, balance:string, Instalments:string  ) => {
     const subject = 'Compra no crédito'
     const text = `Compra no crédito no valor de R$ ${value}.`
-    const to = 'njr.mor@gmail.com' //  Passar email do cliente como parâmetro
+    const to = email
     mailer.sendmail(from, to, subject, text, htmlTemplate.buyCreditTemplateMail(user, value, description, balance, Instalments))
         .then(sended => console.log(sended))
         .catch(error => console.error(error));
 };
 
-//invoice mail
-const sendInvoiceMail = async (user: string, invoice: Array<object> ) => {
+const sendBuyDebitMail = async (user: string, email :string, value: number) => {
+    const subject = 'Compra no débito'
+    const text = `Compra no débito no valor de R$ ${value}.`
+    const to = email
+    mailer.sendmail(from, to, subject, text, htmlTemplate.buyDebitTemplateMail(user, email, value))
+        .then(sended => console.log(sended))
+        .catch(error => console.error(error));
+};
+
+const sendInvoiceMail = async (user: string, email :string, invoice: Array<object> ) => {
     const subject = 'A fatura do seu cartão chegou'
     const text = `A fatura do seu cartão chegou`
-    const to = 'njr.mor@gmail.com' //  Passar email do cliente como parâmetro
+    const to = email
     mailer.sendmail(from, to, subject, text, htmlTemplate.invoiceTemplateMail(user, invoice))
         .then(sended => console.log(sended))
         .catch(error => console.error(error));
 };
 
-export default { sendSignUpMail, sendStatusMail, sendBuyCreditMail, sendInvoiceMail };
+export default { sendSignUpMail, sendStatusMail, sendBuyCreditMail, sendBuyDebitMail, sendInvoiceMail };

@@ -62,6 +62,7 @@ class CreditCardController {
 
         Mail.sendBuyCreditMail(
             fullUser.name, 
+            fullUser.email,
             value,
             description,
             purchase.Purchase.AvailableBalanceNextPurchase.toString(),
@@ -106,9 +107,16 @@ class CreditCardController {
         } catch (err) {
             return res.status(400).send('Não foi possível verificar sua fatura');
         };
+
+        let fullUser;
+
+        try {
+            fullUser = await UsersService.findFullByAccountNumber(fromAccountNumber)
+        } catch (err) {
+            return res.status(400).send(err);
+        };
         
-        //ver com Rafael
-        Mail.sendInvoiceMail('usuario',invoice.creditCardsMovements)
+        Mail.sendInvoiceMail(fullUser.username, fullUser.email ,invoice.creditCardsMovements)
 
         return res.status(200).send(invoice);
 
@@ -146,6 +154,16 @@ class CreditCardController {
         } catch (err) {
             throw err;
         };
+
+        let fullUser;
+
+        try {
+            fullUser = await UsersService.findFullByAccountNumber(fromAccountNumber)
+        } catch (err) {
+            return res.status(400).send(err);
+        };
+        
+        //Mail.sendInvoiceMail(fullUser.username, fullUser.email ,)
 
         return res.status(200).send(payDueInvoice);
 

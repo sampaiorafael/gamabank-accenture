@@ -32,7 +32,7 @@ const sendBuyCreditMail = async (user: string, value: string, description:string
         .catch(error => console.error(error));
 };
 
-const sendInvoiceMail = async (user: string, invoice: object ) => {
+const sendInvoiceMail = async (user: string, invoice: Array<object> ) => {
     const subject = 'A fatura do seu cartão chegou'
     const text = `A fatura do seu cartão chegou`
     const to = 'njr.mor@gmail.com' //  Passar email do cliente como parâmetro

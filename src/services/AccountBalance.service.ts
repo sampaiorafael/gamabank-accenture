@@ -66,7 +66,7 @@ class AccountBalanceService {
                 "Mês do balanço": actualBalanceRegister.month,
                 "Balanço inicial do mês": actualBalanceRegister.initialBalance,
                 "Saldo anterior": actualBalanceRegister.actualBalance,
-                "Novo saldo": +actualBalanceRegister.actualBalance - +value
+                "Novo saldo": +actualBalanceRegister.actualBalance + +value
             }
         }
 

@@ -108,7 +108,7 @@ class CreditCardController {
         };
         
         //ver com Rafael
-        Mail.sendInvoiceMail('usuario',invoice.Purchases)
+        Mail.sendInvoiceMail('usuario',invoice.creditCardsMovements)
 
         return res.status(200).send(invoice);
 

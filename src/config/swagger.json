@@ -545,13 +545,8 @@
         "tags": [
           "creditcard"
         ],
-<<<<<<< HEAD
         "summary": "Compra no crédito",
         "operationId": "creditcard/paydueinvoice",
-=======
-        "summary": "Pagar fatura cartão de crédito",
-        "operationId": "account/purchasedebt",
->>>>>>> 6bce87f89690cb282b39178035bd4a68a2af67fc
         "consumes": [
           "application/x-www-form-urlencoded"
         ],

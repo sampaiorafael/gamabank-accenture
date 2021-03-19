@@ -123,9 +123,7 @@ class CreditCardBalanceService {
             AvailableBalance: creditCardBalance.availableBalance,
             DueBalance: creditCardBalance.dueBalance
          },
-         Purchases: {
             creditCardsMovements
-         }
       };
 
    };

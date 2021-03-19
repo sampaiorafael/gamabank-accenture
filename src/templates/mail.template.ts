@@ -108,57 +108,6 @@ const signUpTemplateMail = (user: string, codBank: string, agency: string, cc: s
     
     return html;
 };
-
-//VA MAIS LONGE
-const invoiceTemplateMail = (user: string, invoice: object) =>{  // parametros do cliente
-    const balance = invoice;
-    //console.log(invoice)
-    let html: string =
-        `
-        <html lang="en">
-        <head>
-        <title>Bootstrap Example</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        </head>
-        <body>
-    
-        <div class="container">
-        <h2>Fatura</h2>    
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Data</th>
-                <th>Descrição</th>
-                <th>Valor</th>
-                <th>Pacerla</th>
-            </tr>
-            </thead>
-            <tbody>
-            `
-            
-            html +=`
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            `
-         
-        html += `
-            </tbody>
-        </table>
-        </div>
-    
-        </body>
-        </html>
-        `
-        return html
-};
     
 const buyDebitTemplateMail = ( user: string, description: string, value: number) => {
         const html: string  = 
@@ -347,6 +296,66 @@ const buyCreditTemplateMail = ( user: string, value: string, description: string
     </section>
 `
     return html
+};
+
+const invoiceTemplateMail = (user: string, invoice: Array<object>) =>{  // parametros do cliente
+    const balance = invoice;
+    let html: string =
+        `
+        <html lang="en">
+        <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        </head>
+        <body>
+    
+        <div class="container">
+        <h2>Fatura</h2>    
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Pacerla</th>
+            </tr>
+            </thead>
+            <tbody>
+            `
+            let total = 0
+           invoice.forEach(element => {
+              const {description, value, instalments, createdAt} = JSON.parse(JSON.stringify(element))  
+              html +=`
+              <tr>
+                  <td>   ${createdAt}   </td>
+                  <td>   ${description}   </td>
+                  <td>   R$ ${value}   </td>
+                  <td>${instalments} x</td>
+              </tr>
+              `
+              total+=value / instalments
+           });
+           html +=`
+              <tr>
+                  <td></td>
+                  <td></td>
+                  <td><b>TOTAL</b></td>
+                  <td>R$ ${total}</td>
+              </tr>
+              `
+        html += `
+            </tbody>
+        </table>
+        </div>
+    
+        </body>
+        </html>
+        `
+        return html
 };
     
 export default { statusTemplateMail, signUpTemplateMail, invoiceTemplateMail, buyDebitTemplateMail, buyCreditTemplateMail } 

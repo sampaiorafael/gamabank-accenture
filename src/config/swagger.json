@@ -344,7 +344,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Transferido com sucesso",
             "schema": {
               "$ref": "#/definitions/auth"
@@ -386,7 +386,7 @@
             "in": "formData"
           },
           {
-            "name": "bank",
+            "name": "bankCode",
             "typer": "number",
             "required": true,
             "description": "Código do banco",

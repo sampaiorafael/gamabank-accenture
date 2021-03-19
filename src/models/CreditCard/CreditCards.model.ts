@@ -18,7 +18,7 @@ export class CreditCards {
     @Column({ name: 'security_code', type: 'char', length: '3' })
     securityCode!: number;
     
-    @Column({ name: 'limite_value', type: 'int' })
+    @Column({ name: 'limit_value', type: 'int' })
     limitValue!: number;
 
     @Column({ name:'due_close_day', type: 'tinyint' })

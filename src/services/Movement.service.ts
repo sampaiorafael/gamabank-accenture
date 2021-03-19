@@ -13,7 +13,7 @@ class MovementService {
      * @param operation true, to add operation, false to sub
      * @returns 
      */
-    public newAccountMovement = async (accountNumber: number, type: string, value: number, description: string): Promise<AccountsMovement> => {
+    public newAccountMovement = async (accountNumber: number, type: string, value: number, description: string): Promise<object | string> => {
 
         const repository = getRepository(AccountsMovement);
         let newMovement: AccountsMovement;
@@ -24,7 +24,17 @@ class MovementService {
             throw err;
         };
 
-        return newMovement;
+        if(!newMovement)
+            return ('Não foi possível realizar o lançamento da movimentação');
+
+        return {
+            "Nova Movimentação": {
+                "Origem": newMovement.accountNumber,
+                "Tipo": newMovement.type,
+                "Valor": newMovement.value,
+                "Descrição": newMovement.description
+            }
+        };
     };
 
     public movementRecords = async (destinyAccountNumber: number, operationType?: string): Promise<any> => {

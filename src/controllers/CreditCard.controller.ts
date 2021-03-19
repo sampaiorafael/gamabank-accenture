@@ -33,7 +33,7 @@ class CreditCardController {
         if (!value || !description || !instalments)
             return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
 
-        if (isNegative(value))
+        if (isNegative(value) || isNegative(instalments) )
             return res.status(400).send('O valor não pode ser menor ou igual a zero.');
 
         let creditCard;
@@ -41,7 +41,7 @@ class CreditCardController {
         try {
             creditCard = await CreditCardService.findCreditCardByAccountNumber(fromAccountNumber);
         } catch (err) {
-            throw err;
+            return res.status(400).send(err);
         };
 
         let purchase;
@@ -49,7 +49,7 @@ class CreditCardController {
         try {
             purchase = await MonetaryService.purchaseCredit(creditCard.number, description, value, instalments);
         } catch (err) {
-            throw err;
+            return res.status(400).send(err);
         };
 
         let fullUser;
@@ -57,8 +57,8 @@ class CreditCardController {
         try {
             fullUser = await UsersService.findFullByAccountNumber(fromAccountNumber)
         } catch (err) {
-            throw err
-        }
+            return res.status(400).send(err);
+        };
 
         Mail.sendBuyCreditMail(
             fullUser.name, 
@@ -68,7 +68,7 @@ class CreditCardController {
             instalments
         );
 
-       Notify(`${fullUser.phone}`, `Compra no crédito no valor de R$ ${value} em ${description}, seu saldo disponível é R$ ${purchase.Purchase.AvailableBalanceNextPurchase.toString()}`);
+        Notify(`${fullUser.phone}`, `Compra no crédito no valor de R$ ${value} em ${description}, seu saldo disponível é R$ ${purchase.Purchase.AvailableBalanceNextPurchase.toString()}`);
 
         return res.status(200).send(purchase);
         

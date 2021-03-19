@@ -50,7 +50,7 @@ class TransferService {
         return {
             "Tranferência Interna": {
                 "Favorecido": {
-                    "Usuário": toUser.password,
+                    "Usuário": toUser.username,
                     "CPF": toUser.cpf,
                     "Email": toUser.email,
                     "Conta": toAccount.accountNumber,

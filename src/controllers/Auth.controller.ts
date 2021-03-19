@@ -37,7 +37,7 @@ class AuthController {
 
         let newToken = JWTHandler.newToken(account.accountNumber);
     
-        return res.status(200).json({token: newToken});
+        return res.status(200).json({token: newToken}); 
 
     };
 

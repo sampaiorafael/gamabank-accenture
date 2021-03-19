@@ -41,7 +41,7 @@ class CreditCardController {
         try {
             creditCard = await CreditCardService.findCreditCardByAccountNumber(fromAccountNumber);
         } catch (err) {
-            return res.status(400).send(err)
+            return res.status(400).send(err);
         };
 
         let purchase;
@@ -49,7 +49,7 @@ class CreditCardController {
         try {
             purchase = await MonetaryService.purchaseCredit(creditCard.number, description, value, instalments);
         } catch (err) {
-            return res.status(400).send(err)
+            return res.status(400).send(err);
         };
 
         let fullUser;
@@ -57,7 +57,7 @@ class CreditCardController {
         try {
             fullUser = await UsersService.findFullByAccountNumber(fromAccountNumber)
         } catch (err) {
-            return res.status(400).send(err)
+            return res.status(400).send(err);
         };
 
         Mail.sendBuyCreditMail(

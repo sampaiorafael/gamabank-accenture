@@ -512,7 +512,7 @@
           "creditcard"
         ],
         "summary": "Verificar fatura",
-        "operationId": "account/purchasedebt",
+        "operationId": "creditcard/checkinvoice",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -546,25 +546,16 @@
           "creditcard"
         ],
         "summary": "Compra no crédito",
-        "operationId": "account/purchasedebt",
+        "operationId": "creditcard/paydueinvoice",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
         "produces": [
           "application/json"
         ],
-        "parameters":[
-          {
-            "name": "value",
-            "type": "number",
-            "description": "Valor",
-            "in": "formData",
-            "required": true
-          }
-        ],
         "responses": {
-          "201": {
-            "description": "Compra efetuada",
+          "200": {
+            "description": "Pagamento da fatura efetuada com sucesso",
             "schema": {
               "$ref": "#/definitions/account"
             }

@@ -561,10 +561,7 @@
             }
           },
           "400": {
-            "description": "not found"
-          },
-          "404": {
-            "description": "not found"
+            "description": "Você não possui saldo suficiente"
           }
         },
         "security": [

@@ -17,12 +17,12 @@ class CreditCardController {
         let decodedToken; 
 
         if(!token)
-            return res.status(400).send('Token de autenticação não encontrado');
+            return res.status(401).send('Token de autenticação não encontrado');
 
         try {
             decodedToken = await JWTHandler.verifyToken((token));
         } catch (err) {
-            return res.status(400).send('Token inválido ou expirado');
+            return res.status(401).send('Token inválido ou expirado');
         }
 
         let { id } = decodedToken;
@@ -80,7 +80,7 @@ class CreditCardController {
         let decodedToken; 
 
         if(!token)
-            return res.status(400).send('Token de autenticação não encontrado');
+            return res.status(401).send('Token de autenticação não encontrado');
 
         try {
             decodedToken = await JWTHandler.verifyToken((token));

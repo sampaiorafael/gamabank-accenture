@@ -58,7 +58,6 @@
     }
   ],
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
@@ -237,6 +236,40 @@
         ]
       }
     },
+    "/account/movementrecords": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Extrato conta corrente do mês",
+        "operationId": "account/movementrecords",
+        "consumes":[
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Extrato gerado",
+            "schema": {
+              "$ref": "#/definitions/account"
+            }
+          },
+          "400": {
+            "description": "not found"
+          },
+          "404": {
+            "description": "not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/account/selfdeposit": {
       "post": {
         "tags": [
@@ -373,40 +406,6 @@
         ]
       }
     },
-    "/account/movementrecords": {
-      "get": {
-        "tags": [
-          "account"
-        ],
-        "summary": "Extrato conta corrente do mês",
-        "operationId": "account/movementrecords",
-        "consumes":[
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "201": {
-            "description": "Extrato gerado",
-            "schema": {
-              "$ref": "#/definitions/account"
-            }
-          },
-          "400": {
-            "description": "not found"
-          },
-          "404": {
-            "description": "not found"
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
     "/account/purchasedebt": {
       "post": {
         "tags": [
@@ -450,12 +449,103 @@
         ]
       }
     },
-    "/account/purchase": {
+    "/creditcard/purchase": {
       "post": {
         "tags": [
           "creditcard"
         ],
-        "summary": "Compra no débito",
+        "summary": "Compra no crédito",
+        "operationId": "creditcard/purchase",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Valor",
+            "in": "formData",
+            "required": true
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "description": "Descrição da compra",
+            "in": "formData",
+            "required": true
+          },
+          {
+            "name": "instalments",
+            "type": "number",
+            "description": "Quantidade de parcelas",
+            "in": "formData",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Compra efetuada",
+            "schema": {
+              "$ref": "#/definitions/account"
+            }
+          },
+          "400": {
+            "description": "Preencha todos os campos corretamente e tente novamente"
+          },
+          "401": {
+            "description": "Token inválido ou expirado"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/creditcard/checkinvoice": {
+      "get": {
+        "tags": [
+          "creditcard"
+        ],
+        "summary": "Verificar fatura",
+        "operationId": "account/purchasedebt",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Fatura emitida",
+            "schema": {
+              "$ref": "#/definitions/account"
+            }
+          },
+          "400": {
+            "description": "not found"
+          },
+          "404": {
+            "description": "not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/creditcard/paydueinvoice": {
+      "get": {
+        "tags": [
+          "creditcard"
+        ],
+        "summary": "Compra no crédito",
         "operationId": "account/purchasedebt",
         "consumes": [
           "application/x-www-form-urlencoded"

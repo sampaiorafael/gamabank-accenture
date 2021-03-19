@@ -455,7 +455,7 @@
         "tags": [
           "creditcard"
         ],
-        "summary": "Compra no débito",
+        "summary": "Compra no crédito",
         "operationId": "account/purchasedebt",
         "consumes": [
           "application/x-www-form-urlencoded"

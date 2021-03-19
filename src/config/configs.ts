@@ -2,7 +2,8 @@ import 'dotenv/config';
 
 export default {
     Server: {
-        port: process.env.SERVER_PORT
+        port: process.env.PORT,
+        host: process.env.SERVER_HOST
     },
     JWT: {
         secret: process.env.JWT_SECRET,

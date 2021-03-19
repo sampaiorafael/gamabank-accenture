@@ -3,6 +3,7 @@ import { RequestHandler, Request, Response, NextFunction } from 'express';
 import MonetaryService from '../services/Monetary.service';
 import CreditCardService from '../services/CreditCard.service';
 import CreditCardBalanceService from '../services/CreditCardBalance.service';
+import UsersService from '../services/Users.service';  
 import JWTHandler from '../helpers/JWTHandler';
 import isNegative from '../helpers/isNegative';
 import Mail from '../services/mail.service';
@@ -51,15 +52,23 @@ class CreditCardController {
             throw err;
         };
 
+        let fullUser;
+
+        try {
+            fullUser = await UsersService.findFullByAccountNumber(fromAccountNumber)
+        } catch (err) {
+            throw err
+        }
+
         Mail.sendBuyCreditMail(
-            'usuario', 
+            fullUser.name, 
             value,
             description,
             purchase.Purchase.AvailableBalanceNextPurchase.toString(),
             instalments
         );
 
-       // Notify('13991728078', `Compra no crédito no valor de R$ ${value} em ${description}, seu saldo disponível é R$ ${purchase.Purchase.AvailableBalanceNextPurchase.toString()}`);
+       Notify(`${fullUser.phone}`, `Compra no crédito no valor de R$ ${value} em ${description}, seu saldo disponível é R$ ${purchase.Purchase.AvailableBalanceNextPurchase.toString()}`);
 
         return res.status(200).send(purchase);
         

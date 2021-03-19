@@ -58,7 +58,6 @@
     }
   ],
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
@@ -487,17 +486,17 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Compra efetuada",
             "schema": {
               "$ref": "#/definitions/account"
             }
           },
           "400": {
-            "description": "not found"
+            "description": "Preencha todos os campos corretamente e tente novamente"
           },
-          "404": {
-            "description": "not found"
+          "401": {
+            "description": "Token inválido ou expirado"
           }
         },
         "security": [
@@ -512,7 +511,7 @@
         "tags": [
           "creditcard"
         ],
-        "summary": "Compra no débito",
+        "summary": "Verificar fatura",
         "operationId": "account/purchasedebt",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -520,18 +519,9 @@
         "produces": [
           "application/json"
         ],
-        "parameters":[
-          {
-            "name": "value",
-            "type": "number",
-            "description": "Valor",
-            "in": "formData",
-            "required": true
-          }
-        ],
         "responses": {
-          "201": {
-            "description": "Compra efetuada",
+          "200": {
+            "description": "Fatura emitida",
             "schema": {
               "$ref": "#/definitions/account"
             }

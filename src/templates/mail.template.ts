@@ -17,7 +17,7 @@ const signUpTemplateMail = (user: string, codBank: string, agency: string, cc: s
         <div style="width: 100%; 
         background: #121214; 
         padding: 1rem 0;
-        height: 10%; 
+        height: 25vh; 
         display: flex; 
         align-items: center; 
         justify-content: center;
@@ -31,7 +31,7 @@ const signUpTemplateMail = (user: string, codBank: string, agency: string, cc: s
                  font-family: 'Raleway', sans-serif;
                  font-size: 1.7em;
                 font-style: italic;
-                text-align: center;">BEM-VINDO(A) A REVOLUÇÃO VERDE</h1>
+                text-align: center;">BEM-VINDO(A) A REVOLUÇÃO VERDE!</h1>
             </div>
             <div>
                 <p style="
@@ -64,7 +64,41 @@ const signUpTemplateMail = (user: string, codBank: string, agency: string, cc: s
                 <p
                 style="
                 color: #121214;
-                font-family: 'Raleway', sans-serif;">Conta: ${zeroFill(cc, 6)}</p>
+                font-family: 'Raleway', sans-serif;">Conta: ${zeroFill(cc, 6)}</p><br><br><br>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;"><strong style="color: #68de5a;">Central de Atendimento</strong></p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">9999 9999 - Capitais e Regiões Metropolitanas</p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">0800 999 9999 - Demais localidades</p><br>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                text-align: center;">Atenciosamente, <strong style="color: #68de5a;">Team Gama</strong>.</p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">Copyright © 2021</p><br>
     
             </div>
         </main>
@@ -128,21 +162,191 @@ const invoiceTemplateMail = (user: string, invoice: object) =>{  // parametros d
     
 const buyDebitTemplateMail = ( user: string, description: string, value: number) => {
         const html: string  = 
-    `<p><span style="font-size:18px"><strong>Ol&aacute; ${user} voc&ecirc; acaba de efetuar uma compra no d&eacute;bito.</strong></span></p>
+    `
+    <section style="width: 600px; border: 1px solid #68de5a; border-radius: 10px;">
+
+        <main style="padding: 0 3rem;">
+            <div>
+                <h1 style="color: #68de5a;
+                 font-family: 'Raleway', sans-serif;
+                 font-size: 1.7em;
+                text-align: center;">Olá ${user}!</h1>
+            </div><br>
+            <div>
+                
+                <p style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 1.125em;
+                text-align: center;">
+                Você acabou de efetuar uma compra no valor de:</p>
+
+                <h1 style="color: #e43e3e;;
+                 font-family: 'Raleway', sans-serif;
+                 font-size: 2.5em;
+                 font-weight: bold;
+                text-align: center;">R$ ${value}</h1>
     
-    <hr />
-    <p><span style="font-size:16px">Estabelecimento: ${description}</span></p>
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;">
+                <strong>Local de compra:</strong> ${description}</p><br><br><br><br>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;"><strong style="color: #68de5a;">Central de Atendimento</strong></p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">9999 9999 - Capitais e Regiões Metropolitanas</p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">0800 999 9999 - Demais localidades</p><br>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                text-align: center;">Atenciosamente, <strong style="color: #68de5a;">Team Gama</strong>.</p>
     
-    <p><span style="font-size:16px">Valor: ${value}</span></p>
+
+                <div style="width: 100%;
+                height: 15vh; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center;">
+                    <img style="width: 30%;
+                    background: #121214;
+                    padding: 1rem;
+                    border-radius: 10px;
+                    " src="https://i.pinimg.com/originals/21/85/cf/2185cf0529edd791d058437ebdcde336.png" alt="logo_gama">
+                </div>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">Copyright © 2021</p><br>
     
-    <hr />
-    <p>&nbsp;</p>`
+            </div>
+        </main>
+        
+    </section>
+
+    `
     
 };
     
 const buyCreditTemplateMail = ( user: string, value: string, description: string, balance: string,  instalments: string) => {
         const html: string  = 
-    `<p><span style="font-size:18px"><strong>Ol&aacute; ${user} voc&ecirc; acaba de efetuar uma compra no d&eacute;bito.</strong></span></p>
+    `
+    <section style="width: 600px; border: 1px solid #68de5a; border-radius: 10px;">
+
+        <main style="padding: 0 3rem;">
+            <div>
+                <h1 style="color: #68de5a;
+                 font-family: 'Raleway', sans-serif;
+                 font-size: 1.7em;
+                text-align: center;">Olá ${user}!</h1>
+            </div><br>
+            <div>
+                
+                <p style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 1.125em;
+                text-align: center;">
+                Você acabou de efetuar uma compra no valor de:</p>
+
+                <h1 style="color: #e43e3e;;
+                 font-family: 'Raleway', sans-serif;
+                 font-size: 2.5em;
+                 font-weight: bold;
+                text-align: center;">R$ ${value}</h1>
+    
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;">
+                <strong>Local de compra:</strong> ${description}</p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;">
+                <strong>Parcelas:</strong> ${instalments}</p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;">
+                <strong>Saldo Disponível:</strong> ${balance}</p><br><br><br><br>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;"><strong style="color: #68de5a;">Central de Atendimento</strong></p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">9999 9999 - Capitais e Regiões Metropolitanas</p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">0800 999 9999 - Demais localidades</p><br>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                text-align: center;">Atenciosamente, <strong style="color: #68de5a;">Team Gama</strong>.</p>
+    
+
+                <div style="width: 100%;
+                height: 15vh; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center;">
+                    <img style="width: 30%;
+                    background: #121214;
+                    padding: 1rem;
+                    border-radius: 10px;
+                    " src="https://i.pinimg.com/originals/21/85/cf/2185cf0529edd791d058437ebdcde336.png" alt="logo_gama">
+                </div>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">Copyright © 2021</p><br>
+    
+            </div>
+        </main>
+        
+    </section>
+
+    <p><span style="font-size:18px"><strong>Ol&aacute; ${user} voc&ecirc; acaba de efetuar uma compra no d&eacute;bito.</strong></span></p>
     
     <hr />
     <p><span style="font-size:16px">Estabelecimento: ${description}</span></p>

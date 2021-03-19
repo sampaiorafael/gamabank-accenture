@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Projeto final para o treinamento da turma 6 de NodeJS da Gama Academy, oferecido pela Accenture.",
+    "description": "Projeto final para o treinamento da turma 6 de NodeJS da Gama Academy, oferecido pela Accenture.<br>",
     "version": "1.0.0",
     "title": "GAMA BANK API",
     "termsOfService": "http://swagger.io/terms/",
@@ -13,7 +13,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "127.0.0.1:8080",
+  "host": "gamabank-perseverance.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
@@ -21,7 +21,7 @@
       "description": "Status server",
       "externalDocs": {
         "description": "Link",
-        "url": "http://127.0.0.1:8080/status"
+        "url": "gamabank-perseverance.herokuapp.com/status"
       }
     },
     {
@@ -29,7 +29,7 @@
       "description": "Sigup user to create bank account",
       "externalDocs": {
         "description": "Link",
-        "url": "http://127.0.0.1:8080/signup"
+        "url": "gamabank-perseverance.herokuapp.com/signup"
       }
     },
     {
@@ -37,7 +37,7 @@
       "description": "Auth user by JWT",
       "externalDocs": {
         "description": "Link",
-        "url": "http://127.0.0.1:8080/auth"
+        "url": "gamabank-perseverance.herokuapp.com/auth"
       }
     },
     {
@@ -45,7 +45,7 @@
       "description": "Operações relacionadas a conta",
       "externalDocs": {
         "description": "Link",
-        "url": "http://127.0.0.1:8080/account"
+        "url": "gamabank-perseverance.herokuapp.com/account"
       }
     },
     {
@@ -53,7 +53,7 @@
       "description": "Operações de crédito",
       "externalDocs": {
         "description": "Link",
-        "url": "http://127.0.0.1:8080/creditcard"
+        "url": "gamabank-perseverance.herokuapp.com/creditcard"
       }
     }
   ],

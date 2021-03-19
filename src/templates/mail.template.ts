@@ -17,7 +17,7 @@ const signUpTemplateMail = (user: string, codBank: string, agency: string, cc: s
         <div style="width: 100%; 
         background: #121214; 
         padding: 1rem 0;
-        height: 10%; 
+        height: 25vh; 
         display: flex; 
         align-items: center; 
         justify-content: center;
@@ -31,7 +31,7 @@ const signUpTemplateMail = (user: string, codBank: string, agency: string, cc: s
                  font-family: 'Raleway', sans-serif;
                  font-size: 1.7em;
                 font-style: italic;
-                text-align: center;">BEM-VINDO(A) A REVOLUÇÃO VERDE</h1>
+                text-align: center;">BEM-VINDO(A) A REVOLUÇÃO VERDE!</h1>
             </div>
             <div>
                 <p style="
@@ -64,7 +64,41 @@ const signUpTemplateMail = (user: string, codBank: string, agency: string, cc: s
                 <p
                 style="
                 color: #121214;
-                font-family: 'Raleway', sans-serif;">Conta: ${zeroFill(cc, 6)}</p>
+                font-family: 'Raleway', sans-serif;">Conta: ${zeroFill(cc, 6)}</p><br><br><br>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;"><strong style="color: #68de5a;">Central de Atendimento</strong></p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">9999 9999 - Capitais e Regiões Metropolitanas</p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">0800 999 9999 - Demais localidades</p><br>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                text-align: center;">Atenciosamente, <strong style="color: #68de5a;">Team Gama</strong>.</p>
+
+                <p
+                style="
+                color: #121214;
+                font-family: 'Raleway', sans-serif;
+                font-size: 0.9em;
+                text-align: center;">Copyright © 2021</p><br>
     
             </div>
         </main>

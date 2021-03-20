@@ -61,12 +61,20 @@ class AccountBalanceService {
         if (!newBalanceRegister)
             return ('Registro de balanço não encontrado');
 
+        let newBalance;
+
+        if (operation){
+            newBalance = +actualBalanceRegister.actualBalance + +value 
+        }else {
+            newBalance = +actualBalanceRegister.actualBalance - +value 
+        };
+
         return {
             "Mês do balanço": actualBalanceRegister.month,
             "Balanço inicial do mês": actualBalanceRegister.initialBalance,
             "Saldo anterior": actualBalanceRegister.actualBalance,
-            "Novo saldo": +actualBalanceRegister.actualBalance - +value 
-        }
+            "Novo saldo": newBalance
+        };
         
     };
 

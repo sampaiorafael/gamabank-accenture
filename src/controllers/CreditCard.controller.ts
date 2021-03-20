@@ -17,12 +17,12 @@ class CreditCardController {
         let decodedToken; 
 
         if(!token)
-            return res.status(401).send('Token de autenticação não encontrado');
+            return res.status(400).json({status: 'Token de autenticação não encontrado'});
 
         try {
             decodedToken = await JWTHandler.verifyToken((token));
         } catch (err) {
-            return res.status(401).send('Token inválido ou expirado');
+            return res.status(400).json({status: 'Token inválido ou expirado'});
         }
 
         let { id } = decodedToken;
@@ -31,17 +31,17 @@ class CreditCardController {
         const { value, description, instalments } = req.body;
 
         if (!value || !description || !instalments)
-            return res.status(400).send('Preencha todos os campos corretamente e tente novamente');
+            return res.status(400).json({status: 'Preencha todos os campos corretamente e tente novamente'});
 
         if (isNegative(value) || isNegative(instalments) )
-            return res.status(400).send('O valor não pode ser menor ou igual a zero.');
+            return res.status(400).send({status: 'O valor não pode ser menor ou igual a zero.'});
 
         let creditCard;
 
         try {
             creditCard = await CreditCardService.findCreditCardByAccountNumber(fromAccountNumber);
         } catch (err) {
-            return res.status(400).send(err);
+            return res.status(400).json({status: err});
         };
 
         let purchase;
@@ -49,7 +49,7 @@ class CreditCardController {
         try {
             purchase = await MonetaryService.purchaseCredit(creditCard.number, description, value, instalments);
         } catch (err) {
-            return res.status(400).send(err);
+            return res.status(400).json({status: err});
         };
 
         let fullUser;
@@ -57,7 +57,7 @@ class CreditCardController {
         try {
             fullUser = await UsersService.findFullByAccountNumber(fromAccountNumber)
         } catch (err) {
-            return res.status(400).send(err);
+            return res.status(400).send({status: err});
         };
 
         Mail.sendBuyCreditMail(
@@ -77,7 +77,7 @@ class CreditCardController {
         
         Notify(`${fullUser.phone}`, info);
 
-        return res.status(200).send(purchase);
+        return res.status(200).json({status: purchase});
         
     };
 
@@ -87,12 +87,12 @@ class CreditCardController {
         let decodedToken; 
 
         if(!token)
-            return res.status(401).send('Token de autenticação não encontrado');
+            return res.status(400).json({status: 'Token de autenticação não encontrado'});
 
         try {
             decodedToken = await JWTHandler.verifyToken((token));
         } catch (err) {
-            return res.status(400).send('Token inválido ou expirado');
+            return res.status(400).json({status: 'Token inválido ou expirado'});
         }
 
         let { id } = decodedToken;
@@ -111,7 +111,7 @@ class CreditCardController {
         try {
             invoice = await CreditCardBalanceService.checkInvoice(creditCard.number);
         } catch (err) {
-            return res.status(400).send('Não foi possível verificar sua fatura');
+            return res.status(400).json({status: 'Não foi possível verificar sua fatura'});
         };
 
         let fullUser;
@@ -119,14 +119,14 @@ class CreditCardController {
         try {
             fullUser = await UsersService.findFullByAccountNumber(fromAccountNumber)
         } catch (err) {
-            return res.status(400).send(err);
+            return res.status(400).json({status: err});
         };
         
         Mail.sendInvoiceMail(fullUser.username, fullUser.email ,invoice.creditCardsMovements)
 
-        return res.status(200).send(invoice);
+        return res.status(200).json({status: invoice});
 
-    }
+    };
 
     public payDueInvoice: RequestHandler = async (req:Request, res: Response, next: NextFunction): Promise<Response> => {
         
@@ -134,12 +134,12 @@ class CreditCardController {
         let decodedToken; 
 
         if(!token)
-            return res.status(400).send('Token de autenticação não encontrado');
+            return res.status(400).json({status: 'Token de autenticação não encontrado'});
 
         try {
             decodedToken = await JWTHandler.verifyToken((token));
         } catch (err) {
-            return res.status(400).send('Token inválido ou expirado');
+            return res.status(400).json({status: 'Token inválido ou expirado'});
         }
 
         let { id } = decodedToken;
@@ -150,7 +150,7 @@ class CreditCardController {
         try {
             creditCard = await CreditCardService.findCreditCardByAccountNumber(fromAccountNumber);
         } catch (err) {
-            throw err;
+            return res.status(400).json({status: err});
         };
 
         let payDueInvoice;
@@ -158,7 +158,7 @@ class CreditCardController {
         try {
             payDueInvoice = await MonetaryService.payDueInvoice(creditCard.number, fromAccountNumber);
         } catch (err) {
-            throw err;
+            return res.status(400).json({status: err});
         };
 
         let fullUser;
@@ -166,14 +166,14 @@ class CreditCardController {
         try {
             fullUser = await UsersService.findFullByAccountNumber(fromAccountNumber)
         } catch (err) {
-            return res.status(400).send(err);
+            return res.status(400).json({status: err});
         };
         
         //Mail.sendInvoiceMail(fullUser.username, fullUser.email, payDueInvoice);
 
-        return res.status(200).send(payDueInvoice);
+        return res.status(200).json(payDueInvoice);
 
-    }
+    };
 
 };
 

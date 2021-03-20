@@ -9,8 +9,8 @@ const setup = async () => {
         port: Number(configs.Mailer.port),
         secure: true,
         auth: {
-            user: account ? account.user : configs.Mailer.user,
-            pass: account ? account.pass : configs.Mailer.pass
+            user: configs.Mailer.user,
+            pass: configs.Mailer.pass
         }
     })
 

@@ -136,7 +136,7 @@ class CreditCardController {
             return res.status(400).json({status: err});
         };
 
-        return res.status(200).json(invoice);
+        return res.status(200).json({invoice, email});
 
     };
 

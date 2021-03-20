@@ -346,7 +346,7 @@
             }
           },
           "400": {
-            "description": "not found",
+            "description": "Parâmetro inválido",
             "schema": {
               "$ref": "#/definitions/ApiDefaultResponse"
             }
@@ -700,22 +700,22 @@
         },
         "AnoDeExpiracao": {
           "type": "number"
-        },  
+        },
         "LimiteDeCredito": {
           "type": "number"
-        }, 
+        },
         "FechamentoDaFatura": {
           "type": "number"
-        }, 
+        },
         "PrazoPagamentoFatura": {
           "type": "number"
-        },  
+        },
         "Limite": {
           "type": "number"
-        },  
+        },
         "Emissor": {
           "type": "number"
-        } 
+        }
       }
     },
     "auth": {
@@ -753,18 +753,25 @@
           "type": "string"
         },
         "Data da consulta": {
-          "type": "date-time"
+          "type": "string"
         }
-
       }
     },
     "selfdeposit": {
       "type": "object",
       "properties": {
-        "value": {
-          "type": "number",
-          "description": "Valor a ser depositado"
-        }
+        "Conta favorecida": {
+          "type": "string"
+        },
+        "Valor depositado": {
+          "type": "string"
+        },
+        "Data da operação": {
+          "type": "string"
+        },
+        "valor": {
+          "type": "string"
+        },
       }
     },
     "movementrecords": {
@@ -812,18 +819,56 @@
         }
       }
     },
+    "favorecido": {
+      "type": "object",
+      "properties": {
+        "Usuario": {
+          "type": "string"
+        },
+        "CPF": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "Conta": {
+          "type": "string"
+        },
+        "Agencia": {
+          "type": "string"
+        }
+      }
+    },
+    "conta": {
+      "type": "object",
+      "properties": {
+        "Conta": {
+          "type": "string"
+        }
+      }
+    },
+    "operacao": {
+      "type": "object",
+      "properties": {
+        "Valor": {
+          "type": "string"
+        },
+        "Data da operacao": {
+          "type": "string"
+        }
+      }
+    },
     "internaltransfer": {
       "type": "object",
-      "required": [
-        "value",
-        "toUsername"
-      ],
       "properties": {
-        "value": {
-          "type": "number"
+        "Favorecido": {
+          "$ref": "#/definitions/favorecido"
         },
-        "toUsername": {
-          "type": "string"
+        "Conta": {
+          "$ref": "#/definitions/conta"
+        },
+        "Operacao": {
+          "$ref": "#/definitions/operacao"
         }
       }
     },

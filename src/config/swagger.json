@@ -933,41 +933,65 @@
         }
       }
     },
-    "checkinvoice": {
+    "invoice": {
       "type": "object",
-      "required": [
-        "value",
-        "bankCode",
-        "cpf"
-      ],
       "properties": {
+        "Balance": {
+          "$ref": "#/definitions/invoiceBalance"
+        },
+        "creditCardsMovements": {
+          "$ref": "#/definitions/creditCardsMovements"
+        }
+      }
+    },
+    "invoiceBalance": {
+      "type": "object",
+      "properties": {
+        "CreditCardNumber": {
+          "type": "string"
+        },
+        "Month": {
+          "type": "number"
+        },
+        "AvailableBalance": {
+          "type": "string"
+        },
+        "DueBalance": {
+          "type": "string"
+        }
+      }
+    },
+    "creditCardsMovements": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
         "value": {
           "type": "number"
         },
-        "bankCode": {
+        "instalments": {
           "type": "number"
         },
-        "cpf": {
+        "createdAt": {
           "type": "string"
         }
       }
     },
     "paydueinvoice": {
       "type": "object",
-      "required": [
-        "value",
-        "bankCode",
-        "cpf"
-      ],
       "properties": {
-        "value": {
-          "type": "number"
-        },
-        "bankCode": {
-          "type": "number"
-        },
-        "cpf": {
+        "status": {
           "type": "string"
+        },
+        "saldoAnterior": {
+          "type": "number"
+        },
+        "saldoAtual": {
+          "type": "number"
+        },
+        "valorDaFatura": {
+          "type": "number"
         }
       }
     },

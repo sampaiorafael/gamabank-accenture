@@ -22,9 +22,9 @@ class MonetaryService {
             "Deposito": {
                 "Conta favorecida": destinyAccountNumber,
                 "Valor depositado": value,
-                "Data da operação": new Date()
-            },
-            newBalanceRegister    
+                "Data da operação": new Date(),
+                "Valor": value
+            }, 
         };
 
     };

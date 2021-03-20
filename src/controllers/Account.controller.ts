@@ -197,9 +197,7 @@ class AccountController {
         let { id } = decodedToken;
         let fromAccountNumber = id;
 
-        const { operation } = req.body;
-
-        console.log(operation)
+        const { operation, startDay, finishDay } = req.body;
 
         if (operation)
             if ( operation !== 'remove' && operation !== 'deposit') 
@@ -208,7 +206,7 @@ class AccountController {
         let movementRecords;
 
         try {
-            movementRecords = await MovementService.movementRecords(fromAccountNumber, operation);
+            movementRecords = await MovementService.movementRecords(fromAccountNumber, operation, startDay, finishDay);
         } catch (err) {
             return res.status(400).send('Histórico não encontrado, verifique suas informações e tente novamente');
         }
@@ -258,7 +256,8 @@ class AccountController {
             return res.status(400).send(err);
         };
 
-        Mail.sendBuyDebitMail(fullUser.username, fullUser.email, value )
+        Mail.sendBuyDebitMail(fullUser.username, fullUser.email, value);
+        
         return res.status(200).send(purchaseDebt);
 
     };

@@ -1,4 +1,4 @@
-import { getRepository, Like } from 'typeorm';
+import { getRepository, Like, FindManyOptions, Between } from 'typeorm';
 
 import { AccountsMovement } from '../models/Account/AccountsMovement.model';
 import { CreditCardMovement } from '../models/CreditCard/CreditCardsMovement.model';
@@ -37,18 +37,32 @@ class MovementService {
         };
     };
 
-    public movementRecords = async (destinyAccountNumber: number, operationType?: string): Promise<any> => {
+    public movementRecords = async (destinyAccountNumber: number, operationType?: string, startDay?: number, finishDay?: number): Promise<any> => {
 
         const repository = getRepository(AccountsMovement);
 
-        let movementRecords;
+        let now = new Date();
 
         if (!operationType)
-            operationType = '%o%'
+            operationType = '%o%';
+        
+        if ( !startDay || !finishDay){
+            startDay = 1;
+            finishDay = now.getDate();
+        }
+            
+        let startDate = new Date(2021, now.getMonth(), startDay, 0, 0, 0, 0);
+        let finishDate = new Date(2021, now.getMonth(), finishDay, 23, 59, 59, 999);
+
+        let movementRecords;
 
         try {
             movementRecords = await repository.find({ 
-                where: { accountNumber: destinyAccountNumber, type: Like(operationType) },
+                where: { 
+                    accountNumber: destinyAccountNumber, 
+                    type: Like(operationType),
+                    createdAt: Between(startDate, finishDate)
+                },
                 order: { createdAt: 'DESC' },
                 select: ['type', 'value', 'description', 'createdAt'],
             });

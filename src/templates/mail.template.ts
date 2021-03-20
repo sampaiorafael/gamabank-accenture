@@ -331,7 +331,7 @@ const invoiceTemplateMail = (user: string, invoice: Array<object>) =>{  // param
         text-align: center;">
             <h1 style="color: #fff;
              font-family: 'Raleway', sans-serif;
-             font-size: 1.7em;">OLÁ STÊNIO, SUA FATURA FECHOU!</h1>
+             font-size: 1.7em;">OLÁ, SUA FATURA FECHOU!</h1>
         </div>
 
         <main style="padding: 0 3rem;">

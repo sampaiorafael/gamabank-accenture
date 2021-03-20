@@ -718,6 +718,14 @@
         } 
       }
     },
+    "auth": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
     "purchase": {
       "type": "object",
       "properties": {
@@ -750,14 +758,6 @@
 
       }
     },
-    "auth": {
-      "type": "object",
-      "properties": {
-        "token": {
-          "type": "string"
-        }
-      }
-    },
     "selfdeposit": {
       "type": "object",
       "properties": {
@@ -769,19 +769,45 @@
     },
     "movementrecords": {
       "type": "object",
-      "required": [
-        "value",
-        "bankCode",
-        "cpf"
-      ],
       "properties": {
-        "value": {
+        "newBalanceRegister": {
+          "$ref": "#/definitions/newBalanceRegister"
+        },
+        "newMovementRegister": {
+          "$ref": "#/definitions/newMovementRegister"
+        }
+      }
+    },
+    "newBalanceRegister": {
+      "type": "object",
+      "properties": {
+        "Mes do Balanco": {
           "type": "number"
         },
-        "bankCode": {
-          "type": "number"
+        "Balanco inicial do mes": {
+          "type": "string"
         },
-        "cpf": {
+        "Saldo anterior": {
+          "type": "string"
+        },
+        "Novo saldo": {
+          "type": "number"
+        }
+      }
+    },
+    "newMovementRegister": {
+      "type": "object",
+      "properties": {
+        "Origem": {
+          "type": "string"
+        },
+        "Tipo": {
+          "type": "string"
+        },
+        "Valor": {
+          "type": "string"
+        },
+        "Descricao": {
           "type": "string"
         }
       }

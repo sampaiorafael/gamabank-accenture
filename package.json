@@ -1,6 +1,6 @@
 {
   "name": "projeto-final-gamabank",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Projeto final para o treinamento da Gama Academy oferecido pela Accenture",
   "main": "dist/index.js",
   "scripts": {

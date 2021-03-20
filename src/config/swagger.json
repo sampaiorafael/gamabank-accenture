@@ -158,7 +158,7 @@
           "201": {
             "description": "Usuário criado com sucesso",
             "schema": {
-              "$ref": "#/definitions/signupOut"
+              "$ref": "#/definitions/signup"
             }
           },
           "400": {

@@ -277,19 +277,19 @@
             "name": "startDay",
             "in": "formData",
             "description": "Valor",
-            "type": "string"
+            "type": "number"
           },
           {
             "name": "finishDay",
             "in": "formData",
             "description": "Valor",
-            "type": "string"
+            "type": "number"
           },
           {
             "name": "dayBefore",
             "in": "formData",
             "description": "Valor",
-            "type": "string"
+            "type": "number"
           }
         ],
         "responses": {

@@ -60,22 +60,22 @@ class CreditCardController {
             return res.status(400).json({status: err});
         };
 
-        // Mail.sendBuyCreditMail(
-        //     fullUser.name,  
-        //     fullUser.email, 
-        //     value, 
-        //     description, 
-        //     purchase.Purchase.AvailableBalanceNextPurchase.toString(), 
-        //     instalments
-        // );
+        Mail.sendBuyCreditMail(
+            fullUser.name,  
+            fullUser.email, 
+            value, 
+            description, 
+            purchase.Purchase.AvailableBalanceNextPurchase.toString(), 
+            instalments
+        );
         
-        // const info: object = {  
-        //                 value,
-        //                 description, 
-        //                 balance: purchase.Purchase.AvailableBalanceNextPurchase.toString()
-        //              }
+        const info: object = {  
+                        value,
+                        description, 
+                        balance: purchase.Purchase.AvailableBalanceNextPurchase.toString()
+                     }
         
-        // Notify(`${fullUser.phone}`, info);
+        Notify(`${fullUser.phone}`, info);
 
         return res.status(200).json(purchase);
         

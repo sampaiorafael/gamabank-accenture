@@ -38,21 +38,16 @@ class SingupService {
         );
 
         return { 
-            "Novo cliente": {
                 "Nome": newClient.name,
                 "CPF": newUser.cpf,
                 "Email": newUser.email,
                 "Usuário": newUser.username,
                 "Telefone": newClient.phone,
-                "Endereço": newClient.adress
-            },
-            "Conta Corrente": {
-                "Numero": newAccount.accountNumber,
+                "Endereço": newClient.adress,
+                "Numero da Conta": newAccount.accountNumber,
                 "Agência": newAccount.agency,
-                "Saldo": firstAccountBalance.actualBalance
-            },
-            "Cartao de credito": {
-                "Numero": newCreditCard.number,
+                "Saldo": firstAccountBalance.actualBalance,
+                "Numero do Cartão de Crédito": newCreditCard.number,
                 "Código de Segurança": newCreditCard.securityCode,
                 "Ano de expiração": newCreditCard.expireYear,
                 "Limite de credito": newCreditCard.limitValue,
@@ -60,8 +55,7 @@ class SingupService {
                 "Prazo pagamento da fatura": newCreditCard.duePayday,
                 "Limite": newCreditCard.limitValue,
                 "Emissor": cardEmitter.name
-            }
-         };
+            };
     
     };
 

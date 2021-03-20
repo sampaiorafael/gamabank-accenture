@@ -206,7 +206,7 @@ class AccountController {
         let movementRecords;
 
         try {
-            movementRecords = await MovementService.movementRecords(fromAccountNumber, operation, startDay, finishDay, daysBefore);
+            movementRecords = await MovementService.accountMovementRecords(fromAccountNumber, operation, startDay, finishDay, daysBefore);
         } catch (err) {
             return res.status(400).send('Histórico não encontrado, verifique suas informações e tente novamente');
         }

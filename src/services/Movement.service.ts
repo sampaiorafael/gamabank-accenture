@@ -37,7 +37,7 @@ class MovementService {
         };
     };
 
-    public movementRecords = async (destinyAccountNumber: number, operationType?: string, startDay?: number, finishDay?: number, daysBefore?: number): Promise<any> => {
+    public accountMovementRecords = async (destinyAccountNumber: number, operationType?: string, startDay?: number, finishDay?: number, daysBefore?: number): Promise<any> => {
 
         const repository = getRepository(AccountsMovement);
 

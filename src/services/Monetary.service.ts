@@ -127,13 +127,14 @@ class MonetaryService {
             };
         };
             
-
         let newDue;
         let newAccountBalance;
+        let newAccountMovement
 
         try {
             newDue = await CreditCardBalanceService.updateBalance(destinyCreditCardNumber, due.dueBalance, false);
             newAccountBalance = await AccountBalanceService.updateActualBalance(destinyAccountNumber, due.dueBalance, false)
+            newAccountMovement = await MovementService.newAccountMovement(destinyAccountNumber, 'remove', due.dueBalance, 'Pagamento de fatura');
         } catch (err) {
             throw err;
         };

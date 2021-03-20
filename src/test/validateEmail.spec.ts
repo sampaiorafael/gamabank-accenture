@@ -25,4 +25,8 @@ describe('Teste para validação da Email', () => {
       assert.equal(verifyPass('personal@dominio..com'), expectedResult )
    })
    
+   it('Retornar false se tiver sem o .com', () => {
+      let expectedResult = false
+      assert.equal(verifyPass('personal@dominio'), expectedResult )
+   })
 })

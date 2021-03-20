@@ -58,7 +58,8 @@
     }
   ],
   "schemes": [
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/status": {
@@ -343,7 +344,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Transferido com sucesso",
             "schema": {
               "$ref": "#/definitions/auth"
@@ -383,10 +384,24 @@
             "required": true,
             "description": "Valor",
             "in": "formData"
+          },
+          {
+            "name": "bankCode",
+            "typer": "number",
+            "required": true,
+            "description": "Código do banco",
+            "in": "formData"
+          },
+          {
+            "name": "cpf",
+            "typer": "string",
+            "required": true,
+            "description": "CPF",
+            "in": "formData"
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Transferido com sucesso",
             "schema": {
               "$ref": "#/definitions/account"
@@ -545,7 +560,7 @@
         "tags": [
           "creditcard"
         ],
-        "summary": "Compra no crédito",
+        "summary": "Pagar fatura do cartão de crédito",
         "operationId": "creditcard/paydueinvoice",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -555,7 +570,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Pagamento da fatura efetuada com sucesso",
+            "description": "Pagamento da fatura do cartão efetuada com sucesso",
             "schema": {
               "$ref": "#/definitions/account"
             }
@@ -681,6 +696,21 @@
           "message": {
             "type": "string"
           }
+        }
+      },
+      "auth": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Category"
         }
       }
     }

@@ -7,10 +7,10 @@ const setup = async () => {
     const transporter = nodemailer.createTransport({
         host: configs.Mailer.host, 
         port: Number(configs.Mailer.port),
-        secure: false,
+        secure: true,
         auth: {
-            user: account ? account.user : configs.Mailer.user,
-            pass: account ? account.pass : configs.Mailer.pass
+            user: configs.Mailer.user,
+            pass: configs.Mailer.pass
         }
     })
 

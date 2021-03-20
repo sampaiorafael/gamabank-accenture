@@ -121,8 +121,15 @@ class MonetaryService {
             throw err;
         };
 
-        if ( due.dueBalance > accountBalance)
-            throw 'Você não possui saldo suficiente';
+        if (due.dueBalance > accountBalance){
+            return {
+                "Status": 'SALDO INSUFICIENTE',
+                "SaldoAnterior": +accountBalance,
+                "SaldoAtual": +accountBalance - due.dueBalance,
+                "ValorDaFatura": +due.dueBalance
+            }
+        }
+            
 
         let newDue;
         let newAccountBalance;
@@ -135,9 +142,10 @@ class MonetaryService {
         };
 
         return {
+            "Status": 'Fatura paga', 
             "SaldoAnterior": +accountBalance,
             "SaldoAtual": +accountBalance - due.dueBalance,
-            "ValorPago": +due.dueBalance
+            "ValorDaFatura": +due.dueBalance
         };
 
     };

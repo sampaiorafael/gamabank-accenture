@@ -592,7 +592,7 @@
           "200": {
             "description": "Fatura emitida",
             "schema": {
-              "$ref": "#/definitions/ApiDefaultResponse"
+              "$ref": "#/definitions/invoice"
             }
           },
           "400": {
@@ -757,11 +757,17 @@
     "movementrecords": {
       "type": "object",
       "properties": {
-        "newBalanceRegister": {
-          "$ref": "#/definitions/newBalanceRegister"
+        "value": {
+          "type": "string"
         },
-        "newMovementRegister": {
-          "$ref": "#/definitions/newMovementRegister"
+        "Type": {
+          "type": "strin"
+        },
+        "description": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
         }
       }
     },
@@ -902,14 +908,11 @@
     "purchasedebt": {
       "type": "object",
       "properties": {
-        "value": {
-          "type": "number"
+        "newBalanceRegister": {
+          "$ref": "#/definitions/newBalanceRegister"
         },
-        "bankCode": {
-          "type": "number"
-        },
-        "cpf": {
-          "type": "string"
+        "newMovementRegister": {
+          "$ref": "#/definitions/newMovementRegister"
         }
       }
     },

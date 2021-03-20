@@ -256,9 +256,15 @@ class AccountController {
             return res.status(400).json({status: err});
         };
 
-        Mail.sendBuyDebitMail(fullUser.username, fullUser.email, value);
+        let email;
+
+        try {
+            email = await Mail.sendBuyDebitMail(fullUser.username, fullUser.email, value);
+        } catch (err) {
+            return res.status(400).json({status: err});
+        };
         
-        return res.status(200).json(purchaseDebt);
+        return res.status(200).json({purchaseDebt, email});
 
     };
 

@@ -60,24 +60,30 @@ class CreditCardController {
             return res.status(400).json({status: err});
         };
 
-        Mail.sendBuyCreditMail(
-            fullUser.name,  
-            fullUser.email, 
-            value, 
-            description, 
-            purchase.Purchase.AvailableBalanceNextPurchase.toString(), 
-            instalments
-        );
+        let email;
+
+        try {
+            email = await Mail.sendBuyCreditMail(
+                fullUser.name,  
+                fullUser.email, 
+                value, 
+                description, 
+                purchase.Purchase.AvailableBalanceNextPurchase.toString(), 
+                instalments
+            );
+        } catch (err) {
+            return res.status(400).json({status: err});
+        };
         
         const info: object = {  
                         value,
                         description, 
                         balance: purchase.Purchase.AvailableBalanceNextPurchase.toString()
-                     }
+                    };
         
         Notify(`${fullUser.phone}`, info);
 
-        return res.status(200).json(purchase);
+        return res.status(200).json({purchase, email});
         
     };
 

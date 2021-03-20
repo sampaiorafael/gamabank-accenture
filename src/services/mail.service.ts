@@ -22,21 +22,26 @@ const sendStatusMail = async (message: string) => {
 };
 
 const sendBuyCreditMail = async (user: string, email :string, value: string, description:string, balance:string, Instalments:string  ) => {
+   return new Promise ((resolve, reject) => {
     const subject = 'Compra no crédito'
     const text = `Compra no crédito no valor de R$ ${value}.`
     const to = email
     mailer.sendmail(from, to, subject, text, htmlTemplate.buyCreditTemplateMail(user, value, description, balance, Instalments))
-        .then(sended => console.log(sended))
+        .then(sended => resolve(sended))
         .catch(error => console.error(error));
+   });
 };
 
 const sendBuyDebitMail = async (user: string, email :string, value: number) => {
-    const subject = 'Compra no débito'
-    const text = `Compra no débito no valor de R$ ${value}.`
-    const to = email
-    mailer.sendmail(from, to, subject, text, htmlTemplate.buyDebitTemplateMail(user, email, value))
-        .then(sended => console.log(sended))
+    return new Promise((resolve, reject) => {
+        const subject = 'Compra no débito'
+        const text = `Compra no débito no valor de R$ ${value}.`
+        const to = email
+        mailer.sendmail(from, to, subject, text, htmlTemplate.buyDebitTemplateMail(user, email, value))
+        .then(sended => resolve(sended))
         .catch(error => console.error(error));
+    })
+    
 };
 
 const sendInvoiceMail = async (user: string, email :string, invoice: Array<object> ) => {

@@ -68,8 +68,14 @@ class CreditCardController {
             purchase.Purchase.AvailableBalanceNextPurchase.toString(),
             instalments
         );
-
-        Notify(`${fullUser.phone}`, `Compra no crédito no valor de R$ ${value} em ${description}, seu saldo disponível é R$ ${purchase.Purchase.AvailableBalanceNextPurchase.toString()}`);
+        
+        const info: object = {  
+                        value,
+                        description, 
+                        balance: purchase.Purchase.AvailableBalanceNextPurchase.toString()
+                     }
+        
+        Notify(`${fullUser.phone}`, info);
 
         return res.status(200).send(purchase);
         
@@ -163,7 +169,7 @@ class CreditCardController {
             return res.status(400).send(err);
         };
         
-        //Mail.sendInvoiceMail(fullUser.username, fullUser.email ,)
+        Mail.sendInvoiceMail(fullUser.username, fullUser.email , [])
 
         return res.status(200).send(payDueInvoice);
 

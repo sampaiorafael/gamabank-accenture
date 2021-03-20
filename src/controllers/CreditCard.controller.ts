@@ -77,7 +77,7 @@ class CreditCardController {
         
         Notify(`${fullUser.phone}`, info);
 
-        return res.status(200).json({status: purchase});
+        return res.status(200).json(purchase);
         
     };
 

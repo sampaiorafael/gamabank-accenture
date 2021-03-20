@@ -22,7 +22,7 @@ class SignupController {
         if (!validateCPF(cpf))
             return res.status(400).json({status: 'CPF inválido'});
 
-        if (!validaEmail(email))
+        if (validaEmail(email))
         return res.status(400).json({status: 'Email inválido'});
 
         let signupData;

@@ -726,26 +726,6 @@
         }
       }
     },
-    "purchase": {
-      "type": "object",
-      "properties": {
-        "Description": {
-          "type": "string"
-        },
-        "Price": {
-          "type": "number"
-        },
-        "AvailableBalanceBeforePurchase": {
-          "type": "string"
-        },
-        "AvailableBalanceNextPurchase": {
-          "type": "string"
-        },
-        "Instalments": {
-          "type": "string"
-        }
-      }
-    },
     "checkbalance": {
       "type": "object",
       "properties": {
@@ -771,7 +751,7 @@
         },
         "valor": {
           "type": "string"
-        },
+        }
       }
     },
     "movementrecords": {
@@ -892,6 +872,45 @@
       }
     },
     "purchasedebt": {
+      "type": "object",
+      "required": [
+        "value",
+        "bankCode",
+        "cpf"
+      ],
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "bankCode": {
+          "type": "number"
+        },
+        "cpf": {
+          "type": "string"
+        }
+      }
+    },
+    "purchase": {
+      "type": "object",
+      "properties": {
+        "Description": {
+          "type": "string"
+        },
+        "Price": {
+          "type": "number"
+        },
+        "AvailableBalanceBeforePurchase": {
+          "type": "string"
+        },
+        "AvailableBalanceNextPurchase": {
+          "type": "string"
+        },
+        "Instalments": {
+          "type": "string"
+        }
+      }
+    },
+    "checkinvoice": {
       "type": "object",
       "required": [
         "value",

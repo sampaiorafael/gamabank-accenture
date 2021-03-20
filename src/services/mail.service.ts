@@ -1,7 +1,7 @@
 import mailer from '../helpers/mailer'
 import htmlTemplate from '../templates/mail.template'
 
-const from = 'admin@gamabank.com.br'
+const from = 'gamabank@solt.com.br'
 
 const sendSignUpMail = async (user: string, bankCode: string, agencia: string, cc: string) => {
     const subject = 'Conta criada com sucesso'

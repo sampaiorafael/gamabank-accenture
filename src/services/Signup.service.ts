@@ -38,24 +38,24 @@ class SingupService {
         );
 
         return { 
-                "Nome": newClient.name,
-                "CPF": newUser.cpf,
-                "Email": newUser.email,
-                "Usuario": newUser.username,
-                "Telefone": newClient.phone,
-                "Endereco": newClient.adress,
-                "NumeroDaConta": newAccount.accountNumber,
-                "Agencia": newAccount.agency,
-                "Saldo": firstAccountBalance.actualBalance,
-                "NumeroDoCartãoDeCrédito": newCreditCard.number,
-                "CodigoDeSeguranca": newCreditCard.securityCode,
-                "AnoDeExpiracao": newCreditCard.expireYear,
-                "LimiteDeCredito": newCreditCard.limitValue,
-                "FechamentoDaFatura": newCreditCard.dueCloseDay,
-                "PrazoPagamentoFatura": newCreditCard.duePayday,
-                "Limite": newCreditCard.limitValue,
-                "Emissor": cardEmitter.name
-            };
+            "Nome": newClient.name,
+            "CPF": newUser.cpf,
+            "Email": newUser.email,
+            "Usuario": newUser.username,
+            "Telefone": newClient.phone,
+            "Endereco": newClient.adress,
+            "NumeroDaConta": newAccount.accountNumber,
+            "Agencia": newAccount.agency,
+            "Saldo": firstAccountBalance.actualBalance,
+            "NumeroDoCartãoDeCrédito": newCreditCard.number,
+            "CodigoDeSeguranca": newCreditCard.securityCode,
+            "AnoDeExpiracao": newCreditCard.expireYear,
+            "LimiteDeCredito": newCreditCard.limitValue,
+            "FechamentoDaFatura": newCreditCard.dueCloseDay,
+            "PrazoPagamentoFatura": newCreditCard.duePayday,
+            "Limite": newCreditCard.limitValue,
+            "Emissor": cardEmitter.name
+        };
     
     };
 

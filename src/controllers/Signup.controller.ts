@@ -2,7 +2,8 @@ import { RequestHandler, Request, Response, NextFunction } from 'express';
 
 import SignupService from '../services/Signup.service';
 import validateCPF from '../helpers/validateCpf';
-import validatePassword from '../helpers/validatePassword'
+import validatePassword from '../helpers/validatePassword';
+import validaEmail from '../helpers/validateEmail';
 
 class SignupController {
     
@@ -20,6 +21,9 @@ class SignupController {
 
         if (!validateCPF(cpf))
             return res.status(400).json({status: 'CPF inválido'});
+
+        if (!validaEmail(email))
+        return res.status(400).json({status: 'Email inválido'});
 
         let signupData;
 

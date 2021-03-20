@@ -46,12 +46,10 @@ class MovementService {
             return ('Não foi possível realizar o lançamento da movimentação');
 
         return {
-            "Nova Movimentação": {
-                "Origem": newMovement.accountNumber,
-                "Tipo": newMovement.type,
-                "Valor": newMovement.value,
-                "Descrição": newMovement.description
-            }
+            "Origem": newMovement.accountNumber,
+            "Tipo": newMovement.type,
+            "Valor": newMovement.value,
+            "Descrição": newMovement.description
         };
     };
 

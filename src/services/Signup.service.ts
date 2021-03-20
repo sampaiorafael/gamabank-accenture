@@ -30,12 +30,20 @@ class SingupService {
             throw err;
         };
 
-        Mail.sendSignUpMail(
-            username, 
-            newAccount.bankCode.toString(), 
-            newAccount.agency.toString(), 
-            newAccount.accountNumber.toString()
-        );
+        let sendSignupEmail;
+
+        try {
+            sendSignupEmail = await Mail.sendSignUpMail(
+                username, 
+                newAccount.bankCode.toString(), 
+                newAccount.agency.toString(), 
+                newAccount.accountNumber.toString()
+            );
+        } catch (err) {
+            throw err
+        }
+
+        
 
         return { 
             "Nome": newClient.name,

@@ -128,7 +128,13 @@ class CreditCardController {
             return res.status(400).json({status: err});
         };
         
-        Mail.sendInvoiceMail(fullUser.username, fullUser.email ,invoice.creditCardsMovements)
+        let email;
+
+        try {
+            email = await Mail.sendInvoiceMail(fullUser.username, fullUser.email ,invoice.creditCardsMovements)
+        } catch (err) {
+            return res.status(400).json({status: err});
+        };
 
         return res.status(200).json(invoice);
 

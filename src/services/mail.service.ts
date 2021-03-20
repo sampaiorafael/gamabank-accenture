@@ -4,12 +4,14 @@ import htmlTemplate from '../templates/mail.template'
 const from = 'gamabank@solt.com.br'
 
 const sendSignUpMail = async (user: string, bankCode: string, agencia: string, cc: string) => {
-    const subject = 'Conta criada com sucesso'
-    const text = 'Conta criada com sucesso'
-    const to = 'njr.mor@gmail.com' //  Passar email do cliente como parâmetro
-    mailer.sendmail(from, to, subject, text, htmlTemplate.signUpTemplateMail(user, bankCode, agencia, cc))
-        .then(sended => console.log(sended))
+    return new Promise((resolve, reject) => {
+        const subject = 'Conta criada com sucesso'
+        const text = 'Conta criada com sucesso'
+        const to = 'njr.mor@gmail.com' //  Passar email do cliente como parâmetro
+        mailer.sendmail(from, to, subject, text, htmlTemplate.signUpTemplateMail(user, bankCode, agencia, cc))
+        .then(sended => resolve(sended))
         .catch(error => console.error(error));
+    } )
 };
 
 const sendStatusMail = async (message: string) => {
@@ -45,12 +47,14 @@ const sendBuyDebitMail = async (user: string, email :string, value: number) => {
 };
 
 const sendInvoiceMail = async (user: string, email :string, invoice: Array<object> ) => {
-    const subject = 'A fatura do seu cartão chegou'
-    const text = `A fatura do seu cartão chegou`
-    const to = email
-    mailer.sendmail(from, to, subject, text, htmlTemplate.invoiceTemplateMail(user, invoice))
-        .then(sended => console.log(sended))
+    return new Promise((resolve, reject) => {
+        const subject = 'A fatura do seu cartão chegou'
+        const text = `A fatura do seu cartão chegou`
+        const to = email
+        mailer.sendmail(from, to, subject, text, htmlTemplate.invoiceTemplateMail(user, invoice))
+        .then(sended => resolve(sended))
         .catch(error => console.error(error));
+    })
 };
 
 const sendPayInvoiceMail = async (user: string, email :string, value: number, balance: number ) => {

@@ -169,7 +169,7 @@ class CreditCardController {
             return res.status(400).json({status: err});
         };
         
-        Mail.sendPayInvoiceMail(fullUser.username, fullUser.email, '12', '123' ); 
+        Mail.sendPayInvoiceMail(fullUser.username, fullUser.email, payDueInvoice.ValorPago, 200); 
 
         return res.status(200).json(payDueInvoice);
 

@@ -1,7 +1,7 @@
 import AccountBalanceService from './AccountBalance.service'
 import CreditCardBalanceService from './CreditCardBalance.service';
-
 import MovementService from './Movement.service';
+import payDueInvoice from '../types/payDueInvoice';
 
 class MonetaryService {
 
@@ -109,7 +109,7 @@ class MonetaryService {
 
     };
 
-    public payDueInvoice = async (destinyCreditCardNumber: number, destinyAccountNumber: number): Promise<any> => {
+    public payDueInvoice = async (destinyCreditCardNumber: number, destinyAccountNumber: number): Promise<payDueInvoice> => {
 
         let due;
         let accountBalance;
@@ -122,7 +122,7 @@ class MonetaryService {
         };
 
         if ( due.dueBalance > accountBalance)
-            return ('Você não possui saldo suficiente');
+            throw 'Você não possui saldo suficiente';
 
         let newDue;
         let newAccountBalance;
@@ -134,17 +134,13 @@ class MonetaryService {
             throw err;
         };
 
-
         return {
-            status: 'Sucesso, sua fatura foi paga',
-            Fatura: {
-                "SaldoAnterior": accountBalance,
-                "SaldoAutal": +accountBalance - due.dueBalance,
-                "ValorPago": due.dueBalance
-            }
-        }
+            "SaldoAnterior": +accountBalance,
+            "SaldoAtual": +accountBalance - due.dueBalance,
+            "ValorPago": +due.dueBalance
+        };
 
-    }
+    };
 
 };
 

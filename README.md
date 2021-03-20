@@ -55,7 +55,11 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 - GET `/account/movementrecords` - Extrato conta corrente do mês    
     Requisitos: N/A  
-    Parametros opcionais: operation (valores: 'remove' ou 'deposit')  
+    >**Parametros opcionais**:  
+      - operation (valores: 'remove' ou 'deposit')   
+      -  startDay & finishDay  
+      -  daysBefore 
+   
     Autenticação: JWT  
 
 - POST `/account/purchasedebt` - Compra no débito  

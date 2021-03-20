@@ -61,11 +61,11 @@ class CreditCardController {
         };
 
         Mail.sendBuyCreditMail(
-            fullUser.name, 
-            fullUser.email,
-            value,
-            description,
-            purchase.Purchase.AvailableBalanceNextPurchase.toString(),
+            fullUser.name,  
+            fullUser.email, 
+            value, 
+            description, 
+            purchase.Purchase.AvailableBalanceNextPurchase.toString(), 
             instalments
         );
         
@@ -169,7 +169,7 @@ class CreditCardController {
             return res.status(400).send(err);
         };
         
-        Mail.sendInvoiceMail(fullUser.username, fullUser.email , [])
+        //Mail.sendInvoiceMail(fullUser.username, fullUser.email, payDueInvoice);
 
         return res.status(200).send(payDueInvoice);
 

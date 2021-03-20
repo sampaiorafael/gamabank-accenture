@@ -384,17 +384,6 @@ const invoiceTemplateMail = (user: string, invoice: Array<object>) =>{  // param
     const balance = invoice;
     let html: string =
         `
-        <html lang="en">
-        <head>
-        <title>Gama Bank</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Extended&display=swap" rel="stylesheet">
-        </head>
-        <body>
-
-
         <section style="width: 600px; border: 1px solid #68de5a; border-radius: 10px;">
         <div style="width: 100%;
                 height: 15vh; 
@@ -419,20 +408,19 @@ const invoiceTemplateMail = (user: string, invoice: Array<object>) =>{  // param
         text-align: center;">
             <h1 style="color: #fff;
              font-family: 'Raleway', sans-serif;
-             font-size: 1.7em;">OLÁ, SUA FATURA FECHOU!</h1>
+             font-size: 1.7em;">OPA, SUA FATURA FECHOU!</h1>
         </div>
 
         <main style="padding: 0 3rem;">
             <div>
                 
-                <p style="
-                color: #121214;
-                font-family: 'Raleway', sans-serif;
-                text-align: center;
-                line-height: 1.6;">
-                Você pode imprimir este email e 
-                pagar por meio de boleto bancário ou se prefirir pela sua conta digital
-                <strong style="color: #68de5a;">Gama Bank</strong>.</p><br><br>
+            <p style="
+            color: #121214;
+            font-family: 'Raleway', sans-serif;
+            text-align: center;
+            line-height: 1.6;">
+            Você pode pagar esta fatura atráves do QRCode gerado neste email ou pela sua conta digital 
+            <strong style="color: #68de5a;">Gama Bank</strong>.</p><br><br>
     
                 <strong style="
                 color: #121214;
@@ -457,28 +445,29 @@ const invoiceTemplateMail = (user: string, invoice: Array<object>) =>{  // param
                 style="
                 color: #121214;
                 font-family: 'Raleway', sans-serif;">
-                Total: <span style="font-size: 2em; font-weight: bold;">R$ ${total}</span>
-                </p><br><br><br><br><br>`
+                Total: <span style="font-size: 3em; font-weight: bold;">R$ ${total}</span>
+                </p><br><br><br>`
 
                 html +=`
 
                 <p
                 style="
-                color: #121214;
+                color: #68de5a;
                 font-family: 'Raleway', sans-serif;
                 text-align: center;
                 font-size: .9em;">
-                500-1 | 99999.00009 99999.090909 00000.909090 1 99999990000000</p>
-
-                <h1
-                style="
-                color: #000;
-                font-size: 3em;
-                letter-spacing: 10px;
-                transform:scale(1,2);
-                font-family: 'Libre Barcode 39 Extended';
-                text-align: center;">
-                accenture</h1><br><br><br>
+                Aponte sua câmera para o QRCode</p>
+                
+                <div style="
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                ">
+                <div style="width: 50%;">
+                    <img style="width: 100%;" src="https://www.kaspersky.com.br/content/pt-br/images/repository/isc/2020/9910/a-guide-to-qr-codes-and-how-to-scan-qr-codes-2.png" alt="">
+                </div>
+                </div><br><br><br>
 
                 <p
                 style="
@@ -518,19 +507,6 @@ const invoiceTemplateMail = (user: string, invoice: Array<object>) =>{  // param
         </main>
         
     </section><br><br>
-    
-        <div class="container">
-        <h2>Fatura</h2>    
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Data</th>
-                <th>Descrição</th>
-                <th>Valor</th>
-                <th>Pacerla</th>
-            </tr>
-            </thead>
-            <tbody>
             `
         return html
 };

@@ -1,6 +1,5 @@
 const verifyPass = (senha: any) => {
     
-    //let msg: Array<string> | string[] = []
     let msg: string[] = []
     let status = true
     

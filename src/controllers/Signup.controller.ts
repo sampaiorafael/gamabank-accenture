@@ -11,22 +11,22 @@ class SignupController {
         let { username, password, email, name, cpf, adress, phone } = req.body;
 
         if (!username || !password || !email || !name || !cpf || !adress || !phone)
-            return res.status(400).send('Estão faltando campos');
+            return res.status(400).json({status: 'Estão faltando campos'});
 
         const validePassword = validatePassword(password);
 
         if (validePassword.status === false)
-            return res.status(400).send(`Senha inválida: ${validePassword.msg}`);
+            return res.status(400).json({status: `Senha inválida: ${validePassword.msg}`});
 
         if (!validateCPF(cpf))
-            return res.status(400).send('CPF inválido');
+            return res.status(400).json({status: 'CPF inválido'});
 
         let signupData;
 
         try {
             signupData = await SignupService.signup(username, password, email, name, cpf, adress, phone);
         } catch (err) {
-            return res.status(400).send(err.message);
+            return res.status(400).json({status: err.message});
         };
 
         return res.status(201).json(signupData);

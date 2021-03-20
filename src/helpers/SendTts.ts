@@ -5,9 +5,8 @@ const sendTts = (numero_destino: string, mensagem: string) =>{
                     numero_destino,
                     mensagem,
                     velocidade: 0,
-                    resposta_usuario: false,
-                    tipo_voz: 'br-Vitoria',
-                    detecta_caixa: true, 
+                    resposta_usuario: true,
+                    tipo_voz: 'br-Vitoria', 
                     bina_inteligente: true
                 };
                 

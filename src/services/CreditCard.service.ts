@@ -37,28 +37,6 @@ class CreditCardsService {
 
     };
 
-    private newCreditCardInfo = async (): Promise<any> => {
-
-        let number: Array<number> | string  = [];
-        let securityCode = Math.floor(Math.random() * (999 - 100) ) + 100;
-        let expireYear = (new Date().getFullYear()) + 10;
-        let emitterId = Math.round((Math.random() * 11));
-
-        for (let i = 0; i < 15; i++) {
-            number.push( Math.round(Math.random() * 10) );
-        };
-
-        number = number.toString().replace(/[,. ]/g,'');
-
-        return {
-            number,
-            expireYear,
-            securityCode,
-            emitterId
-        };
-
-    };
-
     public getCardEmmiterById = async (emmiterId: number ): Promise<CardEmitter> => {
         
         const repository = getRepository(CardEmitter);
@@ -93,6 +71,28 @@ class CreditCardsService {
             throw new Error('Cartão de crédito não encontrado');
         
         return creditCard;
+
+    };
+
+    private newCreditCardInfo = async (): Promise<any> => {
+
+        let number: Array<number> | string  = [];
+        let securityCode = Math.floor(Math.random() * (999 - 100) ) + 100;
+        let expireYear = (new Date().getFullYear()) + 10;
+        let emitterId = Math.round((Math.random() * 11));
+
+        for (let i = 0; i < 15; i++) {
+            number.push( Math.round(Math.random() * 10) );
+        };
+
+        number = number.toString().replace(/[,. ]/g,'');
+
+        return {
+            number,
+            expireYear,
+            securityCode,
+            emitterId
+        };
 
     };
 

@@ -48,4 +48,13 @@ const sendInvoiceMail = async (user: string, email :string, invoice: Array<objec
         .catch(error => console.error(error));
 };
 
-export default { sendSignUpMail, sendStatusMail, sendBuyCreditMail, sendBuyDebitMail, sendInvoiceMail };
+const sendPayInvoiceMail = async (user: string, email :string, value: number, balance: number ) => {
+    const subject = 'A fatura do seu cartão foi paga'
+    const text = `A fatura do seu cartão foi paga`
+    const to = email
+    mailer.sendmail(from, to, subject, text, htmlTemplate.payDueInvoiceTemplateMail(user, value.toString(), balance.toString()))
+        .then(sended => console.log(sended))
+        .catch(error => console.error(error));
+};
+
+export default { sendSignUpMail, sendStatusMail, sendBuyCreditMail, sendBuyDebitMail, sendPayInvoiceMail, sendInvoiceMail };

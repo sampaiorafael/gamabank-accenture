@@ -4,14 +4,7 @@ import BcryptHandler from '../helpers/BcryptHandler';
 import AccountsService from './Accounts.service';
 import { Users } from '../models/Users.model';
 import { Clients } from '../models/Clients.model';
-
-interface fullUser {
-    username: string
-    name: string,
-    phone: string,
-    email: string
-};
-
+import fullUser from '../types/fullUser';
 class UsersService {
 
     public newUser = async (username: string, password: string, email: string, cpf: string): Promise<Users> => {
@@ -27,6 +20,34 @@ class UsersService {
         };
 
         return newUser;
+
+    };
+
+    public findFullByAccountNumber = async (destinyAccountNumber: number): Promise<fullUser> => {
+
+        const repository = getRepository(Clients);
+
+        let account;
+        let user;
+        let client;
+
+        try {
+           account = await AccountsService.findAccountByNumber(destinyAccountNumber); 
+           user = await this.findById(account.idUser);
+           client = await repository.findOne({ idUser: account.idUser });
+        } catch (err) {
+            throw err;
+        };
+
+        if (!client)
+            throw new Error('Não foi possível encontrar o cliente');
+
+        return {
+            username: user.username,
+            name: client.name,
+            phone: client.phone,
+            email: user.email
+        };
 
     };
 
@@ -48,7 +69,7 @@ class UsersService {
 
     };
 
-    public findUserById = async (id: number): Promise<Users> => {
+    private findById = async (id: number): Promise<Users> => {
 
         const repository = getRepository(Users);
 
@@ -64,34 +85,6 @@ class UsersService {
             throw new Error('Esse usuário não existe')
 
         return user
-    };
-
-    public findFullByAccountNumber = async (destinyAccountNumber: number): Promise<fullUser> => {
-
-        const repository = getRepository(Clients);
-
-        let account;
-        let user;
-        let client;
-
-        try {
-           account = await AccountsService.findAccountByNumber(destinyAccountNumber); 
-           user = await this.findUserById(account.idUser);
-           client = await repository.findOne({ idUser: account.idUser });
-        } catch (err) {
-            throw err;
-        };
-
-        if (!client)
-            throw new Error('Não foi possível encontrar o cliente');
-
-        return {
-            username: user.username,
-            name: client.name,
-            phone: client.phone,
-            email: user.email
-        };
-
     };
 
 };

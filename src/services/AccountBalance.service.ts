@@ -62,14 +62,11 @@ class AccountBalanceService {
             return ('Registro de balanço não encontrado');
 
         return {
-            "Atualização de Balanço": {
-                "Mês do balanço": actualBalanceRegister.month,
-                "Balanço inicial do mês": actualBalanceRegister.initialBalance,
-                "Saldo anterior": actualBalanceRegister.actualBalance,
-                "Novo saldo": +actualBalanceRegister.actualBalance + +value
-            }
+            "Mês do balanço": actualBalanceRegister.month,
+            "Balanço inicial do mês": actualBalanceRegister.initialBalance,
+            "Saldo anterior": actualBalanceRegister.actualBalance,
+            "Novo saldo": +actualBalanceRegister.actualBalance - +value 
         }
-
         
     };
 

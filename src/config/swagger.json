@@ -18,7 +18,7 @@
   "tags": [
     {
       "name": "status",
-      "description": "Status server",
+      "description": "Verificar status do servidor",
       "externalDocs": {
         "description": "Link",
         "url": "gamabank-perseverance.herokuapp.com/status"
@@ -26,7 +26,7 @@
     },
     {
       "name": "signup",
-      "description": "Sigup user to create bank account",
+      "description": "Criar usuários",
       "externalDocs": {
         "description": "Link",
         "url": "gamabank-perseverance.herokuapp.com/signup"
@@ -34,7 +34,7 @@
     },
     {
       "name": "auth",
-      "description": "Auth user by JWT",
+      "description": "Autenticar usuário usando JWT",
       "externalDocs": {
         "description": "Link",
         "url": "gamabank-perseverance.herokuapp.com/auth"
@@ -75,10 +75,16 @@
         ],
         "responses": {
           "200": {
-            "description": "Servidor on line."
+            "description": "Servidor on line.",
+            "schema": {
+              "$ref": "#/definitions/status"
+            }
           },
           "500": {
-            "description": "Erro interno do servidor"
+            "description": "Erro interno do servidor",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           }
         }
       }
@@ -156,7 +162,10 @@
             }
           },
           "400": {
-            "description": "Falha ao criar usuário"
+            "description": "Falha ao criar usuário",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           }
         }
       }
@@ -198,7 +207,10 @@
             }
           },
           "400": {
-            "description": "Usuário não encontrado"
+            "description": "Usuário não encontrado",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           }
         }
       }
@@ -217,17 +229,17 @@
           "application/json"
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Saldo da conta",
             "schema": {
-              "$ref": "#/definitions/auth"
+              "$ref": "#/definitions/checkbalance"
             }
           },
           "400": {
-            "description": "not found"
-          },
-          "404": {
-            "description": "not found"
+            "description": "Falha ao obter o saldo da conta",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           }
         },
         "security": [
@@ -238,27 +250,60 @@
       }
     },
     "/account/movementrecords": {
-      "get": {
+      "post": {
         "tags": [
           "account"
         ],
         "summary": "Extrato conta corrente do mês",
         "operationId": "account/movementrecords",
-        "consumes":[
+        "consumes": [
           "application/x-www-form-urlencoded"
         ],
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "name": "operation",
+            "in": "formData",
+            "description": "Valor",
+            "type": "string",
+            "enum": [
+              "deposit",
+              "remove"
+            ]
+          },
+          {
+            "name": "startDay",
+            "in": "formData",
+            "description": "Valor",
+            "type": "string"
+          },
+          {
+            "name": "finishDay",
+            "in": "formData",
+            "description": "Valor",
+            "type": "string"
+          },
+          {
+            "name": "dayBefore",
+            "in": "formData",
+            "description": "Valor",
+            "type": "string"
+          }
+        ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Extrato gerado",
             "schema": {
-              "$ref": "#/definitions/account"
+              "$ref": "#/definitions/movementrecords"
             }
           },
           "400": {
-            "description": "not found"
+            "description": "Falha ao gerar extrato",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           },
           "404": {
             "description": "not found"
@@ -278,13 +323,13 @@
         ],
         "summary": "Deposito na própria conta",
         "operationId": "account/selfdeposit",
-        "consumes":[
+        "consumes": [
           "application/x-www-form-urlencoded"
         ],
         "produces": [
           "application/json"
         ],
-        "parameters":[
+        "parameters": [
           {
             "name": "value",
             "in": "formData",
@@ -294,17 +339,17 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Depositado com sucesso",
             "schema": {
-              "$ref": "#/definitions/auth"
+              "$ref": "#/definitions/selfdeposit"
             }
           },
           "400": {
-            "description": "not found"
-          },
-          "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           }
         },
         "security": [
@@ -347,14 +392,14 @@
           "200": {
             "description": "Transferido com sucesso",
             "schema": {
-              "$ref": "#/definitions/auth"
+              "$ref": "#/definitions/internaltransfer"
             }
           },
           "400": {
-            "description": "not found"
-          },
-          "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           }
         },
         "security": [
@@ -371,30 +416,30 @@
         ],
         "summary": "Transferências Externas",
         "operationId": "account/externTransfer",
-        "consumes":[
+        "consumes": [
           "application/x-www-form-urlencoded"
         ],
         "produces": [
           "application/json"
         ],
-        "parameters":[
+        "parameters": [
           {
             "name": "value",
-            "typer": "number",
+            "type": "number",
             "required": true,
             "description": "Valor",
             "in": "formData"
           },
           {
             "name": "bankCode",
-            "typer": "number",
+            "type": "number",
             "required": true,
             "description": "Código do banco",
             "in": "formData"
           },
           {
             "name": "cpf",
-            "typer": "string",
+            "type": "string",
             "required": true,
             "description": "CPF",
             "in": "formData"
@@ -404,11 +449,14 @@
           "200": {
             "description": "Transferido com sucesso",
             "schema": {
-              "$ref": "#/definitions/account"
+              "$ref": "#/definitions/externtransfer"
             }
           },
           "400": {
-            "description": "not found"
+            "description": "Falha ao transferir valor",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           },
           "404": {
             "description": "not found"
@@ -434,7 +482,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters":[
+        "parameters": [
           {
             "name": "value",
             "type": "number",
@@ -447,14 +495,14 @@
           "201": {
             "description": "Compra efetuada",
             "schema": {
-              "$ref": "#/definitions/account"
+              "$ref": "#/definitions/purchasedebt"
             }
           },
           "400": {
-            "description": "not found"
-          },
-          "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           }
         },
         "security": [
@@ -477,7 +525,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters":[
+        "parameters": [
           {
             "name": "value",
             "type": "number",
@@ -504,14 +552,20 @@
           "200": {
             "description": "Compra efetuada",
             "schema": {
-              "$ref": "#/definitions/account"
+              "$ref": "#/definitions/purchase"
             }
           },
           "400": {
-            "description": "Preencha todos os campos corretamente e tente novamente"
+            "description": "Preencha todos os campos corretamente e tente novamente",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           },
           "401": {
-            "description": "Token inválido ou expirado"
+            "description": "Token inválido ou expirado",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           }
         },
         "security": [
@@ -538,14 +592,14 @@
           "200": {
             "description": "Fatura emitida",
             "schema": {
-              "$ref": "#/definitions/account"
+              "$ref": "#/definitions/ApiDefaultResponse"
             }
           },
           "400": {
-            "description": "not found"
-          },
-          "404": {
-            "description": "not found"
+            "description": "not found",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           }
         },
         "security": [
@@ -572,11 +626,14 @@
           "200": {
             "description": "Pagamento da fatura do cartão efetuada com sucesso",
             "schema": {
-              "$ref": "#/definitions/account"
+              "$ref": "#/definitions/paydueinvoice"
             }
           },
           "400": {
-            "description": "Você não possui saldo suficiente"
+            "description": "Você não possui saldo suficiente",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
           }
         },
         "security": [
@@ -585,132 +642,253 @@
           }
         ]
       }
+    }
+  },
+  "definitions": {
+    "status": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
     },
-    "definitions": {
-      "account": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "petId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "shipDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "status": {
-            "type": "string",
-            "description": "Order Status",
-            "enum": [
-              "placed",
-              "approved",
-              "delivered"
-            ]
-          },
-          "complete": {
-            "type": "boolean",
-            "default": false
-          }
+    "signup": {
+      "type": "object",
+      "required": [
+        "username",
+        "password",
+        "email",
+        "name",
+        "cpf",
+        "adress",
+        "phone"
+      ],
+      "properties": {
+        "Nome": {
+          "type": "string"
         },
-        "xml": {
-          "name": "Order"
-        }
-      },
-      "client": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          }
+        "CPF": {
+          "type": "string"
         },
-        "xml": {
-          "name": "Category"
-        }
-      },
-      "user": {
-        "type": "object",
-        "required": [
-          "username",
-          "password",
-          "email",
-          "name",
-          "cpf",
-          "adress",
-          "phone"
-        ],
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "username": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "userStatus": {
-            "type": "integer",
-            "format": "int32",
-            "description": "User Status"
-          }
+        "Email": {
+          "type": "string"
         },
-        "xml": {
-          "name": "User"
-        }
-      },
-      "ApiResponse": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "type": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      },
-      "auth": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          }
+        "Usuario": {
+          "type": "string"
         },
-        "xml": {
-          "name": "Category"
+        "Telefone": {
+          "type": "string"
+        },
+        "Endereco": {
+          "type": "string"
+        },
+        "NumeroDaConta": {
+          "type": "number"
+        },
+        "Agencia": {
+          "type": "number"
+        },
+        "Saldo": {
+          "type": "number"
+        },
+        "NumeroDoCartaoDeCredito": {
+          "type": "string"
+        },
+        "CodigoDeSeguranca": {
+          "type": "number"
+        },
+        "AnoDeExpiracao": {
+          "type": "number"
+        },  
+        "LimiteDeCredito": {
+          "type": "number"
+        }, 
+        "FechamentoDaFatura": {
+          "type": "number"
+        }, 
+        "PrazoPagamentoFatura": {
+          "type": "number"
+        },  
+        "Limite": {
+          "type": "number"
+        },  
+        "Emissor": {
+          "type": "number"
+        } 
+      }
+    },
+    "auth": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "purchase": {
+      "type": "object",
+      "properties": {
+        "Description": {
+          "type": "string"
+        },
+        "Price": {
+          "type": "number"
+        },
+        "AvailableBalanceBeforePurchase": {
+          "type": "string"
+        },
+        "AvailableBalanceNextPurchase": {
+          "type": "string"
+        },
+        "Instalments": {
+          "type": "string"
+        }
+      }
+    },
+    "checkbalance": {
+      "type": "object",
+      "properties": {
+        "Balaço atual": {
+          "type": "string"
+        },
+        "Data da consulta": {
+          "type": "date-time"
+        }
+
+      }
+    },
+    "selfdeposit": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Valor a ser depositado"
+        }
+      }
+    },
+    "movementrecords": {
+      "type": "object",
+      "properties": {
+        "newBalanceRegister": {
+          "$ref": "#/definitions/newBalanceRegister"
+        },
+        "newMovementRegister": {
+          "$ref": "#/definitions/newMovementRegister"
+        }
+      }
+    },
+    "newBalanceRegister": {
+      "type": "object",
+      "properties": {
+        "Mes do Balanco": {
+          "type": "number"
+        },
+        "Balanco inicial do mes": {
+          "type": "string"
+        },
+        "Saldo anterior": {
+          "type": "string"
+        },
+        "Novo saldo": {
+          "type": "number"
+        }
+      }
+    },
+    "newMovementRegister": {
+      "type": "object",
+      "properties": {
+        "Origem": {
+          "type": "string"
+        },
+        "Tipo": {
+          "type": "string"
+        },
+        "Valor": {
+          "type": "string"
+        },
+        "Descricao": {
+          "type": "string"
+        }
+      }
+    },
+    "internaltransfer": {
+      "type": "object",
+      "required": [
+        "value",
+        "toUsername"
+      ],
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "toUsername": {
+          "type": "string"
+        }
+      }
+    },
+    "externtransfer": {
+      "type": "object",
+      "required": [
+        "value",
+        "bankCode",
+        "cpf"
+      ],
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "bankCode": {
+          "type": "number"
+        },
+        "cpf": {
+          "type": "string"
+        }
+      }
+    },
+    "purchasedebt": {
+      "type": "object",
+      "required": [
+        "value",
+        "bankCode",
+        "cpf"
+      ],
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "bankCode": {
+          "type": "number"
+        },
+        "cpf": {
+          "type": "string"
+        }
+      }
+    },
+    "paydueinvoice": {
+      "type": "object",
+      "required": [
+        "value",
+        "bankCode",
+        "cpf"
+      ],
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "bankCode": {
+          "type": "number"
+        },
+        "cpf": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiDefaultResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
         }
       }
     }

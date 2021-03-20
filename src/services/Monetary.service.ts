@@ -138,9 +138,9 @@ class MonetaryService {
         return {
             status: 'Sucesso, sua fatura foi paga',
             Fatura: {
-                "Saldo anterior conta corrente": accountBalance,
-                "Saldo atual da conta corrente ": +accountBalance - due.dueBalance,
-                "Valor de fatura pago": due.dueBalance
+                "SaldoAnterior": accountBalance,
+                "SaldoAutal": +accountBalance - due.dueBalance,
+                "ValorPago": due.dueBalance
             }
         }
 

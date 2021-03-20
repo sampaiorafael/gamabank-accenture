@@ -1,6 +1,6 @@
 export default interface invoice {
     Status: string,
-    SaldoAnterior: number,
+    SaldoAnterior?: number,
     SaldoAtual?: number,
-    ValorDaFatura: number,
+    ValorDaFatura?: number,
 };

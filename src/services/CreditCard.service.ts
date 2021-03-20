@@ -67,6 +67,8 @@ class CreditCardsService {
             throw err;
         };
 
+        console.log(destinyAccountNumber);
+
         if (!creditCard)
             throw new Error('Cartão de crédito não encontrado');
         

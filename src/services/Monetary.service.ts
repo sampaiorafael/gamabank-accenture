@@ -74,7 +74,7 @@ class MonetaryService {
     };
 
     public purchaseCredit = async (destinyCreditCardNumber: number, description: string, value: number, instalments: number): Promise<any> => {
-    
+        
         let creditCardBalance;
 
         try {
@@ -121,14 +121,11 @@ class MonetaryService {
             throw err;
         };
 
-        if (due.dueBalance > accountBalance){
+        if (+due.dueBalance > +accountBalance){
             return {
-                "Status": 'SALDO INSUFICIENTE',
-                "SaldoAnterior": +accountBalance,
-                "SaldoAtual": +accountBalance - due.dueBalance,
-                "ValorDaFatura": +due.dueBalance
-            }
-        }
+                "status": 'Saldo Insuficiente',
+            };
+        };
             
 
         let newDue;

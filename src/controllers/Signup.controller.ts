@@ -29,7 +29,7 @@ class SignupController {
             return res.status(400).json({status: err.message});
         };
 
-        return res.status(201).json({status: signupData});
+        return res.status(201).json(signupData);
 
     };
 

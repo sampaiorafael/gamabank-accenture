@@ -124,7 +124,7 @@ class CreditCardController {
         
         Mail.sendInvoiceMail(fullUser.username, fullUser.email ,invoice.creditCardsMovements)
 
-        return res.status(200).json({status: invoice});
+        return res.status(200).json(invoice);
 
     };
 

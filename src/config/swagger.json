@@ -229,10 +229,10 @@
           "application/json"
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Saldo da conta",
             "schema": {
-              "$ref": "#/definitions/auth"
+              "$ref": "#/definitions/checkbalance"
             }
           },
           "400": {
@@ -262,8 +262,38 @@
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "name": "operation",
+            "in": "formData",
+            "description": "Valor",
+            "type": "string",
+            "enum": [
+              "deposit",
+              "remove"
+            ]
+          },
+          {
+            "name": "startDay",
+            "in": "formData",
+            "description": "Valor",
+            "type": "number"
+          },
+          {
+            "name": "finishDay",
+            "in": "formData",
+            "description": "Valor",
+            "type": "number"
+          },
+          {
+            "name": "dayBefore",
+            "in": "formData",
+            "description": "Valor",
+            "type": "number"
+          }
+        ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Extrato gerado",
             "schema": {
               "$ref": "#/definitions/movementrecords"
@@ -618,12 +648,12 @@
     "status": {
       "type": "object",
       "properties": {
-        "message": {
+        "status": {
           "type": "string"
         }
       }
     },
-    "signupIn": {
+    "signup": {
       "type": "object",
       "required": [
         "username",
@@ -635,30 +665,92 @@
         "phone"
       ],
       "properties": {
-        "username": {
+        "Nome": {
           "type": "string"
         },
-        "password": {
+        "CPF": {
           "type": "string"
         },
-        "email": {
+        "Email": {
           "type": "string"
         },
-        "name": {
+        "Usuario": {
           "type": "string"
         },
-        "cpf": {
+        "Telefone": {
           "type": "string"
         },
-        "adress": {
+        "Endereco": {
           "type": "string"
         },
-        "phone": {
+        "NumeroDaConta": {
+          "type": "number"
+        },
+        "Agencia": {
+          "type": "number"
+        },
+        "Saldo": {
+          "type": "number"
+        },
+        "NumeroDoCartaoDeCredito": {
+          "type": "string"
+        },
+        "CodigoDeSeguranca": {
+          "type": "number"
+        },
+        "AnoDeExpiracao": {
+          "type": "number"
+        },  
+        "LimiteDeCredito": {
+          "type": "number"
+        }, 
+        "FechamentoDaFatura": {
+          "type": "number"
+        }, 
+        "PrazoPagamentoFatura": {
+          "type": "number"
+        },  
+        "Limite": {
+          "type": "number"
+        },  
+        "Emissor": {
+          "type": "number"
+        } 
+      }
+    },
+    "purchase": {
+      "type": "object",
+      "properties": {
+        "Description": {
+          "type": "string"
+        },
+        "Price": {
+          "type": "number"
+        },
+        "AvailableBalanceBeforePurchase": {
+          "type": "string"
+        },
+        "AvailableBalanceNextPurchase": {
+          "type": "string"
+        },
+        "Instalments": {
           "type": "string"
         }
       }
     },
-    "signupOut": {
+    "checkbalance": {
+      "type": "object",
+      "properties": {
+        "Balaço atual": {
+          "type": "string"
+        },
+        "Data da consulta": {
+          "type": "date-time"
+        }
+
+      }
+    },
+    "auth": {
       "type": "object",
       "properties": {
         "token": {
@@ -666,26 +758,8 @@
         }
       }
     },
-    "auth": {
-      "type": "object",
-      "required": [
-        "username",
-        "password"
-      ],
-      "properties": {
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
     "selfdeposit": {
       "type": "object",
-      "required": [
-        "value"
-      ],
       "properties": {
         "value": {
           "type": "number",
@@ -765,25 +839,6 @@
         }
       }
     },
-    "purchase": {
-      "type": "object",
-      "required": [
-        "value",
-        "bankCode",
-        "cpf"
-      ],
-      "properties": {
-        "value": {
-          "type": "number"
-        },
-        "bankCode": {
-          "type": "number"
-        },
-        "cpf": {
-          "type": "string"
-        }
-      }
-    },
     "paydueinvoice": {
       "type": "object",
       "required": [
@@ -806,7 +861,7 @@
     "ApiDefaultResponse": {
       "type": "object",
       "properties": {
-        "message": {
+        "status": {
           "type": "string"
         }
       }

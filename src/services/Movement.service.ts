@@ -65,7 +65,7 @@ class MovementService {
             operationType = '%o%';
         
         if (daysBefore) {
-            startDay = +now.getDate() - +daysBefore;
+            startDay = now.getDate() - daysBefore;
             startDate = new Date(2021, now.getMonth(), startDay, 0, 0, 0, 0);
             finishDate = new Date(2021, now.getMonth(), now.getDate(), 23, 59, 59, 999);
         } else if (startDay && finishDay) {

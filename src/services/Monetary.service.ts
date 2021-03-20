@@ -139,10 +139,10 @@ class MonetaryService {
         };
 
         return {
-            "Status": 'Fatura paga', 
-            "SaldoAnterior": +accountBalance,
-            "SaldoAtual": +accountBalance - due.dueBalance,
-            "ValorDaFatura": +due.dueBalance
+            "status": 'Fatura paga', 
+            "saldoAnterior": +accountBalance,
+            "saldoAtual": +accountBalance - due.dueBalance,
+            "valorDaFatura": +due.dueBalance
         };
 
     };

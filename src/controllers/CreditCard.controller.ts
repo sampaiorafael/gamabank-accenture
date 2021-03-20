@@ -34,7 +34,7 @@ class CreditCardController {
             return res.status(400).json({status: 'Preencha todos os campos corretamente e tente novamente'});
 
         if (isNegative(value) || isNegative(instalments) )
-            return res.status(400).send({status: 'O valor não pode ser menor ou igual a zero.'});
+            return res.status(400).json({status: 'O valor não pode ser menor ou igual a zero.'});
 
         let creditCard;
 
@@ -57,7 +57,7 @@ class CreditCardController {
         try {
             fullUser = await UsersService.findFullByAccountNumber(fromAccountNumber)
         } catch (err) {
-            return res.status(400).send({status: err});
+            return res.status(400).json({status: err});
         };
 
         Mail.sendBuyCreditMail(

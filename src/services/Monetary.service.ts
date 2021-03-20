@@ -45,9 +45,6 @@ class MonetaryService {
         return { newBalanceRegister, newMovementRegister };
     };
 
-    public accountWithdraw = async (destinyAccountNumber: number, value: number): Promise<any> => {
-    };
-
     public purchaseDebt = async (destinyAccountNumber: number, value: number): Promise<any> => {
         
         let actualBalanceFromAccount: number | string

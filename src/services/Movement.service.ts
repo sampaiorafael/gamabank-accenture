@@ -5,6 +5,24 @@ import { CreditCardMovement } from '../models/CreditCard/CreditCardsMovement.mod
 
 class MovementService {
 
+    public newCreditCardMovementMovement = async (creditCardNumber: number, description: string, value: number, instalments: number, operation: boolean): Promise<CreditCardMovement> => {
+
+        const repository = getRepository(CreditCardMovement);
+        let newMovement: CreditCardMovement;
+
+        if (!operation)
+            description = 'invoice payment';
+
+        try {
+            newMovement = await repository.save({ creditCardNumber, description, value, instalments })
+        } catch (err) {
+            throw err;
+        };
+
+        return newMovement;
+
+    }
+
     /**
      * 
      * @param accountNumber 
@@ -86,24 +104,6 @@ class MovementService {
         };
 
     };
-
-    public newCreditCardMovementMovement = async (creditCardNumber: number, description: string, value: number, instalments: number, operation: boolean): Promise<CreditCardMovement> => {
-
-        const repository = getRepository(CreditCardMovement);
-        let newMovement: CreditCardMovement;
-
-        if (!operation)
-            description = 'invoice payment';
-
-        try {
-            newMovement = await repository.save({ creditCardNumber, description, value, instalments })
-        } catch (err) {
-            throw err;
-        };
-
-        return newMovement;
-
-    }
 
 };
 

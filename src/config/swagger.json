@@ -492,7 +492,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Compra efetuada",
             "schema": {
               "$ref": "#/definitions/purchasedebt"
@@ -714,7 +714,7 @@
           "type": "number"
         },
         "Emissor": {
-          "type": "number"
+          "type": "string"
         }
       }
     },
@@ -852,6 +852,34 @@
         }
       }
     },
+    "favorecidoEx": {
+      "type": "object",
+      "properties": {
+        "CPF": {
+          "type": "string"
+        },
+        "Codigo do banco": {
+          "type": "string"
+        },
+        "Nome do banco": {
+          "type": "string"
+        }
+      }
+    },
+    "origem": {
+      "type": "object",
+      "properties": {
+        "Conta": {
+          "type": "string"
+        },
+        "Saldo anterior": {
+          "type": "string"
+        },
+        "Novo saldo": {
+          "type": "number"
+        }
+      }
+    },
     "externtransfer": {
       "type": "object",
       "required": [
@@ -860,24 +888,19 @@
         "cpf"
       ],
       "properties": {
-        "value": {
-          "type": "number"
+        "Origem": {
+          "$ref": "#/definitions/origem"
         },
-        "bankCode": {
-          "type": "number"
+        "Favorecido": {
+          "$ref": "#/definitions/favorecidoEx"
         },
-        "cpf": {
-          "type": "string"
+        "Operacao": {
+          "$ref": "#/definitions/operacao"
         }
       }
     },
     "purchasedebt": {
       "type": "object",
-      "required": [
-        "value",
-        "bankCode",
-        "cpf"
-      ],
       "properties": {
         "value": {
           "type": "number"

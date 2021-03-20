@@ -197,7 +197,7 @@ class AccountController {
         let { id } = decodedToken;
         let fromAccountNumber = id;
 
-        const { operation, startDay, finishDay } = req.body;
+        const { operation, startDay, finishDay, daysBefore } = req.body;
 
         if (operation)
             if ( operation !== 'remove' && operation !== 'deposit') 
@@ -206,7 +206,7 @@ class AccountController {
         let movementRecords;
 
         try {
-            movementRecords = await MovementService.movementRecords(fromAccountNumber, operation, startDay, finishDay);
+            movementRecords = await MovementService.movementRecords(fromAccountNumber, operation, startDay, finishDay, daysBefore);
         } catch (err) {
             return res.status(400).send('Histórico não encontrado, verifique suas informações e tente novamente');
         }

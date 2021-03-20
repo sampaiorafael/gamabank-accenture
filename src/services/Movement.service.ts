@@ -37,22 +37,28 @@ class MovementService {
         };
     };
 
-    public movementRecords = async (destinyAccountNumber: number, operationType?: string, startDay?: number, finishDay?: number): Promise<any> => {
+    public movementRecords = async (destinyAccountNumber: number, operationType?: string, startDay?: number, finishDay?: number, daysBefore?: number): Promise<any> => {
 
         const repository = getRepository(AccountsMovement);
 
         let now = new Date();
+        let startDate;
+        let finishDate;
 
         if (!operationType)
             operationType = '%o%';
         
-        if ( !startDay || !finishDay){
-            startDay = 1;
-            finishDay = now.getDate();
-        }
-            
-        let startDate = new Date(2021, now.getMonth(), startDay, 0, 0, 0, 0);
-        let finishDate = new Date(2021, now.getMonth(), finishDay, 23, 59, 59, 999);
+        if (daysBefore) {
+            startDay = +now.getDate() - +daysBefore;
+            startDate = new Date(2021, now.getMonth(), startDay, 0, 0, 0, 0);
+            finishDate = new Date(2021, now.getMonth(), now.getDate(), 23, 59, 59, 999);
+        } else if (startDay && finishDay) {
+            startDate = new Date(2021, now.getMonth(), startDay, 0, 0, 0, 0);
+            finishDate = new Date(2021, now.getMonth(), finishDay, 23, 59, 59, 999);
+        }else if (!daysBefore && !startDay && !finishDay){
+            startDate = new Date(2021, now.getMonth(), 1, 0, 0, 0, 0);
+            finishDate = new Date(2021, now.getMonth(), now.getDate(), 23, 59, 59, 999);
+        };
 
         let movementRecords;
 

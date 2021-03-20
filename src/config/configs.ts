@@ -7,7 +7,7 @@ export default {
     },
     JWT: {
         secret: process.env.JWT_SECRET,
-        expireTime: 999999999
+        expireTime: 3600
     },
     Mailer: {
         host: process.env.MAIL_HOST,

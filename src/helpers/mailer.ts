@@ -7,10 +7,10 @@ const setup = async () => {
     const transporter = nodemailer.createTransport({
         host: configs.Mailer.host, 
         port: Number(configs.Mailer.port),
-        secure: true,
+        secure: false,
         auth: {
-            user: configs.Mailer.user,
-            pass: configs.Mailer.pass
+            user: account ? account.user : configs.Mailer.user,
+            pass: account ? account.pass : configs.Mailer.pass
         }
     })
 
@@ -31,7 +31,7 @@ const sendmail = async (from: string, to: string, subject: string, text: string,
     console.log("Mensagem enviada: %s", result.messageId);
     console.log("URL Preview: %s", nodemailer.getTestMessageUrl(result));
  
-    return result
+    return nodemailer.getTestMessageUrl(result);
 }
 
 export default { sendmail }

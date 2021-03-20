@@ -286,7 +286,7 @@
             "type": "number"
           },
           {
-            "name": "dayBefore",
+            "name": "daysBefore",
             "in": "formData",
             "description": "Valor",
             "type": "number"

@@ -77,7 +77,7 @@ class AccountController {
             return res.status(400).json({status: 'Deposito mal sucedido'});
         };
 
-        return res.status(200).json({sttus: selfDeposit});
+        return res.status(200).json(selfDeposit);
 
     };
 

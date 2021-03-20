@@ -18,7 +18,7 @@
   "tags": [
     {
       "name": "status",
-      "description": "Status server",
+      "description": "Verificar status do servidor",
       "externalDocs": {
         "description": "Link",
         "url": "gamabank-perseverance.herokuapp.com/status"
@@ -26,7 +26,7 @@
     },
     {
       "name": "signup",
-      "description": "Sigup user to create bank account",
+      "description": "Criar usuários",
       "externalDocs": {
         "description": "Link",
         "url": "gamabank-perseverance.herokuapp.com/signup"
@@ -34,7 +34,7 @@
     },
     {
       "name": "auth",
-      "description": "Auth user by JWT",
+      "description": "Autenticar usuário usando JWT",
       "externalDocs": {
         "description": "Link",
         "url": "gamabank-perseverance.herokuapp.com/auth"
@@ -250,7 +250,7 @@
       }
     },
     "/account/movementrecords": {
-      "get": {
+      "post": {
         "tags": [
           "account"
         ],

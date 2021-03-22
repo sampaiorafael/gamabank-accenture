@@ -68,7 +68,7 @@
           "status"
         ],
         "summary": "Verificar status do servidor",
-        "description": "",
+        "description": "Retorna o status do servidor, se online retorna data e hora atual do servidor",
         "operationId": "status",
         "produces": [
           "application/json"
@@ -95,7 +95,7 @@
           "signup"
         ],
         "summary": "Criar usuários",
-        "description": "",
+        "description": "Todos os campos são obrigatórios ao criar um novo usuário no GamaBank, ao mesmo tempo é criado os dados do cliente e gerado um cartão com saldo inicial de R$ 200,00.",
         "operationId": "signup",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -176,6 +176,7 @@
           "auth"
         ],
         "summary": "Login",
+        "description": "Autenticação via JWT, retorna um token que deve ser passado no header das requisições que requerem idenficação do usuário.",
         "operationId": "authUser",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -221,6 +222,7 @@
           "account"
         ],
         "summary": "Verificar saldo",
+        "description": "Consulta o saldo atual da conta, não requer paramentros.",
         "operationId": "account/checkbalance",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -255,6 +257,7 @@
           "account"
         ],
         "summary": "Extrato conta corrente do mês",
+        "description": "Consulta a movimentação da conta, todos os parametros são opcionais.",
         "operationId": "account/movementrecords",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -322,6 +325,7 @@
           "account"
         ],
         "summary": "Deposito na própria conta",
+        "description": "Deposito na própria conta.",
         "operationId": "account/selfdeposit",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -342,7 +346,72 @@
           "200": {
             "description": "Depositado com sucesso",
             "schema": {
-              "$ref": "#/definitions/selfdeposit"
+              "$ref": "#/definitions/deposit"
+            }
+          },
+          "400": {
+            "description": "Parâmetro inválido",
+            "schema": {
+              "$ref": "#/definitions/ApiDefaultResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/account/externdeposit": {
+      "post": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Deposito externo",
+        "description": "Deposito de uma pessoa externa não cliente do banco",
+        "operationId": "account/externdeposit",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Nome",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cpf",
+            "in": "formData",
+            "description": "CPF",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accountNumber",
+            "in": "formData",
+            "description": "Número da conta",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "value",
+            "in": "formData",
+            "description": "Valor",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Depositado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/deposit"
             }
           },
           "400": {
@@ -365,6 +434,7 @@
           "account"
         ],
         "summary": "Transferências Internas",
+        "description": "Transferencia de valor entre contas do mesmo banco.",
         "operationId": "account/internTransfer",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -415,6 +485,7 @@
           "account"
         ],
         "summary": "Transferências Externas",
+        "description": "Transferência entre contas de outros bancos.",
         "operationId": "account/externTransfer",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -475,6 +546,7 @@
           "account"
         ],
         "summary": "Compra no débito",
+        "description": "Compra no débido, um email é enviado para o cliente informando da compra",
         "operationId": "account/purchasedebt",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -518,6 +590,7 @@
           "creditcard"
         ],
         "summary": "Compra no crédito",
+        "description": "Compra no credito, um email, um sms e uma chamada telefônica de uma atendente virtual é enviado para o cliente informando da compra.",
         "operationId": "creditcard/purchase",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -581,6 +654,7 @@
           "creditcard"
         ],
         "summary": "Verificar fatura",
+        "description": "Consulta o extrato/fatura do cartão, é enviado um email com o detramento da fatura para pagamento.",
         "operationId": "creditcard/checkinvoice",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -615,6 +689,7 @@
           "creditcard"
         ],
         "summary": "Pagar fatura do cartão de crédito",
+        "description": "Efetua o pagamento total da fatura do cartão, debitando do saldo disponível da conta.",
         "operationId": "creditcard/paydueinvoice",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -737,7 +812,7 @@
         }
       }
     },
-    "selfdeposit": {
+    "deposit": {
       "type": "object",
       "properties": {
         "Conta favorecida": {

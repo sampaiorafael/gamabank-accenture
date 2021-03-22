@@ -123,9 +123,9 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 - Serviço de envio de Email na compra de débito e crédito
 
-### SMS
+### SMS e TTS
 
-- Envio de SMS na compra de crédito
+- Envio de SMS e TTS na compra de crédito
 
 ### Documentação
 - Documentação das rotas pelo swagger  

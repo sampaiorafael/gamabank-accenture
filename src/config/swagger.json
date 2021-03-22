@@ -654,7 +654,7 @@
           "creditcard"
         ],
         "summary": "Verificar fatura",
-        "description": "Consulta o extrato/fatura do cartão, é enviado um email com o detramento da fatura para pagamento.",
+        "description": "Consulta o extrato/fatura do cartão, é enviado um email com o detalhamento da fatura para pagamento.",
         "operationId": "creditcard/checkinvoice",
         "consumes": [
           "application/x-www-form-urlencoded"
